@@ -3,5 +3,3 @@ cmd:
 ng server
 
 ng generate component << nombre del componente >>
-
-hola
