@@ -20,7 +20,10 @@ import { LayoutService } from '../service/layout.service';
                 <router-outlet></router-outlet> <!-- renderiza-->
                 <p>final despues de renderizar</p>
             </div>
-            <app-footer></app-footer>
+            <app-footer>
+
+
+            </app-footer>
         </div>
         <div class="layout-mask animate-fadein"></div>
     </div> `

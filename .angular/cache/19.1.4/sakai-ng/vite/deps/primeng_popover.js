@@ -6,16 +6,16 @@ import {
 } from "./chunk-2ZXM7VXU.js";
 import {
   BaseComponent
-} from "./chunk-O27ITZME.js";
-import "./chunk-XYDTQJNO.js";
+} from "./chunk-VEHWYYM3.js";
+import "./chunk-QI4ZKOFN.js";
 import {
   BaseStyle
-} from "./chunk-SRFTGRVJ.js";
+} from "./chunk-7UIFEWUH.js";
 import {
   OverlayService,
   PrimeTemplate,
   SharedModule
-} from "./chunk-BXN7YG4O.js";
+} from "./chunk-XEULJ72G.js";
 import {
   absolutePosition,
   addClass,
@@ -32,6 +32,8 @@ import {
   transition,
   trigger
 } from "./chunk-VHGNZGST.js";
+import "./chunk-ITKLJM62.js";
+import "./chunk-AWYL7S6O.js";
 import {
   CommonModule,
   NgClass,
@@ -88,11 +90,9 @@ import {
   ɵɵsetNgModuleScope,
   ɵɵtemplate
 } from "./chunk-D22RMT7D.js";
-import "./chunk-4N4GOYJH.js";
 import "./chunk-5OPE3T2R.js";
+import "./chunk-4N4GOYJH.js";
 import "./chunk-FHTVLBLO.js";
-import "./chunk-ITKLJM62.js";
-import "./chunk-AWYL7S6O.js";
 import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-popover.mjs

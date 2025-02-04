@@ -8,7 +8,7 @@ import { LayoutService } from '../../../layout/service/layout.service';
     selector: 'app-revenue-stream-widget',
     imports: [ChartModule],
     template: `<div class="card !mb-8">
-        <div class="font-semibold text-xl mb-4">Revenue Stream</div>
+        <div class="font-semibold text-xl mb-4">Becas otorgadas en los Centros Regionales</div>
         <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="h-80" />
     </div>`
 })
@@ -36,35 +36,43 @@ export class RevenueStreamWidget {
         const textMutedColor = documentStyle.getPropertyValue('--text-color-secondary');
 
         this.chartData = {
-            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            labels: ['Grupos de investigación', 'Sustantivas', 'Posgrado', 'Fondos Concursables', 'Grado'],
             datasets: [
                 {
                     type: 'bar',
-                    label: 'Subscriptions',
-                    backgroundColor: documentStyle.getPropertyValue('--p-primary-400'),
-                    data: [4000, 10000, 15000, 4000],
-                    barThickness: 32
+                    label: 'CU',
+                    backgroundColor: '#1E3A8A', // Azul oscuro
+                    borderColor: '#1E3A8A',
+                    borderWidth: 1,
+                    data: [4000, 10000, 15000, 4000, 5000],
+                    barThickness: 25
                 },
                 {
                     type: 'bar',
-                    label: 'Advertising',
-                    backgroundColor: documentStyle.getPropertyValue('--p-primary-300'),
-                    data: [2100, 8400, 2400, 7500],
-                    barThickness: 32
+                    label: 'Curla',
+                    backgroundColor: '#FACC15', // Amarillo (tono profesional)
+                    borderColor: '#FACC15',
+                    borderWidth: 1,
+                    data: [2100, 8400, 2400, 7500, 6200],
+                    barThickness: 25
                 },
                 {
                     type: 'bar',
-                    label: 'Affiliate',
-                    backgroundColor: documentStyle.getPropertyValue('--p-primary-200'),
-                    data: [4100, 5200, 3400, 7400],
-                    borderRadius: {
-                        topLeft: 8,
-                        topRight: 8,
-                        bottomLeft: 0,
-                        bottomRight: 0
-                    },
-                    borderSkipped: false,
-                    barThickness: 32
+                    label: 'UNAH-TEC DANLI',
+                    backgroundColor: '#60A5FA', // Azul cielo
+                    borderColor: '#60A5FA',
+                    borderWidth: 1,
+                    data: [4100, 5200, 3400, 7400, 3300],
+                    barThickness: 25
+                },
+                {
+                    type: 'bar',
+                    label: 'CURNO',
+                    backgroundColor: '#111827', // Negro serio y corporativo
+                    borderColor: '#111827',
+                    borderWidth: 1,
+                    data: [4100, 5200, 3400, 7400, 2900],
+                    barThickness: 25
                 }
             ]
         };
@@ -75,35 +83,51 @@ export class RevenueStreamWidget {
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
-                    }
+                        color: textColor,
+                        font: {
+                            size: 12
+                        }
+                    },
+                    align: 'end',
+                    position: 'right'
                 }
             },
             scales: {
                 x: {
-                    stacked: true,
+                    stacked: false,
                     ticks: {
-                        color: textMutedColor
+                        color: textMutedColor,
+                        font: {
+                            size: 12
+                        }
                     },
                     grid: {
-                        color: 'transparent',
-                        borderColor: 'transparent'
+                        display: false
                     }
                 },
                 y: {
-                    stacked: true,
+                    stacked: false,
                     ticks: {
-                        color: textMutedColor
+                        color: textMutedColor,
+                        font: {
+                            size: 12
+                        },
+                        stepSize: 2000
                     },
                     grid: {
                         color: borderColor,
-                        borderColor: 'transparent',
-                        drawTicks: false
+                        borderDash: [2, 2]
                     }
                 }
+            },
+            animation: {
+                duration: 600,
+                easing: 'easeOutQuad'
             }
         };
     }
+
+
 
     ngOnDestroy() {
         if (this.subscription) {
