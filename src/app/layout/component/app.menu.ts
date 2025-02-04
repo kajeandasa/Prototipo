@@ -33,12 +33,36 @@ export class AppMenu {
                         icon: 'pi pi-fw pi-circle',                                
                         items: [
                         { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria']},
-                        { label: 'Solicituds',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
+                        { label: 'Solicitudes',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
                         { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark'},
                         { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
+                    ] },
+                    {   label: 'Becario',
+                        icon: 'pi pi-fw pi-circle',                                
+                        items: [
+                        { label: 'Solicitud de Postulante',icon: 'pi pi-fw pi-bookmark', 
+                            items: [
+                                { label: 'Paso 1: Postulante realiza la solicitud al aval', icon: 'pi pi-send', routerLink: ['/beca/solicitudpostulante'] },
+                                { label: 'Paso 2: Aval recibe la solicitud', icon: 'pi pi-check', routerLink: ['/beca/aprobacionaval'] }
+                            ]
+                        },
+                        { label: 'Solicitudes',   icon: 'pi pi-fw pi-file-import', routerLink: ['/beca/solicitud'] },
+                        { label: 'Desembolso',  icon: 'pi pi-fw pi-money-bill'},
+                        { label: 'Cierre',      icon: 'pi pi-fw pi-delete-left'}
+                    ] },
+                    {   label: 'Aval',
+                        icon: 'pi pi-fw pi-circle',                                
+                        items: [
+                        { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria']},
+                        { label: 'Solicitudes',   icon: 'pi pi-fw pi-file-import', routerLink: ['/beca/solicitud'] },
+                        { label: 'Desembolso',  icon: 'pi pi-fw pi-money-bill'},
+                        { label: 'Cierre',      icon: 'pi pi-fw pi-delete-left'}
                     ] }
+
                 ]
-            }
+            },
+
+            
         ];
     }
 }
