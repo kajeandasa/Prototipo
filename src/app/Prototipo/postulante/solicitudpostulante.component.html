@@ -1,0 +1,315 @@
+<div class="card">
+    <div class="font-semibold text-xl mb-4">Solicitud de Postulante</div> <!-- Titulo -->
+
+    <h2>Realiza la Solicitud de la beca</h2>
+    <h6>Empezando por el formulario de aplicacion de aceptación por el aval.</h6>
+
+    <!-- Botones -->
+    <div class="flex gap-4 justify-end">
+        <button 
+            pButton 
+            label="Solicitud" 
+            icon="pi pi-image" 
+            (click)="openImageModal('becario')">
+        </button>
+        <button 
+            pButton 
+            label="Nueva Solicitud" 
+            icon="pi pi-plus" 
+            (click)="openModal()">
+        </button>
+    </div>
+    
+    <!-- Tabla que muestra las solicitudes del postulante -->
+    <p-table
+        #dt1
+        [value]="tasks"
+        [rows]="10"
+        [paginator]="true"
+        responsiveLayout="scroll"
+        [globalFilterFields]="['title', 'description', 'type', 'status']"
+
+    >
+        <!-- Encabezado personalizado con buscador global y botón -->
+        <ng-template #caption>
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+                <!-- Botón para limpiar filtros -->
+                <button 
+                    pButton 
+                    label="Clear" 
+                    class="p-button-outlined mb-2" 
+                    icon="pi pi-filter-slash" 
+                    (click)="clear(dt1)">
+                </button>
+
+                <!-- Campo de búsqueda -->
+                <p-iconfield iconPosition="left" class="ml-auto">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input 
+                        pInputText 
+                        type="text" 
+                        (input)="onGlobalFilter(dt1, $event)" 
+                        placeholder="Search keyword" />
+                </p-iconfield>
+            </div>
+        </ng-template>
+
+        <!-- Encabezados de la tabla -->
+        <ng-template #header>
+            <tr>
+                <th>Número de Solicitud</th>
+                <th>Estado de la Solicitud</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+
+        <ng-template #body let-task>
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.estado }}</td>
+                <td>{{ task.fechaCreacion | date: 'MM/dd/yyyy' }}</td>
+                <td>
+                    <button 
+                        pButton 
+                        label="Detalles" 
+                        icon="pi pi-eye" 
+                        (click)="openModal(task)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+        
+    </p-table>
+
+    <!-- Modal que muestra una imagen del formulario -->
+    <p-dialog 
+        header="Información general del becario" 
+        [modal]="true" 
+        [(visible)]="imagen" 
+        [style]="{ width: '80rem' }">
+        
+        <div class="flex flex-col items-center">
+            <img src="assets/imagenes/informacionbecario.png" alt="Foto del aval" class="rounded-lg shadow-lg">
+        </div>
+
+    </p-dialog>
+
+
+    <!-- Modal que agrega la informacion de la solicitud del postulante -->
+    <p-dialog 
+        header="Información general del becario" 
+        [modal]="true" 
+        [(visible)]="displayNewModal" 
+        [style]="{ width: '100rem' }">
+        <div class="card flex flex-col gap-4">
+            <div class="font-semibold text-xl">Información Personal</div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Nombre Completo</strong> {{ selectedTask.nombreCompletos }}
+                    <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off"/>
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Dirección Domicilio</strong> {{ selectedTask.direccionDomicilios }}
+                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Número de identidad</strong> {{ selectedTask.numeroIdentidads }}
+                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Número de RTN</strong> {{ selectedTask.numeroRTNs }}
+                    <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Estado Civil</strong> {{ selectedTask.estadoCivils }}
+                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Profesión</strong> {{ selectedTask.profesions }}
+                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Correo Electrónico</strong> {{ selectedTask.correoElectronicos }}
+                    <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Número de Telefono</strong> {{ selectedTask.numeroTelefonos }}
+                    <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+            <br>
+            <div class="font-semibold text-xl">Información Universitaria</div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Número de Estudiante</strong> {{ selectedTask.numeroEstudiantess }}
+                    <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Nombre de la carrera</strong> {{ selectedTask.nombreCarreras }}
+                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Nombre del proyecto</strong> {{ selectedTask.nombreProyectos }}
+                    <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Seleccione el Licenciado Aval</strong> {{ selectedTask.nombreProyectos }}
+                    <p-multiselect [options]="licenciados" [(ngModel)]="selectedLicenciados" placeholder="Seleccione un Licenciado" optionLabel="name" display="chip" ></p-multiselect>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-end gap-2">
+            <p-button label="Enviar" (click)="displayNewModal = false" />
+            <p-button label="Cerrar" (click)="displayNewModal = false" />
+        </div>
+    </p-dialog>
+
+    <!-- Modal que muestra la informacion de la solicitud del postulante -->
+    <p-dialog 
+        header="Información general del becario" 
+        [modal]="true" 
+        [(visible)]="displayModal" 
+        [style]="{ width: '100rem' }">
+        <div class="card">
+            <div class="flex mb-4 gap-2 justify">
+              <!-- Botones que cambian el índice del acordeón -->
+              <p-button (click)="activeIndex = 0" [rounded]="true" label="1" class="w-8 h-8 p-0" [outlined]="activeIndex !== 0"></p-button>
+              <p-button (click)="activeIndex = 1" [rounded]="true" label="2" class="w-8 h-8 p-0" [outlined]="activeIndex !== 1"></p-button>
+              <p-button (click)="activeIndex = 2" [rounded]="true" label="3" class="w-8 h-8 p-0" [outlined]="activeIndex !== 2"></p-button>
+            </div>
+          
+            <!-- Acordeón controlado -->
+            <p-accordion [(value)]="activeIndex">
+              <p-accordion-panel [value]="0">
+                <p-accordion-header>Solicitud de Aval</p-accordion-header>
+                <p-accordion-content>
+                    <div class="card flex flex-col gap-4">
+                    <div class="font-semibold text-xl">Información Personal</div>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Nombre Completo</strong> {{ selectedTask.nombreCompletos }}
+                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.nombreCompleto"/>
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Dirección Domicilio</strong> {{ selectedTask.direccionDomicilios }}
+                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.direccionDomicilio"/>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Número de identidad</strong> {{ selectedTask.numeroIdentidads }}
+                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroIdentidad"/>
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Número de RTN</strong> {{ selectedTask.numeroRTNs }}
+                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroRTN"/>
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Estado Civil</strong> {{ selectedTask.estadoCivils }}
+                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.estadoCivil"/>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Profesión</strong> {{ selectedTask.profesions }}
+                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.profesion"/>
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Correo Electrónico</strong> {{ selectedTask.correoElectronicos }}
+                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.correoElectronico"/>
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Número de Telefono</strong> {{ selectedTask.numeroTelefonos }}
+                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroTelefono"/>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="font-semibold text-xl">Información Universitaria</div>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Número de Estudiante</strong> {{ selectedTask.numeroEstudiantess }}
+                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroEstudiante"/>
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Nombre de la carrera</strong> {{ selectedTask.nombreCarreras }}
+                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.nombreCarrera"/>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Nombre del proyecto</strong> {{ selectedTask.nombreProyectos }}
+                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.nombreProyecto"/>
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Seleccione el Licenciado Aval</strong> {{ selectedTask.avals }}
+                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.aval"/>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Estado de la Solicitud</strong> {{ selectedTask.estados }}
+                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.estado"/>
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Fecha de Creación</strong> {{ selectedTask.fechaCreacions }}
+                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-6">
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Seleccione La Beca:</strong> {{ selectedTask.Becas }}
+                                <p-select [options]="beca" [(ngModel)]="selectedCity" [checkmark]="true" optionLabel="name" [showClear]="true"  placeholder="Seleccione La Beca" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <p-button label="Siguiente" (click)="activeIndex = 1" />
+                    </div>
+                </p-accordion-content>
+              </p-accordion-panel>
+              <p-accordion-panel [value]="1">
+                <p-accordion-header>Header II</p-accordion-header>
+                <p-accordion-content>
+                  Contenido del panel 2
+                </p-accordion-content>
+              </p-accordion-panel>
+              <p-accordion-panel [value]="2">
+                <p-accordion-header>Header III</p-accordion-header>
+                <p-accordion-content>
+                  Contenido del panel 3
+                </p-accordion-content>
+              </p-accordion-panel>
+            </p-accordion>
+          </div>
+          
+        
+        <div class="flex justify-end gap-2">
+            <p-button label="Cerrar" (click)="displayModal = false" />
+        </div>
+    </p-dialog>
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

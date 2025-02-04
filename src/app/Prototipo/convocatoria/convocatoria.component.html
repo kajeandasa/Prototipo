@@ -42,9 +42,7 @@
             <th>Descripción</th>
             <th>Fecha de Inicio</th>
             <th>Fecha Final</th>
-            <th>Tipo</th>
-            <th>Estatus</th>
-            <th>-</th>
+            <th>Acciones</th>
         </tr>
     </ng-template>
 
@@ -54,8 +52,6 @@
             <td>{{ task.description }}</td>
             <td>{{ task.startDate | date: 'MM/dd/yyyy' }}</td>
             <td>{{ task.endDate | date: 'MM/dd/yyyy' }}</td>
-            <td>{{ task.type }}</td>
-            <td>{{ task.status }}</td>
             <td>
                 <button 
                     pButton 
@@ -76,15 +72,15 @@
     [style]="{ width: '25rem' }">
     <div *ngIf="selectedTask">
         <div class="mb-4">
-            <strong>Título:</strong> {{ selectedTask.title }}
+            <strong>Título:</strong> {{ selectedTask.titles }}
             <input pInputText id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.title"/>
         </div>
         <div class="mb-4">
-            <strong>Descripción:</strong> {{ selectedTask.description }}
+            <strong>Descripción:</strong> {{ selectedTask.descriptions }}
             <textarea pInputText id="id_descipcion" class="flex-auto" autocomplete="off" [value]="selectedTask.description"></textarea>
         </div>
         <div class="mb-4">
-            <strong>Fecha de Inicio:</strong> {{ selectedTask.startDate | date: 'MM/dd/yyyy' }}
+            <strong>Fecha de Inicio:</strong> {{ selectedTask.startDates | date: 'MM/dd/yyyy' }}
             <p-datepicker 
                 [(ngModel)]="selectedTask.startDate" 
                 id="startDatePicker" 
@@ -93,7 +89,7 @@
             </p-datepicker>
         </div>
         <div class="mb-4">
-            <strong>Fecha Final:</strong> {{ selectedTask.endDate | date: 'MM/dd/yyyy' }}
+            <strong>Fecha Final:</strong> {{ selectedTask.endDates | date: 'MM/dd/yyyy' }}
             <p-datepicker 
                 [(ngModel)]="selectedTask.endDate" 
                 id="endDatePicker" 
@@ -102,19 +98,7 @@
             </p-datepicker>
         </div>
         
-        <div class="mb-4">
-            <strong>Estatus:</strong> {{ selectedTask.status }}
-            <div class="mb-4">
-                <strong>Tipo:</strong> {{ selectedTask.type }}
-                <p-listbox 
-                [options]="Estatus" 
-                [(ngModel)]="selectedTask.status" 
-                optionLabel="name" 
-                [filter]="true" 
-                class="w-full">
-              </p-listbox>
-            </div>
-        </div>
+        
     </div>
     <div class="flex justify-end gap-2">
         <p-button label="Cerrar" (click)="displayModal = false" />

@@ -1,22 +1,22 @@
 import {
   Ripple,
   RippleModule
-} from "./chunk-4YUOBH2Y.js";
+} from "./chunk-JJY2AH3M.js";
 import {
   ChevronLeftIcon,
   ChevronRightIcon
-} from "./chunk-ZE35LEZH.js";
+} from "./chunk-B7UYH7BK.js";
 import {
   BaseComponent
-} from "./chunk-O27ITZME.js";
-import "./chunk-XYDTQJNO.js";
+} from "./chunk-CNWI2CWE.js";
+import "./chunk-LXY7OYKY.js";
 import {
   BaseStyle
-} from "./chunk-SRFTGRVJ.js";
+} from "./chunk-DFEC5BXV.js";
 import {
   PrimeTemplate,
   SharedModule
-} from "./chunk-BXN7YG4O.js";
+} from "./chunk-RYGDHN3Y.js";
 import {
   findSingle,
   focus,
@@ -27,7 +27,7 @@ import {
   getWidth,
   isRTL,
   uuid
-} from "./chunk-GFVF2TMO.js";
+} from "./chunk-5OHZTMN7.js";
 import {
   CommonModule,
   NgClass,
@@ -90,10 +90,10 @@ import {
 import "./chunk-4N4GOYJH.js";
 import "./chunk-5OPE3T2R.js";
 import "./chunk-FHTVLBLO.js";
-import "./chunk-ITKLJM62.js";
+import "./chunk-O2NX5PGS.js";
 import {
   equals
-} from "./chunk-AWYL7S6O.js";
+} from "./chunk-5GVB2IES.js";
 import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-tabs.mjs
