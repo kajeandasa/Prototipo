@@ -16,6 +16,24 @@
     }
 }
 
+// .dashboard-container {
+//     background-image: url('/assets/Lucem_Aspicio.png'); /* Agrega una barra al inicio */
+//     background-size: cover;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     min-height: 100vh;
+// }
+.dashboard-container {
+    background-image: url('/assets/Lucem_Aspicio.png');
+    background-size: 90% auto; /* Reduce el ancho al 40% y mantiene la altura automática */
+    background-position: center top 15px; /* Centra la imagen y la sube al header*/
+    background-repeat: no-repeat;
+    min-height: 5vh;/* hace que la imagen cubra toda la pantalla*/
+}
+
+
+
+
 .p-toast {
     &.p-toast-top-right,
     &.p-toast-top-left,

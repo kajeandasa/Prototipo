@@ -12,11 +12,12 @@ import { LayoutService } from '../service/layout.service';
     imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator],
     template: `
     <div class="layout-topbar">
+        <!-- div para el titulo de gestion de becas y fondos -->
         <div class="layout-topbar-logo-container">
             <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
                 <i class="pi pi-bars"></i>
             </button>
-            <a class="layout-topbar-logo" routerLink="/">
+            <!-- <a class="layout-topbar-logo" routerLink="/">
                 <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         fill-rule="evenodd"
@@ -34,8 +35,13 @@ import { LayoutService } from '../service/layout.service';
                         />
                     </g>
                 </svg>
-                <span>SAKAI</span>
+                <span>Gestion Becas y Fondos Concursables</span>
+            </a> -->
+            <a class="layout-topbar-logo" routerLink="/" style="display: flex; align-items: center; white-space: nowrap;">
+                <img src="assets/UNAH_Azul.png" alt="Gestion Becas y Fondos Concursables" width="50" height="50">
+                <span style="white-space: nowrap;">Gestion Becas y Fondos Concursables</span>
             </a>
+
         </div>
 
         <div class="layout-topbar-actions">
@@ -62,6 +68,35 @@ import { LayoutService } from '../service/layout.service';
             <button class="layout-topbar-menu-button layout-topbar-action" pStyleClass="@next" enterFromClass="hidden" enterActiveClass="animate-scalein" leaveToClass="hidden" leaveActiveClass="animate-fadeout" [hideOnOutsideClick]="true">
                 <i class="pi pi-ellipsis-v"></i>
             </button>
+
+<!--
+            <div class="layout-topbar-menu hidden lg:block">
+                <div class="layout-topbar-menu-content">
+                    <button type="button" class="layout-topbar-action" style="background-color: #1E3A8A; color: yellow; padding: 15px 60px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                    <span style="color: #FACC15;">Regístrate</span>
+                    <i class="pi pi-user-plus" style="color: #FACC15;"></i>Regístrate
+                    </button>
+                </div>
+            </div> -->
+
+            <!-- boton de registro -->
+            <!-- <div class="layout-topbar-menu hidden lg:block">
+            <div class="layout-topbar-menu-content">
+                <button type="button" class="layout-topbar-action"
+                    style="background-color: #1E3A8A; color:rgb(56, 84, 159); padding: 15px 60px; border: 2px solid transparent; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px;
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;"
+                    onmouseover="this.style.backgroundColor='#122B66'; this.style.borderColor='rgb(68, 97, 176)';"
+                    onmouseout="this.style.backgroundColor='#1E3A8A'; this.style.borderColor='transparent';"
+                    onmousedown="this.style.backgroundColor='#0F1E4D';"
+                    onmouseup="this.style.backgroundColor='#122B66';">
+
+                    <i class="pi pi-user-plus" style="color: #FACC15; font-size: 24px;"></i>
+                    <span style="color: #FACC15;">Regístrate</span>
+                </button>
+            </div>
+        </div> -->
+
+
 
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
