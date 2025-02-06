@@ -26,6 +26,8 @@ import { ListboxModule } from 'primeng/listbox';
 // Importación de las validaciones de los inputs con KeyFilter
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { AccordionModule } from 'primeng/accordion';
+import { TabsModule } from 'primeng/tabs';
+import { FileUpload } from 'primeng/fileupload';
 
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
@@ -57,11 +59,14 @@ interface expandedRows {
     IconFieldModule,
     DialogModule,
     KeyFilterModule,
-    AccordionModule
+    AccordionModule,
+    TabsModule,
+    FileUpload,
   ],
   templateUrl: './solicitudpostulante.component.html',  // Enlaza la plantilla HTML del componente
   styleUrl: './solicitudpostulante.component.scss',   // Enlaza el archivo de estilos SCSS del componente
   standalone: true,
+  providers: [MessageService, ConfirmationService], // Asegurar que MessageService esté disponible
 })
 export class SolicitudPostulanteComponent {
 
@@ -96,15 +101,34 @@ export class SolicitudPostulanteComponent {
   ];
 
   beca: any[] = [
-      { name: 'Beca sustantiva', code: 'BS' },
-      { name: 'Beca de grupos de investigación', code: 'BGI' },
-      { name: 'Beca de grado', code: 'BG' },
-      { name: 'Beca de postgrado', code: 'BP' }
+      { name: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional', code: 'BS' },
+      { name: 'Beca básica institucional para el fortalecimiento de grupos de investigación', code: 'BGI' },
+      { name: 'Beca básica de grado como espacios de aprendizaje del método científico', code: 'BG' },
+      { name: 'Beca básica de postgrado para la eficiencia terminal de tesis', code: 'BP' }
   ];
   
+  fondo: any[] = [
+      { name: 'Fondos concursables para Proyectos de investigación científica ', code: 'FPIC' },
+      { name: 'Fondos concursables para Proyectos de investigación, desarrollo e innovación (I+D+I)', code: 'FIDI' },
+      { name: 'Fondos concursables para Proyectos de investigación para el desarrollo curricular o para el apoyo a la gestión curricular para la investigación.', code: 'FDGI' },
+  ];
 
-  // Array para almacenar los licenciados seleccionados
+  financiacion: any[] = [
+      { name: 'Becas de investigación científica, humanistica y/o de innovación', code: 'BICHI' },
+      { name: 'Fondos concursables para el fortalecimiento institucional de los organos del SICIHT)', code: 'FIDI' },
+  ];
+
+  // Array para almacenar los licenciados para el select
   selectedLicenciados: any[] = [];
+  
+  // Array para almacenar los becas para el select
+  selectedBeca: any[] = [];
+
+  // Array para almacenar las becas para el select
+  selectedFondo: any[] = [];
+
+  // Array para almacenar las becas para el select
+  selectedfinanciacion: any[] = [];
   
   // Variable para controlar el estado de carga
   loading: boolean = true;
@@ -174,4 +198,33 @@ export class SolicitudPostulanteComponent {
     activeIndexChange(index : number){
         this.activeIndex = index;
     }
+  
+  //Para subir archivos 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      console.log("Archivo seleccionado:", file.name);
+    }
+  }
+
+  uploadedFiles: any[] = [];
+
+  constructor(private messageService: MessageService) {}
+
+  onUpload(event: any) {
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Éxito',
+      detail: 'Archivo subido correctamente'
+    });
+
+    console.log("Archivos subidos:", this.uploadedFiles);
+  }  
+
+  
+    
 }
