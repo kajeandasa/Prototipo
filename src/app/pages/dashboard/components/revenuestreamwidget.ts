@@ -7,10 +7,12 @@ import { LayoutService } from '../../../layout/service/layout.service';
     standalone: true,
     selector: 'app-revenue-stream-widget',
     imports: [ChartModule],
-    template: `<div class="card !mb-8">
+    template: `
+    <div class="card shadow-lg border border-gray-300 rounded-lg !mb-8 p-4 bg-white">
         <div class="font-semibold text-xl mb-4">Becas otorgadas en los Centros Regionales</div>
         <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="h-80" />
-    </div>`
+    </div>
+    `
 })
 export class RevenueStreamWidget {
     chartData: any;

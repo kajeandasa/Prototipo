@@ -28,19 +28,19 @@ export class AppMenu {
             {
                 label: 'Modulo',
                 items: [
-                    
+
                     {   label: 'Beca',
-                        icon: 'pi pi-fw pi-circle',                                
+                        icon: 'pi pi-fw pi-circle',
                         items: [
                         { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria']},
                         { label: 'Solicitudes',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
-                        { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark'},
+                        { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud']},
                         { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
                     ] },
                     {   label: 'Becario',
-                        icon: 'pi pi-fw pi-circle',                                
+                        icon: 'pi pi-fw pi-circle',
                         items: [
-                        { label: 'Solicitud de Postulante',icon: 'pi pi-fw pi-bookmark', 
+                        { label: 'Solicitud de Postulante',icon: 'pi pi-fw pi-bookmark',
                             items: [
                                 { label: 'Paso 1: Postulante realiza la solicitud al aval', icon: 'pi pi-send', routerLink: ['/beca/solicitudpostulante'] },
                                 { label: 'Paso 2: Aval recibe la solicitud', icon: 'pi pi-check', routerLink: ['/beca/aprobacionaval'] }
