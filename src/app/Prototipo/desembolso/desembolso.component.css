@@ -1,0 +1,72 @@
+/* Estilos base */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  /* Estilos para las tarjetas de servicio */
+  .service-item {
+    width: 250px;
+    height: 350px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px #b3b3b3, -5px -5px 10px #ffffff;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Efecto hover */
+  .service-item:hover {
+    transform: scale(1.05);
+    box-shadow: 8px 8px 15px #b3b3b3, -8px -8px 15px #ffffff;
+  }
+
+  /* Imagen dentro de la tarjeta */
+  .service-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  /* Título de la tarjeta */
+  .service-item h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  /* Botón de la tarjeta */
+  .service-item button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+
+  /* Efecto hover en el botón */
+  .service-item button:hover {
+    background-color: #0056b3;
+  }
+
+  :host ::ng-deep .service-item {
+    width: 250px;
+    height: 350px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px #b3b3b3, -5px -5px 10px #ffffff;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }

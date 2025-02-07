@@ -34,7 +34,7 @@ export class AppMenu {
                         items: [
                         { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria']},
                         { label: 'Solicitudes',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
-                        { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud']},
+                        { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/desembolso']},
                         { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
                     ] },
                     {   label: 'Becario',
