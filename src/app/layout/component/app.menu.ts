@@ -56,9 +56,9 @@ export class AppMenu {
                     {   label: 'Desembolso',
                         icon: 'pi pi-fw pi-circle',                                
                         items: [
-                        { label: 'Becas',icon: 'pi pi-fw pi-book', 
+                        { label: 'Becas', icon: 'pi pi-fw pi-book', 
                             items: [
-                                { label: 'Tipos de Becas', icon: 'pi pi-address-book', routerLink: ['/beca/solicitudpostulante'] },
+                                { label: 'Tipos de Becas', icon: 'pi pi-address-book', routerLink: ['/beca/desembolsosbeca'] },
                                 { label: 'Desembolsos por beca', icon: 'pi pi-wallet', routerLink: ['/beca/aprobacionaval'] }
                             ]
                         },
@@ -73,7 +73,7 @@ export class AppMenu {
                                 { label: 'Plazo', icon: 'pi pi-calendar-clock', routerLink: ['/beca/solicitudpostulante'] },
                             ]
                         },
-                        { label: 'Cierre',      icon: 'pi pi-fw pi-stopwatch',
+                        { label: 'Cierre',  icon: 'pi pi-fw pi-stopwatch',
                             items: [
                                 { label: 'Tipo de Cierre', icon: 'pi pi-ellipsis-v', routerLink: ['/beca/solicitudpostulante'] },
                             ]

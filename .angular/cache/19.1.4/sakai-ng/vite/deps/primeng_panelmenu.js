@@ -1,9 +1,4 @@
 import {
-  RouterLink,
-  RouterLinkActive,
-  RouterModule
-} from "./chunk-LO7VQN2J.js";
-import {
   Tooltip,
   TooltipModule
 } from "./chunk-EOJHSBAO.js";
@@ -22,6 +17,11 @@ import "./chunk-2NRYLL4N.js";
 import {
   BaseStyle
 } from "./chunk-IACFBNRL.js";
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule
+} from "./chunk-LO7VQN2J.js";
 import {
   PrimeTemplate,
   SharedModule
@@ -119,8 +119,8 @@ import {
   ɵɵtextInterpolate,
   ɵɵviewQuery
 } from "./chunk-D22RMT7D.js";
-import "./chunk-5OPE3T2R.js";
 import "./chunk-4N4GOYJH.js";
+import "./chunk-5OPE3T2R.js";
 import "./chunk-FHTVLBLO.js";
 import "./chunk-WDMUDEB6.js";
 

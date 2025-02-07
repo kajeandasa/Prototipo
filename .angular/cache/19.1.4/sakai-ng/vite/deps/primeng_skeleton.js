@@ -39,8 +39,8 @@ import {
   ɵɵproperty,
   ɵɵsetNgModuleScope
 } from "./chunk-D22RMT7D.js";
-import "./chunk-5OPE3T2R.js";
 import "./chunk-4N4GOYJH.js";
+import "./chunk-5OPE3T2R.js";
 import "./chunk-FHTVLBLO.js";
 import {
   __spreadProps,
