@@ -61,7 +61,9 @@
             <tr>
                 <th>Número de Beca</th>
                 <th>Nombre de la Beca</th>
-                <th>Monto Total de las Becas</th>
+                <th>Monto Minimo de las Becas</th>
+                <th>Monto Maximo de las Becas</th>
+                <th>Monto de la Beca</th>
                 <th>Acciones</th>
             </tr>
         </ng-template>
@@ -70,6 +72,8 @@
             <tr>
                 <td>{{ task.id }}</td>
                 <td>{{ task.nombre }}</td>
+                <td>{{ task.montomin }}</td>
+                <td>{{ task.montomax }}</td>
                 <td>{{ task.monto }}</td>
                 <td>
                     <button 
@@ -100,21 +104,27 @@
 
     <!-- Modal que agrega la informacion de la solicitud del postulante -->
     <p-dialog 
-        header="Información general del becario" 
+        header="Información sobre los tipos de becas" 
         [modal]="true" 
         [(visible)]="displayNewModal" 
-        [style]="{ width: '100rem' }">
+        [style]="{ width: '40rem' }">
         <div class="card flex flex-col gap-4">
-            <div class="font-semibold text-xl">Información Personal</div>
+            <div class="font-semibold text-xl">Tipos de Becas</div>
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Nombre Completo</strong> {{ selectedTask.nombreCompletos }}
-                    <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off"/>
+                    <strong>Nombre de la Beca</strong> {{ selectedTask.nombrebecas }}
+                    <input pInputText pKeyFilter="alpha" id="id_nombrebeca" class="flex-auto" autocomplete="off"/>
                 </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Dirección Domicilio</strong> {{ selectedTask.direccionDomicilios }}
-                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
+                    <strong>¿La beca necesita especificar un rango de monto?</strong> {{ selectedTask.rangos }}
                 </div>
+                <p-toggleswitch [(ngModel)]="checked">
+                    <ng-template #handle let-checked="checked">
+                        <i [ngClass]="['!text-xs', 'pi', checked ? 'pi-check' : 'pi-times']"></i>
+                    </ng-template>
+                </p-toggleswitch>
             </div>
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
@@ -124,46 +134,6 @@
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Número de RTN</strong> {{ selectedTask.numeroRTNs }}
                     <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                </div>
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Estado Civil</strong> {{ selectedTask.estadoCivils }}
-                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Profesión</strong> {{ selectedTask.profesions }}
-                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
-                </div>
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Correo Electrónico</strong> {{ selectedTask.correoElectronicos }}
-                    <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                </div>
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Telefono</strong> {{ selectedTask.numeroTelefonos }}
-                    <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>
-            <br>
-            <div class="font-semibold text-xl">Información Universitaria</div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Estudiante</strong> {{ selectedTask.numeroEstudiantess }}
-                    <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                </div>
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Nombre de la carrera</strong> {{ selectedTask.nombreCarreras }}
-                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Nombre del proyecto</strong> {{ selectedTask.nombreProyectos }}
-                    <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                </div>
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Seleccione el Licenciado Aval</strong> {{ selectedTask.nombreProyectos }}
-                    <p-multiselect [options]="licenciados" [(ngModel)]="selectedLicenciados" placeholder="Seleccione un Licenciado" optionLabel="name" display="chip" ></p-multiselect>
                 </div>
             </div>
         </div>
