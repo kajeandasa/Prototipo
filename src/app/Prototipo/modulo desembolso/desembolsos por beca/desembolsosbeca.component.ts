@@ -90,7 +90,7 @@ export class desembolsoBecaComponent {
     {
         id: 4,
         nombre: 'Beca básica de postgrado para la eficiencia terminal de tesis',
-        monto: '0801-1990-12345'
+        monto: '40,000.00 / 80,000.00'
     }
 
   ];

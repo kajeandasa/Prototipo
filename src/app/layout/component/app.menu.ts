@@ -58,18 +58,21 @@ export class AppMenu {
                         items: [
                         { label: 'Becas', icon: 'pi pi-fw pi-book', 
                             items: [
+                                { label: 'Desembolsos por beca', icon: 'pi pi-wallet', routerLink: ['/beca/aprobacionaval'] },
+                                { label: 'Estado Desembolso Pagado', icon: 'pi pi-asterisk', routerLink: ['/beca/aprobacionaval'] },
                                 { label: 'Tipos de Becas', icon: 'pi pi-address-book', routerLink: ['/beca/desembolsosbeca'] },
-                                { label: 'Desembolsos por beca', icon: 'pi pi-wallet', routerLink: ['/beca/aprobacionaval'] }
+
                             ]
                         },
-                        { label: 'Estados',   icon: 'pi pi-fw pi-lightbulb', 
+                        { label: 'Seguimiento',   icon: 'pi pi-fw pi-lightbulb', 
                             items: [
-                                { label: 'Estado de Prorroga', icon: 'pi pi-clock', routerLink: ['/beca/solicitudpostulante'] },
-                                { label: 'Estado de Seguimiento', icon: 'pi pi-folder-open', routerLink: ['/beca/aprobacionaval'] }
+                                { label: 'Estado de Seguimiento', icon: 'pi pi-folder-open', routerLink: ['/beca/aprobacionaval'] },
+                                { label: 'Tipo de Avance', icon: 'pi pi-file-import', routerLink: ['/beca/aprobacionaval'] }
                             ]    
                         },
                         { label: 'Prorroga',  icon: 'pi pi-fw pi-file-plus',
                             items: [
+                                { label: 'Estado de Prorroga', icon: 'pi pi-clock', routerLink: ['/beca/solicitudpostulante'] },
                                 { label: 'Plazo', icon: 'pi pi-calendar-clock', routerLink: ['/beca/solicitudpostulante'] },
                             ]
                         },
