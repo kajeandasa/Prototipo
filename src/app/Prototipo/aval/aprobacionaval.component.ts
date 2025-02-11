@@ -60,7 +60,6 @@ interface expandedRows {
     ConfirmDialogModule
   ],
   templateUrl: './aprobacionaval.component.html',  // Enlaza la plantilla HTML del componente
-  styleUrl: './aprobacionaval.component.scss'   // Enlaza el archivo de estilos SCSS del componente
 })
 export class aprobacionavalComponent {
 
@@ -96,7 +95,7 @@ export class aprobacionavalComponent {
 
   // Array para almacenar los licenciados seleccionados
   selectedLicenciados: any[] = [];
-  
+
   // Variable para controlar el estado de carga
   loading: boolean = true;
 
@@ -124,6 +123,7 @@ export class aprobacionavalComponent {
   Date_final: Date | null = null; // Almacena la fecha seleccionada
   Date_hoy: Date = new Date();  // Fecha actual
   selectedTask: any = {};  // Almacena la tarea seleccionada
+  
   isNewModal: boolean = false;  // Determina si es un modal nuevo o de edición
 
   // Método para abrir los diferentes tipos de modal según el tipo
@@ -145,7 +145,7 @@ export class aprobacionavalComponent {
   openImageModal() {
     this.imagen = true;  // Abre el modal de la imagen
   }
-  
+
   // Lista de posibles estados de las solicitudes
   Estatus = [
     { name: 'Abierta', code: 'TRUE' },
@@ -154,10 +154,10 @@ export class aprobacionavalComponent {
   ];
 
   // Variable para almacenar la ciudad seleccionada (aunque no está en uso en el código actual)
-  selectedCity: any = null; 
+  selectedCity: any = null;
 
   // Ruta de la imagen que se mostrará en el modal de imagen
   imagenUrl: string = 'assets/imagenes/informacionaval.png';
 
-  
+
 }
