@@ -39,6 +39,21 @@ export class AppMenu {
                         { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
                     ] }
                 ]
+            },
+            {
+                label: 'Mantenimiento ',
+                items: [
+
+                    {   label: 'Beca',
+                        icon: 'pi pi-fw pi-circle',
+                        items: [
+                        { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/mantenimiento/formulario']},
+                        { label: 'Solicituds',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
+                        { label: 'Formulario',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/formulario'] },
+                        { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark'},
+                        { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
+                    ] }
+                ]
             }
         ];
     }

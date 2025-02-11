@@ -35,7 +35,7 @@ interface expandedRows {
 }
 
 @Component({
-  selector: 'app-convocatoria',
+  selector: 'app-formularioItem',
   imports: [
     CardModule,
     ListboxModule,
@@ -85,15 +85,14 @@ export class ItemFormularioComponent implements OnInit {
         {name: 'selecion unica', code: 5},
         {name: 'selecion multiple', code: 6},
     ];
-    
+
     tasks = [
-      { id: 2, formulario: 1, Pregunta: 'hola?', tipo: '1', fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 1, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: 'una pregunta', tipo: '1', fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') }
+      { id: 2, formulario: 1, Pregunta: 'pregunta para responer texto',     tipo: 1, fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 1, Pregunta: 'pregunta para responer numero',    tipo: 2, fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: 'pregunta para responer parrafo',   tipo: 3, fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: 'pregunta para responer Cargar Archivo', tipo: 4, fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: 'pregunta para responer unica',     tipo: 5, fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: 'pregunta para responer multiple',  tipo: 6, fechaCreacion: new Date('2012-12-12') }
     ];
 
     get filteredTasks() {

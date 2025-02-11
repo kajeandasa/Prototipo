@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+
 // Importación de módulos de PrimeNG para usarlos en la vista y funcionalidad.
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
@@ -34,7 +35,7 @@ interface expandedRows {
 }
 
 @Component({
-  selector: 'app-convocatoria',
+  selector: 'app-formulario',
   imports: [
     ListboxModule,
     CalendarModule,
@@ -115,8 +116,8 @@ onGlobalFilter(table: any, event: any) {
 }
 constructor(private router: Router) {}
 
-irADetalles() {
-  this.router.navigate(['/beca/itemformulario']);
+iraVerRespuesta() {
+  this.router.navigate(['/beca/formulario-usuario']);
 }
 
 irADetallesConId(id: number) {
