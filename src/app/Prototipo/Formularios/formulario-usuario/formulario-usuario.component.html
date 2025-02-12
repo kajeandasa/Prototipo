@@ -24,11 +24,22 @@
                         <p-inputnumber  *ngIf="tasks[i]['tipo']==2"  pInputNumer  class="flex-auto" autocomplete="off"/>
                         <p-fileupload   *ngIf="tasks[i]['tipo']==4"  #fu mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" />
                         <p-editor       *ngIf="tasks[i]['tipo']==3"  [style]="{ height: '320px' }" />
+                        <ul             *ngIf="tasks[i]['tipo']==6">
+                            <div *ngFor="let c of Respuesta" class="flex items-center">
+                                <p-checkbox [inputId]="c.key" name="group" [value]="c.key" />
+                                <label [for]="c.key" class="ml-2"> {{ c.name }} </label>
+                            </div>
+                        </ul>
+                        <ul             *ngIf="tasks[i]['tipo']==5">
+                            <div *ngFor="let c of Respuesta" class="flex items-center">
+                                <p-radiobutton [inputId]="c.key" name="group" [value]="c.key" [(ngModel)]="selectRespuesta" />
+                                <label [for]="c.key" class="ml-2"> {{ c.name }} </label>
+                            </div>
+                        </ul>
                     </div>
                 </div>
             </p-card>
             <br><br>
-
         </li>
     </ul>
 

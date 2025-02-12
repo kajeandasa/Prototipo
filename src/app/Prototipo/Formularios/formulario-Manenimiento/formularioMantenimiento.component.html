@@ -18,7 +18,7 @@
         [rows]="10"
         [paginator]="true"
         responsiveLayout="scroll"
-        [globalFilterFields]="['title', 'description', 'type', 'status']"
+        [globalFilterFields]="['name', 'id']"
 
     >
         <!-- Encabezado personalizado con buscador global y botón -->
@@ -52,16 +52,14 @@
             <tr>
                 <th>N°</th>
                 <th>Titulo</th>
-                <th>Descripcion</th>
                 <th>Acciones</th>
             </tr>
         </ng-template>
 
         <ng-template #body let-task>
             <tr>
-                <td>{{ task.id }}</td>
-                <td>{{ task.Titulo }}</td>
-                <td>{{ task.Descripcion }}</td>
+                <td>{{ task.code }}</td>
+                <td>{{ task.name }}</td>
                 <td>
                     <button
                         pButton
@@ -91,12 +89,6 @@
                 <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off">
             </div>
         </div>
-        <div class="flex flex-wrap gap-6">
-            <div class="flex flex-col grow basis-0 gap-2">
-                <strong>Descripcion</strong>
-                <textarea pTextarea id="id_descipcion" [rows]="5"></textarea>
-            </div>
-        </div>
     </div>
 
         <div class="flex justify-end gap-2">
@@ -117,13 +109,7 @@
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Nombre de Tipo de respuesta</strong>
-                    <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.Titulo">
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Descripcion</strong>
-                    <textarea pTextarea id="id_descipcion" [rows]="5"> {{ selectedTask.Descripcion }} </textarea>
+                    <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.name">
                 </div>
             </div>
         </div>

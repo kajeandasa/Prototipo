@@ -30,6 +30,10 @@ import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { EditorModule } from 'primeng/editor';
 import { FileUploadModule } from 'primeng/fileupload';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+
+import { FormGroup, FormControl } from '@angular/forms';
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
   [key: string]: boolean;
@@ -40,6 +44,8 @@ interface expandedRows {
 
   standalone: true,
   imports: [
+    RadioButtonModule,
+    CheckboxModule,
     FileUploadModule,
     EditorModule,
     InputNumberModule,
@@ -53,9 +59,7 @@ interface expandedRows {
     SelectModule,
     InputIconModule,
     InputTextModule,
-    ProgressBarModule,
     ToggleButtonModule,
-    ToastModule,
     CommonModule,
     FormsModule,
     ButtonModule,
@@ -88,19 +92,26 @@ export class FormularioUsuarioComponent {
     ];
 
     tasks = [
-      { id: 2, formulario: 1, Pregunta: 'pregunta para responer texto',     tipo: 1, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 1, Pregunta: 'pregunta para responer numero',    tipo: 2, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: 'pregunta para responer parrafo',   tipo: 3, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: 'pregunta para responer Cargar Archivo', tipo: 4, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: 'pregunta para responer unica',     tipo: 5, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: 'pregunta para responer multiple',  tipo: 6, fechaCreacion: new Date('2012-12-12') }
+      { id: 1, formulario: 2, Pregunta: 'pregunta para responer texto',     tipo: 1, fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: 'pregunta para responer numero',    tipo: 2, fechaCreacion: new Date('2012-12-12') },
+      { id: 3, formulario: 2, Pregunta: 'pregunta para responer parrafo',   tipo: 3, fechaCreacion: new Date('2012-12-12') },
+      { id: 4, formulario: 2, Pregunta: 'pregunta para responer Cargar Archivo', tipo: 4, fechaCreacion: new Date('2012-12-12') },
+      { id: 5, formulario: 2, Pregunta: 'pregunta para responer unica',     tipo: 5, fechaCreacion: new Date('2012-12-12') },
+      { id: 6, formulario: 2, Pregunta: 'pregunta para responer multiple',  tipo: 6, fechaCreacion: new Date('2012-12-12') }
     ];
-
+    Respuesta = [
+        {id:1, name: 'respuesta 1', key: 'A', id_respuesta: 5},
+        {id:2, name: 'respuesta 2', key: 'M', id_respuesta: 6 },
+        {id:3, name: 'respuesta 3', key: 'P', id_respuesta: 5 },
+        {id:4, name: 'respuesta 4', key: 'R', id_respuesta: 6 },
+    ];
+    selectRespuesta!: string;
     get filteredTasks() {
       return this.id
         ? this.tasks.filter(task => task.formulario === this.id)
         : this.tasks; // Si no se ha seleccionado, muestra todas
     }
+
 
     seleccionarFormulario(id: number) {
       this.id = id;
