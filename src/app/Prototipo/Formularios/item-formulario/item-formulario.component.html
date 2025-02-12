@@ -1,54 +1,75 @@
-
-
-<div class="card">
     <div class="font-semibold text-xl mb-4"><h2>Formulario - {{getTaskById(id)?.Titulo}}</h2></div> <!-- Titulo -->
 
-    <!-- Botones -->
-    <p-card>
-        <div class="flex gap-4 justify-end">
-            <button
-                pButton
-                label="nuevo"
-                icon="pi pi-plus">
-            </button>
-        </div>
-    </p-card>
-    <br><br><br>
-
     <ul>
-        <li *ngFor="let t of filteredTasks; let i = index">
-            <p-card header="Item {{i}}">
+        <li *ngFor="let t of getFilteredInput(id); let i = index">
+            <p-card>
+                <!-- Contenedor con Flexbox para alinear el H3 y el botón -->
+                <div class="flex justify-between items-center">
+                    <h3>Item {{i}}</h3>
+                    <p-button icon="pi pi-times" severity="danger"></p-button>
+                </div>
 
                 <div class="flex flex-wrap gap-6">
                     <div class="flex flex-col grow basis-0 gap-2">
                         <strong>Formulario</strong>
-                        <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="tasks[i]['Pregunta']">
+                        <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="t.Pregunta">
                     </div>
                     <div class="flex flex-col grow basis-0 gap-2">
                         <strong>Tipo</strong>
-                        <p-select [options]="tipo" optionLabel="name" placeholder="tipo de respuesta" class="w-full"/>
+                        <p-select
+                            [options]="input_tipo"
+                            optionLabel="name"
+                            optionValue="code"
+                            placeholder="Tipo de respuesta"
+                            class="w-full"
+                            [(ngModel)]="t.tipo">
+                        </p-select>
                     </div>
                 </div>
+<br><br>
                 <div class="flex flex-wrap gap-6">
                     <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Descripcion</strong>
-                        <textarea pTextarea id="id_descipcion" [rows]="5">  </textarea>
+
+                        <p-panel header="visualizacion" [style]="{ 'background-color': '#aaaaa', 'color': 'white' }">
+                            <input *ngIf="t.tipo == 1" pInputText class="flex-auto" autocomplete="off">
+                            <p-inputnumber *ngIf="t.tipo == 2" class="flex-auto" autocomplete="off"/>
+                            <p-fileupload *ngIf="t.tipo == 4" #fu mode="basic" chooseLabel="Choose"
+                                chooseIcon="pi pi-upload" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                                accept="image/*" maxFileSize="1000000"/>
+                            <p-editor *ngIf="t.tipo == 3" [style]="{ height: '320px' }"/>
+
+                            <div *ngIf="t.tipo == 5">
+                                <ul>
+                                    <div *ngFor="let c of getFilteredInputTipoList(t.id)" class="flex items-center">
+                                        <p-radiobutton [inputId]="c.key" name="group" [value]="c.key"/>
+                                        <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="c.name">
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <div *ngIf="t.tipo == 6">
+                                <ul>
+                                    <div *ngFor="let c of getFilteredInputTipoList(t.id)" class="flex items-center">
+                                        <p-checkbox [inputId]="c.key" name="group" [value]="c.key"/>
+                                        <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="c.name">
+                                    </div>
+                                </ul>
+                            </div>
+                        </p-panel>
                     </div>
                 </div>
             </p-card>
-<br><br>
+
+            <br><br>
 
         </li>
     </ul>
 
 
+    <p-card class="flex justify-center items-center h-32">
+        <div class="flex justify-center items-center w-full h-full">
+            <p-button icon="pi pi-plus"></p-button>
+        </div>
+    </p-card>
 
 
-
-
-
-
-
-
-
-</div>

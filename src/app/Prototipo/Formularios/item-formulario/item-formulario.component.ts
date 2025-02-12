@@ -28,6 +28,15 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ActivatedRoute } from '@angular/router';
 import { CardModule } from 'primeng/card';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { EditorModule } from 'primeng/editor';
+import { FileUploadModule } from 'primeng/fileupload';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { SkeletonModule } from 'primeng/skeleton';
+
+import { PanelModule } from 'primeng/panel';
+
 
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
@@ -37,6 +46,13 @@ interface expandedRows {
 @Component({
   selector: 'app-formularioItem',
   imports: [
+    PanelModule,
+    SkeletonModule,
+    RadioButtonModule,
+    CheckboxModule,
+    FileUploadModule,
+    EditorModule,
+    InputNumberModule,
     CardModule,
     ListboxModule,
     CalendarModule,
@@ -68,16 +84,24 @@ interface expandedRows {
 export class ItemFormularioComponent implements OnInit {
     id!: number;
 
+    id_formulario = 1;  //declarar el formulario (id) que se quiree contestar
+    id_usuario = 1;     //declarar el usuario (id)  del usuario qcontesta el formulario
+
+    selectRespuesta!: string;   //select respuesta indefinida para los checkbox o radio botton
+    date: Date | undefined;     //fecha indefinio
+
     constructor(private route: ActivatedRoute) {}
 
 
 
+    // datos de los formulario
     Formulario = [
-      { id: 1, Titulo: 'Formulario planilla', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') },
-      { id: 2, Titulo: 'Formulario para ', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') }
+        { id: 1, Titulo: 'Formulario planilla', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') },
+        { id: 2, Titulo: 'Formulario para ', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') }
     ];
 
-    tipo =[
+    // tipo de inputs
+    input_tipo =[
         {name: 'texto', code: 1},
         {name: 'numberico', code: 2},
         {name: 'Parrafo', code: 3},
@@ -86,20 +110,32 @@ export class ItemFormularioComponent implements OnInit {
         {name: 'selecion multiple', code: 6},
     ];
 
-    tasks = [
-      { id: 2, formulario: 1, Pregunta: 'pregunta para responer texto',     tipo: 1, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 1, Pregunta: 'pregunta para responer numero',    tipo: 2, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: 'pregunta para responer parrafo',   tipo: 3, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: 'pregunta para responer Cargar Archivo', tipo: 4, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: 'pregunta para responer unica',     tipo: 5, fechaCreacion: new Date('2012-12-12') },
-      { id: 2, formulario: 2, Pregunta: 'pregunta para responer multiple',  tipo: 6, fechaCreacion: new Date('2012-12-12') }
+    input = [
+        { id: 1, formulario: 1, Pregunta: 'pregunta para responer texto',     tipo: 1, fechaCreacion: new Date('2012-12-12') },
+        { id: 2, formulario: 2, Pregunta: 'pregunta para responer numero',    tipo: 2, fechaCreacion: new Date('2012-12-12') },
+        { id: 3, formulario: 2, Pregunta: 'pregunta para responer parrafo',   tipo: 3, fechaCreacion: new Date('2012-12-12') },
+        { id: 4, formulario: 2, Pregunta: 'pregunta para responer Cargar Archivo', tipo: 4, fechaCreacion: new Date('2012-12-12') },
+        { id: 5, formulario: 2, Pregunta: 'pregunta para responer unica',     tipo: 5, fechaCreacion: new Date('2012-12-12') },
+        { id: 6, formulario: 1, Pregunta: 'pregunta para responer multiple',  tipo: 6, fechaCreacion: new Date('2012-12-12') }
+    ];
+    //en el casoq
+    input_tipo_list = [
+        {id:1, name: 'respuesta 1', key: 'A', id_input: 5},
+        {id:2, name: 'respuesta 2', key: 'M', id_input: 6},
+        {id:3, name: 'respuesta 3', key: 'P', id_input: 5},
+        {id:4, name: 'respuesta 4', key: 'R', id_input: 6},
     ];
 
-    get filteredTasks() {
-      return this.id
-        ? this.tasks.filter(task => task.formulario === this.id)
-        : this.tasks; // Si no se ha seleccionado, muestra todas
+
+    // Método para filtrar inputs dependiendo del formulario
+    getFilteredInput(id: number) {
+        return this.input.filter(item => item.formulario === id);
     }
+    // Método para filtrar input lista dependidndo del input
+    getFilteredInputTipoList(id: number) {
+        return this.input_tipo_list.filter(item => item.id_input === id);
+    }
+
 
     seleccionarFormulario(id: number) {
       this.id = id;
@@ -119,7 +155,6 @@ export class ItemFormularioComponent implements OnInit {
         return this.Formulario.find(task => task.id === id);
       }
 
-      date: Date | undefined;
       selectedTask: any = {};  // Almacena la tarea seleccionada
 
     Modal_agregar: boolean = false;
@@ -143,7 +178,6 @@ export class ItemFormularioComponent implements OnInit {
       }, 2000);
       this.route.paramMap.subscribe(params => {
         this.id = Number(params.get('id')); // Convierte el ID a número
-        console.log('ID recibido:', this.id); // Muestra el ID en la consola
       });
     }
 
