@@ -12,6 +12,6 @@ export default [
     { path: 'formulario',           data: { breadcrumb: 'formulario' },     component: FormularioComponent },
     { path: 'formulario-usuario',   data: { breadcrumb: 'Usuarioformulario'},component: FormularioUsuarioComponent },
     { path: 'itemformulario/:id',   data: { breadcrumb: 'itemformulario' }, component: ItemFormularioComponent },
-    { path: 'alerta',   data: { breadcrumb: 'itemformulario' }, component: AlertaComponent },
+    { path: 'alerta',   data: { breadcrumb: 'alerta' }, component: AlertaComponent },
     { path: '**', redirectTo: '/notfound' }
 ] as Routes;

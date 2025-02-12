@@ -104,7 +104,49 @@ export class AlertaComponent implements OnInit {
       observaciones: 'aaaaaaaaa',
       TipoEntidad: 'ROL',
       tblentidad: 'CIERRE'
-    }
+    },
+    {
+        id: 4,
+        AlertaTipo: 'INMEDIATA',
+        categoria: 'ADVERTENCIA',
+        fecha_creacion: '2025-02-07 14:27:49',
+        fecha_final: '2025-12-24 14:26:36',
+        recordatorio: '2025-10-24 14:26:36',
+        tipo_recordatorio: 'BIMESTRE',
+        cantidad_tiempo: 1,
+        titulo: 'Prueba de alerta a prorroga',
+        observaciones: 'aaaaaaaaa',
+        TipoEntidad: 'ROL',
+        tblentidad: 'CIERRE'
+      },
+      {
+        id: 5,
+        AlertaTipo: 'PERSONALIZADA',
+        categoria: 'PERMITIDO',
+        fecha_creacion: '2025-02-07 14:27:49',
+        fecha_final: '2025-12-24 14:26:36',
+        recordatorio: '2025-10-24 14:26:36',
+        tipo_recordatorio: 'TRIMESTRE',
+        cantidad_tiempo: 3,
+        titulo: 'Prueba de alerta a prorroga',
+        observaciones: 'aaaaaaaaa',
+        TipoEntidad: 'ROL',
+        tblentidad: 'CIERRE'
+      },
+      {
+        id: 6,
+        AlertaTipo: 'INMEDIATA',
+        categoria: 'PERMITIDO',
+        fecha_creacion: '2025-02-07 14:27:49',
+        fecha_final: '2025-12-24 14:26:36',
+        recordatorio: '2025-10-24 14:26:36',
+        tipo_recordatorio: 'TRIMESTRE',
+        cantidad_tiempo: 3,
+        titulo: 'Prueba de alerta a prorroga',
+        observaciones: 'aaaaaaaaa',
+        TipoEntidad: 'ROL',
+        tblentidad: 'CIERRE'
+      }
   ];
 
   // Variables para controlar la visualización de los modales
@@ -189,6 +231,7 @@ export class AlertaComponent implements OnInit {
     { name: 'SOLICITUD', code: 'SOLICITUD' },
     { name: 'CIERRE', code: 'CIERRE' }
   ];
+
 
 
   ngOnInit(): void {
