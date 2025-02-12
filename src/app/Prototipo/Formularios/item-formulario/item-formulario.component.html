@@ -33,11 +33,8 @@
                         <p-panel header="visualizacion" [style]="{ 'background-color': '#aaaaa', 'color': 'white' }">
                             <input *ngIf="t.tipo == 1" pInputText class="flex-auto" autocomplete="off">
                             <p-inputnumber *ngIf="t.tipo == 2" class="flex-auto" autocomplete="off"/>
-                            <p-fileupload *ngIf="t.tipo == 4" #fu mode="basic" chooseLabel="Choose"
-                                chooseIcon="pi pi-upload" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
-                                accept="image/*" maxFileSize="1000000"/>
+                            <p-fileupload *ngIf="t.tipo == 4" #fu mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000"/>
                             <p-editor *ngIf="t.tipo == 3" [style]="{ height: '320px' }"/>
-
                             <div *ngIf="t.tipo == 5">
                                 <ul>
                                     <div *ngFor="let c of getFilteredInputTipoList(t.id)" class="flex items-center">
@@ -46,7 +43,6 @@
                                     </div>
                                 </ul>
                             </div>
-
                             <div *ngIf="t.tipo == 6">
                                 <ul>
                                     <div *ngFor="let c of getFilteredInputTipoList(t.id)" class="flex items-center">

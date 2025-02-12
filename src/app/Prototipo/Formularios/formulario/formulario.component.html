@@ -20,16 +20,21 @@
     <!-- Tabla que muestra las solicitudes por aceptar de los postulantes -->
     <p-table
         #dt1
-        [value]="tasks"
+        [value]="Formulario"
         [rows]="10"
         [paginator]="true"
         responsiveLayout="scroll"
-        [globalFilterFields]="['title', 'description', 'type', 'status']"
+        [globalFilterFields]="['Titulo', 'Descripcion', 'fechaCreacion']"
+        sortMode="multiple"
+        class="custom-table"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        stripedRows
 
     >
         <!-- Encabezado personalizado con buscador global y botón -->
         <ng-template #caption>
             <div class="flex justify-between items-center flex-column sm:flex-row">
+
                 <!-- Botón para limpiar filtros -->
                 <button
                     pButton
@@ -40,26 +45,28 @@
                 </button>
 
                 <!-- Campo de búsqueda -->
-                <p-iconfield iconPosition="left" class="ml-auto">
+                <p-iconfield iconPosition="left">
                     <p-inputicon>
-                        <i class="pi pi-search"></i>
+                      <i class="pi pi-search"></i>
                     </p-inputicon>
                     <input
-                        pInputText
-                        type="text"
-                        (input)="onGlobalFilter(dt1, $event)"
-                        placeholder="Search keyword" />
+                      pInputText
+                      type="text"
+                      (input)="onGlobalFilter(dt1, $event)"
+                      placeholder="Buscar..." />
                 </p-iconfield>
+
             </div>
         </ng-template>
 
         <!-- Encabezados de la tabla -->
         <ng-template #header>
             <tr>
-                <th>N°</th>
-                <th>Pregunta</th>
-                <th>Tipo</th>
-                <th>Fecha de Creación</th>
+
+                <th pSortableColumn="id" >N° <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="Titulo" >Pregunta <p-sortIcon field="Titulo"></p-sortIcon></th>
+                <th pSortableColumn="Descripcion" >Descripcion <p-sortIcon field="Descripcion"></p-sortIcon></th>
+                <th pSortableColumn="fechaCreacion" >Fecha de Creación <p-sortIcon field="fechaCreacion"></p-sortIcon></th>
                 <th>Acciones</th>
             </tr>
         </ng-template>
@@ -151,15 +158,4 @@
             <p-button label="Regresar" severity="danger" (click)="Modal_Editar = false" />
         </div>
     </p-dialog>
-
-
-
-
-
-
-
-
-
-
-
 </div>

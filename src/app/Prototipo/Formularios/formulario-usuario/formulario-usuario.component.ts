@@ -30,6 +30,12 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { SkeletonModule } from 'primeng/skeleton';
 
 import { FormGroup, FormControl } from '@angular/forms';
+
+
+
+
+import { FormularioService } from '../formulario.service';
+
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
   [key: string]: boolean;
@@ -66,46 +72,34 @@ interface expandedRows {
     KeyFilterModule,
     ConfirmDialogModule
   ],
-  templateUrl: './formulario-usuario.component.html',
-  styleUrl: './formulario-usuario.component.scss'
+  templateUrl: './formulario-usuario.component.html'
 })
-export class FormularioUsuarioComponent {
+export class FormularioUsuarioComponent{
     id_formulario = 1;  //declarar el formulario (id) que se quiree contestar
     id_usuario = 1;     //declarar el usuario (id)  del usuario qcontesta el formulario
 
     selectRespuesta!: string;   //select respuesta indefinida para los checkbox o radio botton
     date: Date | undefined;     //fecha indefinio
 
-    // datos de los formulario
-    Formulario = [
-      { id: 1, Titulo: 'Formulario planilla', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') },
-      { id: 2, Titulo: 'Formulario beca postulante', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') }
-    ];
-    //inputs
-    input = [
-        { id: 1, formulario: 1, Pregunta: 'pregunta para responer texto',     tipo: 1, fechaCreacion: new Date('2012-12-12') },
-        { id: 2, formulario: 2, Pregunta: 'pregunta para responer numero',    tipo: 2, fechaCreacion: new Date('2012-12-12') },
-        { id: 3, formulario: 1, Pregunta: 'pregunta para responer parrafo',   tipo: 3, fechaCreacion: new Date('2012-12-12') },
-        { id: 4, formulario: 1, Pregunta: 'pregunta para responer Cargar Archivo', tipo: 4, fechaCreacion: new Date('2012-12-12') },
-        { id: 5, formulario: 1, Pregunta: 'pregunta para responer unica',     tipo: 5, fechaCreacion: new Date('2012-12-12') },
-        { id: 6, formulario: 1, Pregunta: 'pregunta para responer multiple',  tipo: 6, fechaCreacion: new Date('2012-12-12') }
-    ];
-    // tipo de inputs
-    input_tipo =[
-        {name: 'texto', code: 1},
-        {name: 'numberico', code: 2},
-        {name: 'Parrafo', code: 3},
-        {name: 'Cargar acrchivo', code: 4},
-        {name: 'selecion unica', code: 5},
-        {name: 'selecion multiple', code: 6},
-    ];
-    //en el casoq
-    input_tipo_list = [
-        {id:1, name: 'respuesta 1', key: 'A', id_input: 5},
-        {id:2, name: 'respuesta 2', key: 'M', id_input: 6},
-        {id:3, name: 'respuesta 3', key: 'P', id_input: 5},
-        {id:4, name: 'respuesta 4', key: 'R', id_input: 6}
-    ];
+    Formulario: any[] = []; // Inicializar como array vacío
+    input: any[]=[];
+    input_tipo: any[]=[];
+    input_tipo_list: any[]=[];
+
+    constructor(
+        private formularioService: FormularioService,
+      ) {}
+    // Inicializa el componente y simula la carga de datos
+    ngOnInit() {
+        setTimeout(() => {
+            this.loading = false;  // Cambia el estado de carga cuando los datos estén listos
+        }, 2000);
+        // Array con las tareas o solicitudes de los postulantes
+        this.Formulario         = this.formularioService.get_formulario();
+        this.input              = this.formularioService.get_input();
+        this.input_tipo         = this.formularioService.get_input_tipo();
+        this.input_tipo_list    = this.formularioService.get_input_tipo_list();
+    }
 
 
 
@@ -128,12 +122,6 @@ export class FormularioUsuarioComponent {
 
     // Variable para controlar el estado de carga
     loading: boolean = true;
-    // Inicializa el componente y simula la carga de datos
-    ngOnInit() {
-      setTimeout(() => {
-        this.loading = false;  // Cambia el estado de carga cuando los datos estén listos
-      }, 2000);
-    }
 
     // Método para limpiar los filtros aplicados en la tabla
     clear(table: any) {

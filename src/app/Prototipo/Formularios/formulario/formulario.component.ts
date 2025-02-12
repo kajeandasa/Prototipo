@@ -29,6 +29,9 @@ import { ListboxModule } from 'primeng/listbox';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
+
+import { FormularioService } from '../formulario.service';
+
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
   [key: string]: boolean;
@@ -65,62 +68,66 @@ interface expandedRows {
 })
 export class FormularioComponent{
 
-// Array con las tareas o solicitudes de los postulantes
-tasks = [
-  {
-    id: 1,
-    Titulo: 'Formulario planilla',
-    Descripcion: ' descripcion al formulario',
-    fechaCreacion: new Date('2012-12-12')
-  },
-  {
-    id: 2,
-    Titulo: 'Formulario para ',
-    Descripcion: ' descripcion al formulario',
-    fechaCreacion: new Date('2012-12-12')
-  }
-];
+    Formulario: any[] = []; // Inicializar como array vacío
+    input: any[]=[];
+    input_tipo: any[]=[];
+    input_tipo_list: any[]=[];
+
+    constructor(
+        private formularioService: FormularioService,
+        private router: Router
+      ) {}
+    // Inicializa el componente y simula la carga de datos
+    ngOnInit() {
+        setTimeout(() => {
+            this.loading = false;  // Cambia el estado de carga cuando los datos estén listos
+        }, 2000);
+        // Array con las tareas o solicitudes de los postulantes
+        this.Formulario = this.formularioService.get_formulario();
+        this.input = this.formularioService.get_input();
+        this.input_tipo = this.formularioService.get_input_tipo();
+        this.input_tipo_list = this.formularioService.get_input_tipo_list();
+    }
+
+
 
   date: Date | undefined;
   selectedTask: any = {};  // Almacena la tarea seleccionada
 
-Modal_agregar: boolean = false;
-modalabrir_agregar(task?: any){
-    this.Modal_agregar = true;
-}
-Modal_Editar: boolean = false;
-modalabrir_editar(task?: any){
-    this.Modal_Editar = true;
+    Modal_agregar: boolean = false;
+    modalabrir_agregar(task?: any){
+        this.Modal_agregar = true;
+    }
+    Modal_Editar: boolean = false;
+    modalabrir_editar(task?: any){
+        this.Modal_Editar = true;
 
-    this.selectedTask = { ...task };
-};
+        this.selectedTask = { ...task };
+    };
 
-// Variable para controlar el estado de carga
-loading: boolean = true;
 
-// Inicializa el componente y simula la carga de datos
-ngOnInit() {
-  setTimeout(() => {
-    this.loading = false;  // Cambia el estado de carga cuando los datos estén listos
-  }, 2000);
-}
 
-// Método para limpiar los filtros aplicados en la tabla
-clear(table: any) {
-  table.clear();
-}
+    // Método para limpiar los filtros aplicados en la tabla
+    clear(table: any) {
+    table.clear();
+    }
 
-// Filtro global para buscar en todas las columnas de la tabla
-onGlobalFilter(table: any, event: any) {
-  table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-}
-constructor(private router: Router) {}
+    // Filtro global para buscar en todas las columnas de la tabla
+    onGlobalFilter(table: any, event: any) {
+    table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    }
+    iraVerRespuesta() {
+    this.router.navigate(['/beca/formulario-usuario']);
+    }
 
-iraVerRespuesta() {
-  this.router.navigate(['/beca/formulario-usuario']);
-}
+    irADetallesConId(id: number) {
+    this.router.navigate(['/beca/itemformulario/', id]); // Redirige a "/detalles/1"
+    }
 
-irADetallesConId(id: number) {
-  this.router.navigate(['/beca/itemformulario/', id]); // Redirige a "/detalles/1"
-}
+
+    // Variable para controlar el estado de carga
+    loading: boolean = true;
+
+
+
 }
