@@ -1,0 +1,382 @@
+<div class="card">
+    <!-- Título principal -->
+    <div class="font-semibold text-xl mb-4 text-center">
+      <h2>Gestión de Alertas</h2>
+    </div>
+
+    <!-- Botón para abrir modal Agregar -->
+    <div class="flex gap-4 justify-end mr-4">
+      <button
+        pButton
+        label="Agregar Alerta"
+        icon="pi pi-plus"
+        (click)="abrirModalAgregar()">
+      </button>
+    </div>
+
+    <p-table
+    #dt1
+  [value]="alertas"
+  [rows]="5"
+  [paginator]="true"
+  responsiveLayout="scroll"
+  [globalFilterFields]="['AlertaTipo','categoria','fecha_creacion','fecha_final','tipo_recordatorio','titulo','observaciones','TipoEntidad','tblentidad']"
+  sortMode="multiple"
+  class="custom-table"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [rowsPerPageOptions]="[5, 10, 20]"
+  stripedRows>
+
+  <!-- Caption: Selector de columnas + Buscador global -->
+  <ng-template pTemplate="caption">
+    <div class="flex justify-between items-center flex-column sm:flex-row">
+      <!-- Selector dinámico de columnas -->
+      <p-multiselect
+        display="chip"
+        [options]="alertCols"
+        [(ngModel)]="selectedAlertColumns"
+        optionLabel="header"
+        selectedItemsLabel="{0} columnas seleccionadas"
+        [style]="{ 'min-width': '200px' }"
+        placeholder="Elige Columnas">
+      </p-multiselect>
+
+      <!-- Filtro global y botón Clear -->
+      <div class="flex align-items-center mt-2 sm:mt-0">
+        <button
+          pButton
+          label="Clear"
+          class="p-button-outlined mr-2"
+          icon="pi pi-filter-slash"
+          (click)="clear(dt1)">
+        </button>
+        <p-iconfield iconPosition="left">
+          <p-inputicon>
+            <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input
+            pInputText
+            type="text"
+            (input)="onGlobalFilter(dt1, $event)"
+            placeholder="Buscar..." />
+        </p-iconfield>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Encabezado de la tabla (dinámico) -->
+  <ng-template pTemplate="header">
+    <tr>
+      <!-- Se recorren las columnas seleccionadas con estilos corregidos -->
+      <th *ngFor="let col of selectedAlertColumns" [pSortableColumn]="col.field" class="header-nowrap">
+        {{ col.header }}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+      <!-- Columna fija de Acciones -->
+      <th class="header-nowrap">Acciones</th>
+    </tr>
+  </ng-template>
+
+  <!-- Cuerpo de la tabla -->
+  <ng-template pTemplate="body" let-alerta>
+    <tr>
+      <!-- Se muestran los valores de cada columna seleccionada -->
+      <td *ngFor="let col of selectedAlertColumns">
+        <ng-container [ngSwitch]="col.field">
+          <!-- Para la columna Categoria se muestra un p-tag con color -->
+          <ng-container *ngSwitchCase="'categoria'">
+            <p-tag [severity]="getSeverity(alerta[col.field])" [value]="alerta[col.field]"></p-tag>
+          </ng-container>
+          <!-- Formateo para la fecha de creación -->
+          <ng-container *ngSwitchCase="'fecha_creacion'">
+            {{ alerta[col.field] | date:'MM/dd/yyyy' }}
+          </ng-container>
+          <!-- Formateo para la fecha final -->
+          <ng-container *ngSwitchCase="'fecha_final'">
+            {{ alerta[col.field] ? (alerta[col.field] | date:'MM/dd/yyyy') : 'N/A' }}
+          </ng-container>
+          <!-- Formateo para el recordatorio -->
+          <ng-container *ngSwitchCase="'recordatorio'">
+            {{ alerta[col.field] ? (alerta[col.field] | date:'MM/dd/yyyy') : 'N/A' }}
+          </ng-container>
+          <!-- Por defecto se muestra el valor sin formato adicional -->
+          <ng-container *ngSwitchDefault>
+            {{ alerta[col.field] }}
+          </ng-container>
+        </ng-container>
+      </td>
+      <!-- Columna fija de Acciones -->
+      <td>
+        <button
+          pButton
+          label="Editar"
+          icon="pi pi-pencil"
+          (click)="abrirModalEditar(alerta)">
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- CSS para corregir encabezados -->
+<style>
+  .header-nowrap {
+    white-space: nowrap; /* Evita el salto de línea */
+    text-align: center; /* Centra el texto */
+    padding: 10px; /* Espaciado */
+  }
+</style>
+
+    <!-- Modal: Agregar Alerta -->
+<p-dialog
+header="Agregar Alerta"
+[modal]="true"
+[(visible)]="modalAgregar"
+[maximizable]="true"
+[style]="{ width: '50rem' }">
+
+<div class="card flex flex-col gap-4">
+
+  <!-- Campo: Tipo de Alerta -->
+  <div class="flex flex-col gap-2">
+    <strong>Tipo de Alerta</strong>
+    <p-dropdown
+      [options]="tipoAlertaOptions"
+      [(ngModel)]="nuevaAlerta.AlertaTipo"
+      placeholder="Tipo de alerta"
+      [editable]="true"
+      optionLabel="name"
+      [filter]="true">
+    </p-dropdown>
+  </div>
+
+  <!-- Campo: Categoría -->
+  <div class="flex flex-col gap-2">
+    <strong>Categoría</strong>
+    <p-dropdown
+      [options]="categoriaOptions"
+      placeholder="Categoría"
+      [editable]="true"
+      optionLabel="name"
+      [(ngModel)]="nuevaAlerta.id_categoria">
+    </p-dropdown>
+  </div>
+
+  <!-- Fila horizontal: Fecha Creación, Fecha Final y Recordatorio -->
+  <div class="flex flex-row gap-4">
+    <!-- Campo: Fecha Creación -->
+    <div class="flex flex-col gap-2">
+      <strong>Fecha Creación</strong>
+      <p-calendar
+        [(ngModel)]="nuevaAlerta.fecha_creacion"
+        dateFormat="mm/dd/yy">
+      </p-calendar>
+    </div>
+
+    <!-- Campo: Fecha Final -->
+    <div class="flex flex-col gap-2">
+      <strong>Fecha Final</strong>
+      <p-calendar
+        [(ngModel)]="nuevaAlerta.fecha_final"
+        dateFormat="mm/dd/yy">
+      </p-calendar>
+    </div>
+
+    <!-- Campo: Recordatorio -->
+    <div class="flex flex-col gap-2">
+      <strong>Recordatorio</strong>
+      <p-calendar
+        [(ngModel)]="nuevaAlerta.recordatorio"
+        dateFormat="mm/dd/yy"
+        [disabled]="true">
+      </p-calendar>
+    </div>
+  </div>
+
+  <!-- Campo: Tipo de Recordatorio -->
+  <div class="flex flex-col gap-2">
+    <strong>Tipo de Recordatorio</strong>
+    <p-dropdown
+      [options]="tipoRecordatorioOptions"
+      [(ngModel)]="nuevaAlerta.tipo_recordatorio"
+      placeholder="Tipo recordatorio"
+      [editable]="true"
+      optionLabel="name">
+    </p-dropdown>
+  </div>
+
+  <!-- Campo: Cantidad de Tiempo -->
+  <div class="flex flex-col gap-2">
+    <strong>Cantidad de Tiempo</strong>
+    <input
+      pInputText
+      type="number"
+      [(ngModel)]="nuevaAlerta.cantidad_tiempo"
+      autocomplete="off" />
+  </div>
+
+  <!-- Campo: Título -->
+  <div class="flex flex-col gap-2">
+    <strong>Título</strong>
+    <input
+      pInputText
+      [(ngModel)]="nuevaAlerta.titulo"
+      autocomplete="off" />
+  </div>
+
+  <!-- Campo: Observaciones -->
+  <div class="flex flex-col gap-2">
+    <strong>Observaciones</strong>
+    <textarea
+      pTextarea
+      [(ngModel)]="nuevaAlerta.observaciones"
+      rows="3">
+    </textarea>
+  </div>
+
+  <!-- Campo: Tipo Entidad -->
+  <div class="flex flex-col gap-2">
+    <strong>Tipo Entidad</strong>
+    <p-dropdown
+      [options]="tipoEntidadOptions"
+      [(ngModel)]="nuevaAlerta.TipoEntidad"
+      placeholder="Tipo Entidad"
+      [editable]="true"
+      optionLabel="name">
+    </p-dropdown>
+  </div>
+
+  <!-- Campo: Entidad -->
+  <div class="flex flex-col gap-2">
+    <strong>Entidad</strong>
+    <p-dropdown
+      [options]="entidadOptions"
+      [(ngModel)]="nuevaAlerta.tblentidad"
+      placeholder="Entidad"
+      [editable]="true"
+      optionLabel="name">
+    </p-dropdown>
+  </div>
+
+</div>
+
+<!-- Botones de acción -->
+<div class="flex justify-end gap-2 mt-4">
+  <p-button label="Agregar" severity="success" (click)="agregarAlerta()"></p-button>
+  <p-button label="Cancelar" severity="danger" (click)="modalAgregar = false"></p-button>
+</div>
+</p-dialog>
+
+    <!-- Modal: Editar Alerta -->
+    <p-dialog
+      header="Editar Alerta"
+      [modal]="true"
+      [(visible)]="modalEditar"
+      [style]="{ width: '50rem' }">
+
+      <div class="card flex flex-col gap-4" *ngIf="alertaSeleccionada">
+        <!-- Campo: Título -->
+        <div class="flex flex-col gap-2">
+          <strong>Título</strong>
+          <input
+            pInputText
+            [(ngModel)]="alertaSeleccionada.titulo"
+            autocomplete="off" />
+        </div>
+
+        <!-- Campo: Tipo de Alerta (id_AlertaTipo) -->
+        <div class="flex flex-col gap-2">
+          <strong>Tipo de Alerta</strong>
+          <p-dropdown
+            [options]="tipoAlertaOptions"
+            [(ngModel)]="alertaSeleccionada.AlertaTipo"
+            placeholder="Tipo de alerta"
+            [editable]="true"
+            optionLabel="name" />
+        </div>
+
+        <!-- Campo: Categoría (id_categoria) -->
+        <div class="flex flex-col gap-2">
+          <strong>Categoría</strong>
+          <input
+            pInputText
+            type="number"
+            [(ngModel)]="alertaSeleccionada.id_categoria"
+            autocomplete="off" />
+        </div>
+
+        <!-- Campo: Fecha Final -->
+        <div class="flex flex-col gap-2">
+          <strong>Fecha Final</strong>
+          <p-calendar
+            [(ngModel)]="alertaSeleccionada.fecha_final"
+            dateFormat="mm/dd/yy">
+          </p-calendar>
+        </div>
+
+        <!-- Campo: Recordatorio -->
+        <div class="flex flex-col gap-2">
+          <strong>Recordatorio</strong>
+          <p-calendar
+            [(ngModel)]="alertaSeleccionada.recordatorio"
+            dateFormat="mm/dd/yy">
+          </p-calendar>
+        </div>
+
+        <!-- Campo: Tipo de Recordatorio -->
+        <div class="flex flex-col gap-2">
+          <strong>Tipo de Recordatorio</strong>
+          <p-dropdown
+            [(ngModel)]="alertaSeleccionada.tipo_recordatorio"
+            placeholder="Seleccione un tipo"
+            optionLabel="label">
+          </p-dropdown>
+        </div>
+
+        <!-- Campo: Cantidad de Tiempo -->
+        <div class="flex flex-col gap-2">
+          <strong>Cantidad de Tiempo</strong>
+          <input
+            pInputText
+            type="number"
+            [(ngModel)]="alertaSeleccionada.cantidad_tiempo"
+            autocomplete="off" />
+        </div>
+
+        <!-- Campo: Observaciones -->
+        <div class="flex flex-col gap-2">
+          <strong>Observaciones</strong>
+          <textarea
+            pTextarea
+            [(ngModel)]="alertaSeleccionada.observaciones"
+            rows="3">
+          </textarea>
+        </div>
+
+        <!-- Campo: idTipoEntidad -->
+        <div class="flex flex-col gap-2">
+          <strong>ID Tipo Entidad</strong>
+          <input
+            pInputText
+            type="number"
+            [(ngModel)]="alertaSeleccionada.idTipoEntidad"
+            autocomplete="off" />
+        </div>
+
+        <!-- Campo: tblentidad -->
+        <div class="flex flex-col gap-2">
+          <strong>Tblentidad</strong>
+          <input
+            pInputText
+            type="number"
+            [(ngModel)]="alertaSeleccionada.tblentidad"
+            autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 mt-4">
+        <p-button label="Guardar" severity="success" (click)="editarAlerta()"></p-button>
+        <p-button label="Cancelar" severity="danger" (click)="modalEditar = false"></p-button>
+      </div>
+    </p-dialog>
+  </div>
