@@ -4,8 +4,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { FormularioComponent } from './Formularios/formulario/formulario.component'
 import { ItemFormularioComponent } from './Formularios/item-formulario/item-formulario.component'
 import { FormularioUsuarioComponent } from './Formularios/formulario-usuario/formulario-usuario.component';
-import { AlertaComponent } from './alertas/alerta/alerta.component';
-import { TipoAlertaComponent } from './alertas/tipo-alerta/tipo-alerta.component';
+import { AlertaComponent } from './alerta/alerta.component'
 
 export default [
     { path: 'convocatoria',         data: { breadcrumb: 'convocatoria' },   component: ConvocatoriaComponent },

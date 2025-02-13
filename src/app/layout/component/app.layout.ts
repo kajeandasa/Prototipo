@@ -16,9 +16,7 @@ import { LayoutService } from '../service/layout.service';
         <app-sidebar></app-sidebar>
         <div class="layout-main-container">
             <div class="layout-main">
-                <p>inicio antes de renderizar</p>
                 <router-outlet></router-outlet> <!-- renderiza-->
-                <p>final despues de renderizar</p>
             </div>
             <app-footer>
 

@@ -38,6 +38,8 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { PanelModule } from 'primeng/panel';
 
 
+
+import { FormularioService } from '../formulario.service';
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
   [key: string]: boolean;
@@ -90,41 +92,34 @@ export class ItemFormularioComponent implements OnInit {
     selectRespuesta!: string;   //select respuesta indefinida para los checkbox o radio botton
     date: Date | undefined;     //fecha indefinio
 
-    constructor(private route: ActivatedRoute) {}
 
 
+    Formulario: any[] = []; // Inicializar como array vacío
+    input: any[]=[];
+    input_tipo: any[]=[];
+    input_tipo_list: any[]=[];
 
-    // datos de los formulario
-    Formulario = [
-        { id: 1, Titulo: 'Formulario planilla', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') },
-        { id: 2, Titulo: 'Formulario para ', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') }
-    ];
+    constructor(
+        private formularioService: FormularioService,
+        private route: ActivatedRoute
+      ) {}
+    // Inicializa el componente y simula la carga de datos
+    ngOnInit() {
+        setTimeout(() => {
+            this.loading = false;  // Cambia el estado de carga cuando los datos estén listos
+        }, 2000);
 
-    // tipo de inputs
-    input_tipo =[
-        {name: 'texto', code: 1},
-        {name: 'numberico', code: 2},
-        {name: 'Parrafo', code: 3},
-        {name: 'Cargar acrchivo', code: 4},
-        {name: 'selecion unica', code: 5},
-        {name: 'selecion multiple', code: 6},
-    ];
+        this.route.paramMap.subscribe(params => {
+            this.id = Number(params.get('id')); // Convierte el ID a número
+        });
 
-    input = [
-        { id: 1, formulario: 1, Pregunta: 'pregunta para responer texto',     tipo: 1, fechaCreacion: new Date('2012-12-12') },
-        { id: 2, formulario: 2, Pregunta: 'pregunta para responer numero',    tipo: 2, fechaCreacion: new Date('2012-12-12') },
-        { id: 3, formulario: 2, Pregunta: 'pregunta para responer parrafo',   tipo: 3, fechaCreacion: new Date('2012-12-12') },
-        { id: 4, formulario: 2, Pregunta: 'pregunta para responer Cargar Archivo', tipo: 4, fechaCreacion: new Date('2012-12-12') },
-        { id: 5, formulario: 2, Pregunta: 'pregunta para responer unica',     tipo: 5, fechaCreacion: new Date('2012-12-12') },
-        { id: 6, formulario: 1, Pregunta: 'pregunta para responer multiple',  tipo: 6, fechaCreacion: new Date('2012-12-12') }
-    ];
-    //en el casoq
-    input_tipo_list = [
-        {id:1, name: 'respuesta 1', key: 'A', id_input: 5},
-        {id:2, name: 'respuesta 2', key: 'M', id_input: 6},
-        {id:3, name: 'respuesta 3', key: 'P', id_input: 5},
-        {id:4, name: 'respuesta 4', key: 'R', id_input: 6},
-    ];
+        // Array inicializado con el servisio
+        this.Formulario         = this.formularioService.get_formulario();
+        this.input              = this.formularioService.get_input();
+        this.input_tipo         = this.formularioService.get_input_tipo();
+        this.input_tipo_list    = this.formularioService.get_input_tipo_list();
+    }
+
 
 
     // Método para filtrar inputs dependiendo del formulario
@@ -145,52 +140,13 @@ export class ItemFormularioComponent implements OnInit {
       return this.Formulario.find(form => form.id === id)?.Titulo || 'Sin título';
     }
 
-
-
-
-
-
-
     getTaskById(id: number) {
         return this.Formulario.find(task => task.id === id);
-      }
-
-      selectedTask: any = {};  // Almacena la tarea seleccionada
-
-    Modal_agregar: boolean = false;
-    modalabrir_agregar(task?: any){
-        this.Modal_agregar = true;
     }
-    Modal_Editar: boolean = false;
-    modalabrir_editar(task?: any){
-        this.Modal_Editar = true;
-
-        this.selectedTask = { ...task };
-    };
+    selectedTask: any = {};  // Almacena la tarea seleccionada
 
     // Variable para controlar el estado de carga
     loading: boolean = true;
-
-    // Inicializa el componente y simula la carga de datos
-    ngOnInit() {
-      setTimeout(() => {
-        this.loading = false;  // Cambia el estado de carga cuando los datos estén listos
-      }, 2000);
-      this.route.paramMap.subscribe(params => {
-        this.id = Number(params.get('id')); // Convierte el ID a número
-      });
-    }
-
-    // Método para limpiar los filtros aplicados en la tabla
-    clear(table: any) {
-      table.clear();
-    }
-
-    // Filtro global para buscar en todas las columnas de la tabla
-    onGlobalFilter(table: any, event: any) {
-      table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-    }
-
 
 
 }
