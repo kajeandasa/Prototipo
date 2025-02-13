@@ -12,9 +12,10 @@ import { AppMenuitem } from './app.menuitem';
     <ul class="layout-menu">
         <ng-container *ngFor="let item of model; let i = index">
             <li app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true"></li>
-            <li *ngIf="item.separator" class="menu-separator"> </li>
+            <li *ngIf="item.separator" class="menu-separator"></li>
         </ng-container>
-    </ul> `
+    </ul>
+    `
 })
 export class AppMenu {
     model: MenuItem[] = [];
@@ -23,37 +24,47 @@ export class AppMenu {
         this.model = [
             {
                 label: 'Index',
-                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
+                items: [
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                ]
             },
             {
                 label: 'Modulo',
                 items: [
-
-                    {   label: 'Beca',
+                    {
+                        label: 'Beca',
                         icon: 'pi pi-fw pi-circle',
                         items: [
-                        { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria']},
-                        { label: 'Solicituds',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
-                        { label: 'Alerta',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/alerta'] },
-                        { label: 'Formulario',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/formulario'] },
-                        { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark'},
-                        { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
-                    ] }
+                            { label: 'Convocatoria', icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria'] },
+                            { label: 'Solicituds', icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
+                            { label: 'Alerta', icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/alerta'] },
+                            { label: 'Formulario', icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/formulario'] },
+                            { label: 'Desembolso', icon: 'pi pi-fw pi-bookmark' },
+                            { label: 'Cierre', icon: 'pi pi-fw pi-bookmark' }
+                        ]
+                    }
                 ]
             },
             {
-                label: 'Mantenimiento ',
+                label: 'Mantenimiento',
                 items: [
-
-                    {   label: 'Beca',
+                    {
+                        label: 'Beca',
                         icon: 'pi pi-fw pi-circle',
                         items: [
-                        { label: 'Formulario',icon: 'pi pi-fw pi-bookmark', routerLink: ['/mantenimiento/formulario']},
-                        { label: 'Alerta',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/mantenimiento/alerta_tipo'] },
-                        { label: 'Formulario',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/formulario'] },
-                        { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark'},
-                        { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
-                    ] }
+                            { label: 'Formulario', icon: 'pi pi-fw pi-bookmark', routerLink: ['/mantenimiento/formulario'] },
+                            {
+                                label: 'Alerta',
+                                icon: 'pi pi-fw pi-bookmark',
+                                items: [
+                                    { label: 'Tipo Alerta', routerLink: ['/mantenimiento/alerta_tipo'] },
+                                    { label: 'Categoria', routerLink: ['/mantenimiento/categoria'] }
+                                ]
+                            },
+                            { label: 'Desembolso', icon: 'pi pi-fw pi-bookmark' },
+                            { label: 'Cierre', icon: 'pi pi-fw pi-bookmark' }
+                        ]
+                    }
                 ]
             }
         ];

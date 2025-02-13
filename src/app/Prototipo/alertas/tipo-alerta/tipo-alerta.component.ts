@@ -174,12 +174,8 @@ export class TipoAlertaComponent implements OnInit {
   modalAgregar: boolean = false;
   modalEditar: boolean = false;
 
-  // Objeto para crear un nuevo Tipo de Alerta
-  nuevoTipoAlerta: TipoAlerta = {
-    id_AlertaTipo: 0,
-    tipo: 'inmediata',
-    descripcion: ''
-  };
+  // Propiedad para almacenar el nuevo Tipo de Alerta. Se usa Partial para permitir campos vacíos.
+  nuevoTipoAlerta: Partial<TipoAlerta> = {};
 
   // Tipo de Alerta seleccionado para editar
   tipoAlertaSeleccionado: TipoAlerta | null = null;
@@ -194,20 +190,29 @@ export class TipoAlertaComponent implements OnInit {
     // Inicializaciones adicionales si son necesarias
   }
 
-  // Abre el modal para agregar un nuevo Tipo de Alerta
+  // Abre el modal para agregar un nuevo Tipo de Alerta con los campos vacíos
   abrirModalAgregar() {
-    this.nuevoTipoAlerta = { id_AlertaTipo: 0, tipo: 'inmediata', descripcion: '' };
+    this.nuevoTipoAlerta = {}; // Reinicia el objeto para que los campos estén vacíos
     this.modalAgregar = true;
   }
 
   // Agrega el nuevo Tipo de Alerta a la lista
   agregarTipoAlerta() {
+    // Si no se asigna un ID, se asigna el siguiente disponible
     if (!this.nuevoTipoAlerta.id_AlertaTipo) {
-      // Si no se asigna un ID, se asigna el siguiente disponible
       const maxId = this.tiposAlertas.reduce((max, t) => t.id_AlertaTipo > max ? t.id_AlertaTipo : max, 0);
       this.nuevoTipoAlerta.id_AlertaTipo = maxId + 1;
     }
-    this.tiposAlertas.push({ ...this.nuevoTipoAlerta });
+    // En caso de que no se haya seleccionado un tipo, se asigna por defecto 'inmediata'
+    if (!this.nuevoTipoAlerta.tipo) {
+      this.nuevoTipoAlerta.tipo = 'inmediata';
+    }
+    // Si la descripción está vacía, se asegura que sea una cadena vacía
+    if (!this.nuevoTipoAlerta.descripcion) {
+      this.nuevoTipoAlerta.descripcion = '';
+    }
+    // Se agrega el nuevo objeto a la lista (usando type assertion para forzar el tipo TipoAlerta)
+    this.tiposAlertas.push(this.nuevoTipoAlerta as TipoAlerta);
     this.modalAgregar = false;
   }
 
