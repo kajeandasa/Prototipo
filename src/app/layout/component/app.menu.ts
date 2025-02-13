@@ -48,8 +48,8 @@ export class AppMenu {
                     {   label: 'Beca',
                         icon: 'pi pi-fw pi-circle',
                         items: [
-                        { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/mantenimiento/formulario']},
-                        { label: 'Solicituds',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
+                        { label: 'Formulario',icon: 'pi pi-fw pi-bookmark', routerLink: ['/mantenimiento/formulario']},
+                        { label: 'Alerta',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/mantenimiento/alerta_tipo'] },
                         { label: 'Formulario',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/formulario'] },
                         { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark'},
                         { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
