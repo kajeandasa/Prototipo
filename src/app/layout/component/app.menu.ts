@@ -36,6 +36,7 @@ export class AppMenu {
                         { label: 'Solicituds',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
                         { label: 'Alerta',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/alerta'] },
                         { label: 'Formulario',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/formulario'] },
+                        { label: 'Documentos',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/ItemDocumento'] },
                         { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark'},
                         { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
                     ] }
