@@ -33,14 +33,27 @@
                         <p-panel header="visualizacion" [style]="{ 'background-color': '#aaaaa', 'color': 'white' }">
                             <input *ngIf="t.tipo == 1" pInputText class="flex-auto" autocomplete="off">
                             <p-inputnumber *ngIf="t.tipo == 2" class="flex-auto" autocomplete="off"/>
-                            <p-fileupload *ngIf="t.tipo == 4" #fu mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000"/>
+
+                            <p-fileupload *ngIf="t.tipo == 4" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000">
+                                <ng-template #empty>
+                                    <div>Drag and drop files to here to upload.</div>
+                                </ng-template>
+                            </p-fileupload>
+
+
                             <p-editor *ngIf="t.tipo == 3" [style]="{ height: '320px' }"/>
                             <div *ngIf="t.tipo == 5">
                                 <ul>
                                     <div *ngFor="let c of getFilteredInputTipoList(t.id)" class="flex items-center">
                                         <p-radiobutton [inputId]="c.key" name="group" [value]="c.key"/>
                                         <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="c.name">
+                                        <p-button icon="pi pi-times" severity="danger"></p-button>
                                     </div>
+                                    <p-card class="flex justify-center items-center h-32">
+                                        <div class="flex justify-center items-center w-full h-full">
+                                            <p-button icon="pi pi-plus"></p-button>
+                                        </div>
+                                    </p-card>
                                 </ul>
                             </div>
                             <div *ngIf="t.tipo == 6">
@@ -48,7 +61,13 @@
                                     <div *ngFor="let c of getFilteredInputTipoList(t.id)" class="flex items-center">
                                         <p-checkbox [inputId]="c.key" name="group" [value]="c.key"/>
                                         <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="c.name">
+                                        <p-button icon="pi pi-times" severity="danger"></p-button>
                                     </div>
+                                    <p-card class="flex justify-center items-center h-32">
+                                        <div class="flex justify-center items-center w-full h-full">
+                                            <p-button icon="pi pi-plus"></p-button>
+                                        </div>
+                                    </p-card>
                                 </ul>
                             </div>
                         </p-panel>
