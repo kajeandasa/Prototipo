@@ -7,7 +7,7 @@ export class FormularioService {
 
     public get_formulario(){
         return [
-            { id: 1, Titulo: 'Formulario planilla', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') },
+            { id: 1, Titulo: 'Formulario planilla dsadsad', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') },
             { id: 2, Titulo: 'Formulario beca postulante', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') },
             { id: 3, Titulo: 'Formulario beca posgrado', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') }
           ];
@@ -15,11 +15,13 @@ export class FormularioService {
     public get_input(){
         return [
             { id: 1, formulario: 1, Pregunta: 'pregunta para responer texto',     tipo: 1, fechaCreacion: new Date('2012-12-12') },
-            { id: 2, formulario: 2, Pregunta: 'pregunta para responer numero',    tipo: 2, fechaCreacion: new Date('2012-12-12') },
+            { id: 2, formulario: 1, Pregunta: 'pregunta para responer numero',    tipo: 2, fechaCreacion: new Date('2012-12-12') },
             { id: 3, formulario: 1, Pregunta: 'pregunta para responer parrafo',   tipo: 3, fechaCreacion: new Date('2012-12-12') },
             { id: 4, formulario: 1, Pregunta: 'pregunta para responer Cargar Archivo', tipo: 4, fechaCreacion: new Date('2012-12-12') },
             { id: 5, formulario: 1, Pregunta: 'pregunta para responer unica',     tipo: 5, fechaCreacion: new Date('2012-12-12') },
-            { id: 6, formulario: 1, Pregunta: 'pregunta para responer multiple',  tipo: 6, fechaCreacion: new Date('2012-12-12') }
+            { id: 6, formulario: 2, Pregunta: 'pregunta para responer multiple',  tipo: 3, fechaCreacion: new Date('2012-12-12') },
+            { id: 7, formulario: 2, Pregunta: 'pregunta para responer multiple',  tipo: 3, fechaCreacion: new Date('2012-12-12') },
+            { id: 7, formulario: 3, Pregunta: 'pregunta para responer multiple',  tipo: 3, fechaCreacion: new Date('2012-12-12') }
         ];
     }
     public get_input_tipo(){

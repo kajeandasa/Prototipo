@@ -112,7 +112,7 @@
 
    <!-- Modal que muestra la informacion de la solicitud del postulante -->
    <p-dialog
-   header="Editar Formulario"
+   header="Editar Documento '{{selectedTask.Descripcion}}'"
    [modal]="true"
    [(visible)]="Modal_Editar"
    [maximizable]="true"
@@ -122,7 +122,7 @@
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Titulo</strong>
-                    <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.Descripcion">
+                    <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.Descripcion" [disabled]="true">
                 </div>
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Tipo Documento</strong>
@@ -134,30 +134,56 @@
                     placeholder="Tipo de Documento"
                     appendTo="body"
                     [(ngModel)]="selectedTask.tipo_id"
+                    [disabled]="true"
                     class="w-full">
                 </p-select>
                 </div>
             </div>
-            <p-panel header="historialArchivos">
-                <ul>
-                    <li *ngFor="let ar of ArchivoHistorial(selectedTask.id); let i = index">
-                        <p-panel>
-                            <ul>
-                                <li>
-                                    <strong>Version:</strong>{{ar.Version}}
-                                </li>
-                                <li>
-                                    <strong>ruta:</strong>{{TipoDocumento_Get(selectedTask.tipo_id).RutaRepositorio + selectedTask.Descripcion + "_" + ar.Version}}
-                                </li>
-                            </ul>
-                        </p-panel>
-                    </li>
-                </ul>
-            </p-panel>
-        </div>
 
-       <div class="flex justify-end gap-2">
-           <p-button label="Agregar" severity="success" (click)="Modal_Editar = false" />
-           <p-button label="Regresar" severity="danger" (click)="Modal_Editar = false" />
-       </div>
+                <p-accordion value="0">
+                    <p-accordion-panel value="0">
+                        <p-accordion-header>historialArchivos</p-accordion-header>
+                        <p-accordion-content>
+                            <p-panel>
+                                <ul>
+                                    <li *ngFor="let ar of ArchivoHistorial(selectedTask.id); let i = index">
+                                        <p-panel>
+                                            <div class="flex justify-between items-center">
+                                                <!-- Contenedor de la tabla alineado a la izquierda -->
+                                                <table class="p-datatable p-component">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Versión: </strong></td>
+                                                            <td><strong>{{ ar.Version }}</strong></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Ruta:</strong></td>
+                                                            <td>
+                                                                {{ TipoDocumento_Get(selectedTask.tipo_id)?.RutaRepositorio + selectedTask.Descripcion + "_" + ar.Version }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>observacion:</strong></td>
+                                                            <td>
+                                                                {{ ar.observacion }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <!-- Botón alineado a la derecha -->
+                                                <p-button label="Ver" severity="success" (click)="Modal_agregar = false" />
+                                            </div>
+                                        </p-panel>
+                                    </li>
+                                </ul>
+                            </p-panel>
+                        </p-accordion-content>
+                    </p-accordion-panel>
+                </p-accordion>
+
+                <p-fileupload accept="image/*" maxFileSize="1000000"/>
+
+                
+        </div>
    </p-dialog>

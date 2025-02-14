@@ -19,6 +19,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { TagModule } from 'primeng/tag';
 import { Router } from '@angular/router';
+import { CheckboxModule } from 'primeng/checkbox';
 // Importación de componentes de PrimeNG para trabajar con formularios, tablas, fechas y validaciones.
 import { DialogModule } from 'primeng/dialog';
 import { TextareaModule } from 'primeng/textarea';
@@ -29,44 +30,81 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PanelModule } from 'primeng/panel';
 import { AccordionModule } from 'primeng/accordion';
 
+
 import { FileUploadModule } from 'primeng/fileupload';
 
 @Component({
-  selector: 'app-item-documento',
-  imports: [
-    FileUploadModule,
-    AccordionModule,
-    PanelModule,
-    ListboxModule,
-    TextareaModule,
-    TableModule,
-    MultiSelectModule,
-    SelectModule,
-    InputIconModule,
-    TagModule,
-    InputTextModule,
-    SliderModule,
-    ProgressBarModule,
-    ToggleButtonModule,
-    ToastModule,
-    CommonModule,
-    FormsModule,
-    ButtonModule,
-    RatingModule,
-    RippleModule,
-    IconFieldModule,
-    DialogModule,
-    KeyFilterModule,
-    ConfirmDialogModule
-],
-  templateUrl: './item-documento.component.html'
+  selector: 'app-check-documento',
+    imports: [
+      CheckboxModule,
+      FileUploadModule,
+      AccordionModule,
+      PanelModule,
+      ListboxModule,
+      TextareaModule,
+      TableModule,
+      MultiSelectModule,
+      SelectModule,
+      InputIconModule,
+      TagModule,
+      InputTextModule,
+      SliderModule,
+      ProgressBarModule,
+      ToggleButtonModule,
+      ToastModule,
+      CommonModule,
+      FormsModule,
+      ButtonModule,
+      RatingModule,
+      RippleModule,
+      IconFieldModule,
+      DialogModule,
+      KeyFilterModule,
+      ConfirmDialogModule
+  ],
+  standalone: true,
+  templateUrl: './check-documento.component.html',
+  styleUrl: './check-documento.component.scss'
 })
-export class ItemDocumentoComponent {
+export class CheckDocumentoComponent {
+
+    id_usuario_revisante = 1
+    id_usuario_postulante = 3  //tambien puede ser el aval
+    Usuario=[
+        {id:1,Nombre:"La lic.",Entidad:1},
+        {id:2,Nombre:"usuario postulante 1",Entidad:2},
+        {id:3,Nombre:"usuario postulante 2",Entidad:2}
+    ]
+    obtenerUsuarioPorId(Id: number):any {
+        return this.Usuario.find(doc => doc.id === Id);
+    }
+
+
+
+    Persona_Documento=[
+        {id:1,persona_id:3,documento_id:1,observacion:""},
+        {id:2,persona_id:3,documento_id:2,observacion:""},
+        {id:3,persona_id:2,documento_id:3,observacion:""},
+        {id:4,persona_id:2,documento_id:4,observacion:""},
+        {id:5,persona_id:2,documento_id:5,observacion:""},
+    ]
+
 
     Item_Documento=[
         {id:1,tipo_id:1,estado_id:1,Descripcion:"RTN_ejemplo"},
         {id:2,tipo_id:3,estado_id:3,Descripcion:"Contrado de Explicacion"},
         {id:3,tipo_id:3,estado_id:3,Descripcion:"Contrado de Explicacion otro"},
+        {id:4,tipo_id:4,estado_id:3,Descripcion:"Contrado de Explicacion otro"},
+        {id:5,tipo_id:5,estado_id:3,Descripcion:"Contrado de Explicacion otro"},
+    ]
+    Item_Documento_check=[
+        {id:1,documento_id:1,Check:0,Check_error:0,observacion:"RTN_ejemplo"},
+        {id:2,documento_id:2,Check:0,Check_error:0,observacion:""},
+        {id:3,documento_id:3,Check:0,Check_error:0,observacion:""},
+        {id:4,documento_id:4,Check:0,Check_error:0,observacion:""},
+        {id:5,documento_id:5,Check:0,Check_error:0,observacion:""},
+        {id:6,documento_id:6,Check:0,Check_error:0,observacion:""},
+        {id:7,documento_id:7,Check:0,Check_error:0,observacion:""},
     ]
     Item_Documento_Achivo = [
         { id: 1, id_Documento:1 ,Version: 1, observacion:" hola"},
@@ -74,10 +112,10 @@ export class ItemDocumentoComponent {
         { id: 3, id_Documento:1 ,Version: 3, observacion:" hola"},
         { id: 4, id_Documento:1 ,Version: 1, observacion:" hola"},
         { id: 5, id_Documento:1 ,Version: 2, observacion:" hola"},
-        { id: 6, id_Documento:1 ,Version: 3, observacion:" hola"},
-        { id: 7, id_Documento:1 ,Version: 4, observacion:" hola"},
-        { id: 8, id_Documento:1 ,Version: 5, observacion:" hola"},
-        { id: 8, id_Documento:1 ,Version: 5, observacion:" hola"},
+        { id: 6, id_Documento:2 ,Version: 3, observacion:" hola"},
+        { id: 7, id_Documento:2 ,Version: 4, observacion:" hola"},
+        { id: 8, id_Documento:2 ,Version: 5, observacion:" hola"},
+        { id: 9, id_Documento:2 ,Version: 5, observacion:" hola"},
     ];
 
 
@@ -93,7 +131,6 @@ export class ItemDocumentoComponent {
         { id: 2, Nombre: "Documentos administrativos" },
         { id: 3, Nombre: " hola" }
     ];
-    
     Item_Documento_estado = [
         { id: 1, Estado: "Aprovado",Descripcion:" Documento RTN documentoacion"},
         { id: 2, Estado: "Rechazado",Descripcion:" Documento RTN documentoacion"},
@@ -102,6 +139,36 @@ export class ItemDocumentoComponent {
 
 
 
+    obtenerDocumentosPorPersona(personaId: number):any {
+        return this.Persona_Documento.filter(doc => doc.persona_id === personaId);
+    }
+    obtenerDocumentoPorId(documentoId: number):any {
+        return this.Item_Documento.find(doc => doc.id === documentoId) || "Documento no encontrado";
+    }
+        getCheckValue(documentoId: number): boolean {
+          return !!this.Item_Documento_check.find(doc => doc.documento_id === documentoId)?.Check;
+        }
+
+        updateCheckValue(documentoId: number, newValue: boolean) {
+          const doc = this.Item_Documento_check.find(doc => doc.documento_id === documentoId);
+          if (doc) {
+            doc.Check = newValue ? 1 : 0;
+            if (newValue)
+                doc.Check_error = 0;
+          }
+        }
+        getCheckValue_error(documentoId: number): boolean {
+            return !!this.Item_Documento_check.find(doc => doc.documento_id === documentoId)?.Check_error;
+          }
+
+          updateCheckValue_error(documentoId: number, newValue: boolean) {
+            const doc = this.Item_Documento_check.find(doc => doc.documento_id === documentoId);
+            if (doc) {
+                doc.Check_error = newValue ? 1 : 0;
+                if (newValue)
+                    doc.Check = 0;
+            }
+          }
 
     TipoDocumento_Get(documentoId: number): any{
         const tipoDocumento = this.Item_Documento_Tipo.find(tipo => tipo.id === documentoId);
@@ -127,20 +194,4 @@ export class ItemDocumentoComponent {
     }
 
 
-
-    date: Date | undefined;
-    selectedTask: any = {};  // Almacena la tarea seleccionada
-
-    Modal_agregar: boolean = false;
-    modalabrir_agregar(){
-        this.Modal_agregar = true;
-    }
-    Modal_Editar: boolean = false;
-    modalabrir_editar(task?: any){
-        this.Modal_Editar = true;
-
-        this.selectedTask = { ...task };
-    };
-
 }
-
