@@ -66,7 +66,7 @@ interface expandedRows {
     DropdownModule,
   ],
   templateUrl: './desembolsosbeca.component.html',  // Enlaza la plantilla HTML del componente
-  styleUrl: './desembolsosbeca.component.scss',   // Enlaza el archivo de estilos SCSS del componente
+//   styleUrl: './desembolsosbeca.component.scss',   // Enlaza el archivo de estilos SCSS del componente
   standalone: true,
   providers: [MessageService, ConfirmationService], // Asegurar que MessageService esté disponible
 })
@@ -112,7 +112,7 @@ export class desembolsoBecaComponent {
       { name: 'Beca básica de postgrado para la eficiencia terminal de tesis', code: 'BP' },
       
   ];
-  
+
   // Variable para controlar el estado de carga
   loading: boolean = true;
 
@@ -163,7 +163,7 @@ export class desembolsoBecaComponent {
     this.imagenClase = imageType === 'becario' ? 'imagen-becario' : 'imagen-aval';
     this.imagen = true;
   }
-  
+
   //Declara que el boton de switch esta en no o cancelar
   checked: boolean = false;
 

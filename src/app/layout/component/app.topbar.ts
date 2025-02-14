@@ -39,7 +39,7 @@ import { LayoutService } from '../service/layout.service';
             </a> -->
             <a class="layout-topbar-logo" routerLink="/" style="display: flex; align-items: center; white-space: nowrap;">
                 <img src="assets/UNAH_Azul.png" alt="Gestion Becas y Fondos Concursables" width="50" height="50">
-                <span style="white-space: nowrap;">Gestion Becas y Fondos Concursables</span>
+                <!-- <span style="white-space: nowrap;">Gestion Becas y Fondos Concursables</span> -->
             </a>
 
         </div>
