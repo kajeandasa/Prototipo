@@ -60,6 +60,14 @@ export class AppMenu {
                                     { label: 'Tipo Alerta', routerLink: ['/mantenimiento/alerta_tipo'] },
                                     { label: 'Categoria', routerLink: ['/mantenimiento/categoria'] }
                                 ]
+                            },                            {
+                                label: 'Documentos',
+                                icon: 'pi pi-fw pi-bookmark',
+                                items: [
+                                    { label: 'Plantilla', routerLink: ['/mantenimiento/plantilla'] }
+
+
+                                ]
                             },
                             { label: 'Desembolso', icon: 'pi pi-fw pi-bookmark' },
                             { label: 'Cierre', icon: 'pi pi-fw pi-bookmark' }
