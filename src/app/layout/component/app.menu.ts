@@ -35,7 +35,6 @@ export class AppMenu {
                         label: 'Beca',
                         icon: 'pi pi-fw pi-circle',
                         items: [
-<<<<<<< HEAD
                         { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria']},
                         { label: 'Solicituds',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
                         { label: 'Alerta',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/alerta'] },
@@ -44,16 +43,6 @@ export class AppMenu {
                         { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark'},
                         { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
                     ] }
-=======
-                            { label: 'Convocatoria', icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria'] },
-                            { label: 'Solicituds', icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
-                            { label: 'Alerta', icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/alerta'] },
-                            { label: 'Formulario', icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/formulario'] },
-                            { label: 'Desembolso', icon: 'pi pi-fw pi-bookmark' },
-                            { label: 'Cierre', icon: 'pi pi-fw pi-bookmark' }
-                        ]
-                    }
->>>>>>> a81a0407ec31bfd12d8f870d651602e89c72b6f8
                 ]
             },
             {
@@ -70,6 +59,14 @@ export class AppMenu {
                                 items: [
                                     { label: 'Tipo Alerta', routerLink: ['/mantenimiento/alerta_tipo'] },
                                     { label: 'Categoria', routerLink: ['/mantenimiento/categoria'] }
+                                ]
+                            },                            {
+                                label: 'Documentos',
+                                icon: 'pi pi-fw pi-bookmark',
+                                items: [
+                                    { label: 'Plantilla', routerLink: ['/mantenimiento/plantilla'] }
+
+
                                 ]
                             },
                             { label: 'Desembolso', icon: 'pi pi-fw pi-bookmark' },
