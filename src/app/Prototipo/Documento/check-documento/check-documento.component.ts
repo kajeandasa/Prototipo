@@ -91,11 +91,11 @@ export class CheckDocumentoComponent {
 
 
     Item_Documento=[
-        {id:1,tipo_id:1,estado_id:1,Descripcion:"RTN_ejemplo"},
-        {id:2,tipo_id:3,estado_id:3,Descripcion:"Contrado de Explicacion"},
-        {id:3,tipo_id:3,estado_id:3,Descripcion:"Contrado de Explicacion otro"},
-        {id:4,tipo_id:4,estado_id:3,Descripcion:"Contrado de Explicacion otro"},
-        {id:5,tipo_id:5,estado_id:3,Descripcion:"Contrado de Explicacion otro"},
+        {id:1,tipo_id:1,estado_id:1,Descripcion:"itemDocumento, RTN_ejemplo"},
+        {id:2,tipo_id:3,estado_id:3,Descripcion:"itemDocumento, Contrado de Explicacion"},
+        {id:3,tipo_id:3,estado_id:3,Descripcion:"itemDocumento, Contrado de Explicacion otro"},
+        {id:4,tipo_id:4,estado_id:3,Descripcion:"itemDocumento, Contrado de Explicacion otro"},
+        {id:5,tipo_id:5,estado_id:3,Descripcion:"itemDocumento, Contrado de Explicacion otro"},
     ]
     Item_Documento_check=[
         {id:1,documento_id:1,Check:0,Check_error:0,observacion:"RTN_ejemplo"},
@@ -145,6 +145,11 @@ export class CheckDocumentoComponent {
     obtenerDocumentoPorId(documentoId: number):any {
         return this.Item_Documento.find(doc => doc.id === documentoId) || "Documento no encontrado";
     }
+    getCheckPorId(documentoId: number):any {
+        return this.Item_Documento_check.find(doc => doc.documento_id === documentoId);
+    }
+
+
         getCheckValue(documentoId: number): boolean {
           return !!this.Item_Documento_check.find(doc => doc.documento_id === documentoId)?.Check;
         }
