@@ -188,16 +188,11 @@ export class SolicitudPostulanteComponent {
     { name: 'Pendiente', code: 'null' }
   ];
 
-  // Variable para almacenar la ciudad seleccionada (aunque no está en uso en el código actual)
-  selectedCity: any = null; 
-
-
-
   activeIndex: number = 0;
 
-    activeIndexChange(index : number){
-        this.activeIndex = index;
-    }
+  activeIndexChange(index : number){
+      this.activeIndex = index;
+  }
   
   //Para subir archivos 
   onFileSelected(event: any) {

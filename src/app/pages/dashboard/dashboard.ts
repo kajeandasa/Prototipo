@@ -20,7 +20,8 @@ import { RevenueStreamWidget } from './components/revenuestreamwidget';
         <app-stats-widget class="w-full xl:w-auto" />
     </div>
 
-    <!-- Sección de ventas recientes y productos más vendidos -->
+    <!-- Sección de ventas rec
+    ientes y productos más vendidos -->
     <div class="col-span-12 xl:col-span-6">
         <app-recent-sales-widget />
         <app-best-selling-widget />

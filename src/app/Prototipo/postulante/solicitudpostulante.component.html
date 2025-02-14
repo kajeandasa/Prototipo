@@ -1,7 +1,7 @@
 <div class="card">
     <div class="font-semibold text-xl mb-4">Solicitud de Postulante</div> <!-- Titulo -->
 
-    <h2>Realiza la Solicitud de la beca</h2>
+    <h2>Realiza la Solicitud de la beca</h2> 
     <h6>Empezando por el formulario de aplicacion de aceptación por el aval.</h6>
 
     <!-- Botones -->
@@ -70,7 +70,7 @@
             <tr>
                 <td>{{ task.id }}</td>
                 <td>{{ task.estado }}</td>
-                <td>{{ task.fechaCreacion | date: 'MM/dd/yyyy' }}</td>
+                <td>{{ task.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
                 <td>
                     <button 
                         pButton 

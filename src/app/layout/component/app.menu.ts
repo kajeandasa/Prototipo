@@ -33,8 +33,15 @@ export class AppMenu {
                         icon: 'pi pi-fw pi-circle',
                         items: [
                         { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria']},
-                        { label: 'Solicitudes',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
+                        { label: 'Becas',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/infobeca']},
+                        { label: 'Solicitudes',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud']},
                         { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/desembolso']},
+                        { label: 'Prorroga de Beca',  icon: 'pi pi-fw pi-bookmark', 
+                            items: [
+                                { label: 'Solicitud de Prorroga', icon: 'pi pi-send', routerLink: ['/beca/solicitudprorroga'] },
+                                { label: 'Prorroga Resolución', icon: 'pi pi-check', routerLink: ['/beca/prorrogabeca'] }
+                            ]
+                        },
                         { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
                     ] },
                     {   label: 'Becario',
@@ -48,7 +55,7 @@ export class AppMenu {
                         },
                     ] },
                 ]
-            },
+            }, 
             {
                 label: 'Mantenimiento',
                 items: [
@@ -58,27 +65,27 @@ export class AppMenu {
                         items: [
                         { label: 'Becas', icon: 'pi pi-fw pi-book', 
                             items: [
-                                { label: 'Desembolsos por beca', icon: 'pi pi-wallet', routerLink: ['/beca/aprobacionaval'] },
-                                { label: 'Estado Desembolso Pagado', icon: 'pi pi-asterisk', routerLink: ['/beca/aprobacionaval'] },
-                                { label: 'Tipos de Becas', icon: 'pi pi-address-book', routerLink: ['/beca/desembolsosbeca'] },
-
+                                { label: 'Desembolsos por beca', icon: 'pi pi-wallet', routerLink: ['/beca/desembolsosbeca'] },
+                                { label: 'Estado Desembolso Pagado', icon: 'pi pi-asterisk', routerLink: ['/beca/'] },
+                                { label: 'Tipos de Becas', icon: 'pi pi-address-book', routerLink: ['/beca/tipobeca'] },
+                                { label: 'Monto de la Beca', icon: 'pi pi-money-bill', routerLink: ['/beca/montodefaultbeca'] },
                             ]
                         },
-                        { label: 'Seguimiento',   icon: 'pi pi-fw pi-lightbulb', 
+                        { label: 'Seguimiento',   icon: 'pi pi-fw pi-folder-open', 
                             items: [
-                                { label: 'Estado de Seguimiento', icon: 'pi pi-folder-open', routerLink: ['/beca/aprobacionaval'] },
+                                { label: 'Estado de Seguimiento', icon: 'pi pi-lightbulb', routerLink: ['/beca/aprobacionaval'] },
                                 { label: 'Tipo de Avance', icon: 'pi pi-file-import', routerLink: ['/beca/aprobacionaval'] }
                             ]    
                         },
                         { label: 'Prorroga',  icon: 'pi pi-fw pi-file-plus',
                             items: [
-                                { label: 'Estado de Prorroga', icon: 'pi pi-clock', routerLink: ['/beca/solicitudpostulante'] },
-                                { label: 'Plazo', icon: 'pi pi-calendar-clock', routerLink: ['/beca/solicitudpostulante'] },
+                                { label: 'Estado de Prorroga', icon: 'pi pi-clock', routerLink: ['/beca/estadoprorroga'] },
+                                { label: 'Plazo', icon: 'pi pi-calendar-clock', routerLink: ['/beca/plazoprorroga'] },
                             ]
                         },
                         { label: 'Cierre',  icon: 'pi pi-fw pi-stopwatch',
                             items: [
-                                { label: 'Tipo de Cierre', icon: 'pi pi-ellipsis-v', routerLink: ['/beca/solicitudpostulante'] },
+                                { label: 'Tipo de Cierre', icon: 'pi pi-ellipsis-v', routerLink: ['/beca/tipocierre'] },
                             ]
                         }
                     ] },

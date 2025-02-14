@@ -29,6 +29,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { TabsModule } from 'primeng/tabs';
 import { FileUpload } from 'primeng/fileupload';
 import { ToggleSwitch } from 'primeng/toggleswitch';
+import { DropdownModule } from 'primeng/dropdown';
 
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
@@ -62,8 +63,7 @@ interface expandedRows {
     KeyFilterModule,
     AccordionModule,
     TabsModule,
-    FileUpload,
-    ToggleSwitch,
+    DropdownModule,
   ],
   templateUrl: './desembolsosbeca.component.html',  // Enlaza la plantilla HTML del componente
   styleUrl: './desembolsosbeca.component.scss',   // Enlaza el archivo de estilos SCSS del componente
@@ -72,30 +72,45 @@ interface expandedRows {
 })
 export class desembolsoBecaComponent {
 
-  // Array con las tareas o solicitudes de los postulantes
+  // Array con los datos de los desembolsos por beca
   tasks = [
     {
         id: 1,
-        nombre: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
-        monto: '500,000.00'
+        tipo: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+        cantidad: '2',
+        monto1: '300,000.00',
+        monto2: '200,000.00',
     },
     {
         id: 2,
-        nombre: 'Beca básica institucional para el fortalecimiento de grupos de investigación',
-        monto: '75,000.00'
+        tipo: 'Beca básica institucional para el fortalecimiento de grupos de investigación',
+        cantidad: '1',
+        monto1: '75,000.00',
     },
     {
         id: 3,
-        nombre: 'Beca básica de grado como espacios de aprendizaje del método científico',
-        monto: '25,000.00'
+        tipo: 'Beca básica de grado como espacios de aprendizaje del método científico',
+        cantidad: '1',
+        monto1: '25,000.00',
     },
     {
         id: 4,
-        nombre: 'Beca básica de postgrado para la eficiencia terminal de tesis',
-        montomin: '40,000.00',
-        montomax: '80,000.00',
+        tipo: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+        cantidad: '1',
+        monto1: '80,000.00',
     }
 
+  ];
+
+  // Array para almacenar los becas para el select
+  selectedBeca: any[] = [];
+
+  beca = [
+      { name: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional', code: 'BS' },
+      { name: 'Beca básica institucional para el fortalecimiento de grupos de investigación', code: 'BGI' },
+      { name: 'Beca básica de grado como espacios de aprendizaje del método científico', code: 'BG' },
+      { name: 'Beca básica de postgrado para la eficiencia terminal de tesis', code: 'BP' },
+      
   ];
   
   // Variable para controlar el estado de carga
@@ -151,5 +166,6 @@ export class desembolsoBecaComponent {
   
   //Declara que el boton de switch esta en no o cancelar
   checked: boolean = false;
+
     
 }
