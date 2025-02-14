@@ -5,6 +5,7 @@ import { Documentation } from './app/pages/documentation/documentation';
 import { Landing } from './app/pages/landing/landing';
 import { Notfound } from './app/pages/notfound/notfound';
 
+
 export const appRoutes: Routes = [
     {
         path: '',
@@ -15,11 +16,14 @@ export const appRoutes: Routes = [
             { path: 'documentation', component: Documentation },
             { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') },
             { path: 'Prueba', loadChildren: () => import('./app/Prueba/Prueba.routes') },
-            { path: 'beca', loadChildren: () => import('./app/Prototipo/Beca.routes') }
+            { path: 'beca', loadChildren: () => import('./app/Prototipo/Beca.routes') },
+            { path: 'desembolso', loadChildren: () => import('./app/Prototipo/desembolso.routes/desembolso.routes') }
+            // { path: 'desembolso', loadChildren: () => import('./app/Prototipo/desembolso.routes') }
         ]
     },
     { path: 'landing', component: Landing },
     { path: 'notfound', component: Notfound },
     { path: 'auth', loadChildren: () => import('./app/pages/auth/auth.routes') },
-    { path: '**', redirectTo: '/notfound' }
+    { path: '*/*', redirectTo: '/dashboard' },
+
 ];

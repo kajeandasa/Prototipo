@@ -1,32 +1,31 @@
 import { Component } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common'; // ✅ Importación necesaria
 
 @Component({
   selector: 'app-desembolso',
-  standalone: true,
-  encapsulation: ViewEncapsulation.None, // 🔴 Deshabilita el aislamiento de estilos
-  imports: [
-    CommonModule,
-    NgFor,
-    TableModule,
-    ButtonModule,
-    CardModule
-  ],
+  standalone: true, // ✅ Asegura que pueda importar módulos de forma independiente
+  imports: [CommonModule], // ✅ Importar CommonModule para usar *ngFor y otras directivas
+  styleUrls: ['./desembolso.component.css'],
   templateUrl: './desembolso.component.html',
-  styleUrls: ['./desembolso.component.scss']
 })
-
 export class DesembolsoComponent {
-  services = [
-    { icon: 'bi bi-activity', title: 'Nesciunt Mete', description: 'Provident nihil minus qui consequatur non omnis maiores.', delay: 100, color: 'item-cyan' },
-    { icon: 'bi bi-broadcast', title: 'Eosle Commodi', description: 'Ut autem aut autem non a. Sint sint sit facilis.', delay: 200, color: 'item-orange' },
-    { icon: 'bi bi-easel', title: 'Ledo Markt', description: 'Ut excepturi voluptatem nisi sed. Quidem fuga consequatur.', delay: 300, color: 'item-teal' },
-    { icon: 'bi bi-bounding-box-circles', title: 'Asperiores Commodi', description: 'Non et temporibus minus omnis sed dolor esse consequatur.', delay: 400, color: 'item-red' },
-    { icon: 'bi bi-calendar4-week', title: 'Velit Doloremque', description: 'Cumque et suscipit saepe. Est maiores autem enim facilis.', delay: 500, color: 'item-indigo' },
-    { icon: 'bi bi-chat-square-text', title: 'Dolori Architecto', description: 'Hic molestias ea quibusdam eos. Fugiat enim doloremque aut.', delay: 600, color: 'item-pink' }
+  constructor(private router: Router) {}
+
+  // Opciones de navegación
+  options = [
+    { title: 'Gestión de Desembolso', description: 'Formulario para registrar una instancia.', route: 'desembolso/gestionDesembolso', color: 'card-blue' },
+    { title: 'Seguimiento de Becas', description: 'Seguimiento de becas activas.', route: 'desembolso/seguimiento', color: 'card-white' },
+    { title: 'Cierre de Becas', description: 'Formulario para cerrar becas en curso.', route: 'desembolso/cierre', color: 'card-blue' }
   ];
+
+  // Redirección corregida
+  redirectTo(route: string) {
+    if (route) {
+      console.log('Redirigiendo a:', route);
+      this.router.navigate([route]);
+    } else {
+      console.error('Ruta no definida');
+    }
+  }
 }
