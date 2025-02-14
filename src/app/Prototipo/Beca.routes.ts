@@ -7,6 +7,8 @@ import { FormularioUsuarioComponent } from './Formularios/formulario-usuario/for
 import { AlertaComponent } from './alertas/alerta/alerta.component'
 import { ItemDocumentoComponent } from './Documento/item-documento/item-documento.component';
 
+import { CheckDocumentoComponent } from './Documento/check-documento/check-documento.component';
+
 export default [
     { path: 'convocatoria',         data: { breadcrumb: 'convocatoria' },   component: ConvocatoriaComponent },
     { path: 'solicitud',            data: { breadcrumb: 'solicitud' },      component: SolicitudComponent },
@@ -15,5 +17,6 @@ export default [
     { path: 'itemformulario/:id',   data: { breadcrumb: 'itemformulario' }, component: ItemFormularioComponent },
     { path: 'alerta',   data: { breadcrumb: 'alerta' }, component: AlertaComponent },
     { path: 'ItemDocumento',   data: { breadcrumb: 'Documento' }, component: ItemDocumentoComponent },
+    { path: 'CheckDocumento',   data: { breadcrumb: 'Documento' }, component: CheckDocumentoComponent },
     { path: '**', redirectTo: '/notfound' }
 ] as Routes;

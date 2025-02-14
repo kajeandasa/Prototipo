@@ -1,0 +1,74 @@
+<div class="card">
+    <div class="font-semibold text-xl mb-4">
+        <h2>Documento Usuario "{{obtenerUsuarioPorId(id_usuario_postulante).Nombre}}"</h2>
+    </div> <!-- Título -->
+    <div class="font-semibold text-xl mb-4">
+        <h5><< tipo entidad (Aval ó Postulante) >></h5>
+    </div> <!-- Subtítulo -->
+
+    <!-- Botones -->
+    <div class="flex gap-4 justify-end">
+        <button pButton label="Ver Items" icon="pi pi-eye"></button>
+        <button pButton label="Nuevo" icon="pi pi-plus"></button>
+    </div>
+
+    <!-- Tabla que muestra las solicitudes por aceptar de los postulantes -->
+    <p-table
+        #dt1
+        [value]="obtenerDocumentosPorPersona(id_usuario_postulante)"
+        [rows]="10"
+        [paginator]="true"
+        responsiveLayout="scroll"
+        [globalFilterFields]="['Titulo', 'Descripcion', 'fechaCreacion']"
+        sortMode="multiple"
+        class="custom-table"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        stripedRows>
+
+        <!-- Encabezado de la tabla -->
+        <ng-template #header>
+            <tr>
+                <th pSortableColumn="id">N° <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="Descripcion">Documento <p-sortIcon field="Descripcion"></p-sortIcon></th>
+                <th pSortableColumn="RutaRepositorio">Acción <p-sortIcon field="RutaRepositorio"></p-sortIcon></th>
+                <th>Check</th>
+                <th>Revisado por Usuario</th>
+            </tr>
+        </ng-template>
+
+        <!-- Cuerpo de la tabla -->
+        <ng-template #body let-task>
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ obtenerDocumentoPorId(task.documento_id).Descripcion }}</td>
+                <td>
+                    <button pButton label="Detalles" icon="pi pi-eye"></button>
+                </td>
+                <td>
+                    <p-checkbox
+                        [binary]="true"
+                        [ngModel]="getCheckValue(task.documento_id)"
+                        (ngModelChange)="updateCheckValue(task.documento_id, $event)">
+                    </p-checkbox>
+                    <p-checkbox
+                    [binary]="true"
+                    [ngModel]="getCheckValue_error(task.documento_id)"
+                    (ngModelChange)="updateCheckValue_error(task.documento_id, $event)"
+                    [ngClass]="{'error-checkbox': getCheckValue_error(task.documento_id)}">
+                </p-checkbox>
+
+
+                </td>
+                <td>
+                    <div *ngIf="getCheckValue(task.documento_id)"  class="error-container">
+                        <textarea rows="2" cols="30" pTextarea [autoResize]="true" [disabled]="true"></textarea>
+                    </div>
+                    <div *ngIf="getCheckValue_error(task.documento_id)" class="error-container">
+                        <textarea rows="2" cols="30" pTextarea [autoResize]="true"                  ></textarea>
+                    </div>
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
