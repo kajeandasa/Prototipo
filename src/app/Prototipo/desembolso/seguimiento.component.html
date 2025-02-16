@@ -4,7 +4,7 @@
         <h2>Seguimiento de becas</h2>
     </div>
 
-    <!-- Botones -->
+    <!-- Botones de nueva beca y imagen de beca-->
     <div class="flex gap-4 justify-end">
         <button
             pButton
@@ -27,7 +27,7 @@
         [rows]="5"
         [paginator]="true"
         responsiveLayout="scroll"
-        [globalFilterFields]="['id', 'soli', 'beca', 'montobeca', 'postulante', 'montoasignado']"
+        [globalFilterFields]="['id', 'beca', 'postulante', 'soli', 'montobeca', 'montoasignado']"
         sortMode="multiple"
         class="custom-table"
         [tableStyle]="{ 'min-width': '50rem' }"

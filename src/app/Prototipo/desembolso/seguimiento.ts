@@ -125,8 +125,6 @@ tiposBeca = [
   selectTiposBeca: any[] = [];
 // ----------------------------------------------------------------
 
-
-
   // Array para almacenar las solicitudes para el select
   selectedsoli: any[] = [];
 
