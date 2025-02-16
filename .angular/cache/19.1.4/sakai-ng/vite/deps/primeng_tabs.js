@@ -1,41 +1,22 @@
 import {
   Ripple,
   RippleModule
-<<<<<<< HEAD
-} from "./chunk-JJ7UHPGC.js";
+} from "./chunk-UROOUTK7.js";
 import {
   ChevronLeftIcon,
   ChevronRightIcon
-} from "./chunk-VSQHKXYY.js";
+} from "./chunk-H3IGEOWI.js";
 import {
   BaseComponent
-} from "./chunk-VSHKOZGE.js";
-import "./chunk-TNLKERHO.js";
+} from "./chunk-LJOVEYLY.js";
+import "./chunk-2NRYLL4N.js";
 import {
   BaseStyle
-} from "./chunk-B4X4LWSI.js";
+} from "./chunk-IACFBNRL.js";
 import {
   PrimeTemplate,
   SharedModule
-} from "./chunk-V6JG5YBX.js";
-=======
-} from "./chunk-RV6ER632.js";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon
-} from "./chunk-2YTW6KBX.js";
-import {
-  BaseComponent
-} from "./chunk-XRLDR3BP.js";
-import "./chunk-7FFUXGCQ.js";
-import {
-  BaseStyle
-} from "./chunk-4FJJDBYP.js";
-import {
-  PrimeTemplate,
-  SharedModule
-} from "./chunk-BXN7YG4O.js";
->>>>>>> 5208918dc350ba47a166aa56b88db40bd0a15075
+} from "./chunk-XEULJ72G.js";
 import {
   findSingle,
   focus,
@@ -47,13 +28,10 @@ import {
   isRTL,
   uuid
 } from "./chunk-5OHZTMN7.js";
-<<<<<<< HEAD
-import "./chunk-O2NX5PGS.js";
+import "./chunk-ITKLJM62.js";
 import {
   equals
-} from "./chunk-5GVB2IES.js";
-=======
->>>>>>> 5208918dc350ba47a166aa56b88db40bd0a15075
+} from "./chunk-AWYL7S6O.js";
 import {
   CommonModule,
   NgClass,
@@ -116,10 +94,6 @@ import {
 import "./chunk-4N4GOYJH.js";
 import "./chunk-5OPE3T2R.js";
 import "./chunk-FHTVLBLO.js";
-import "./chunk-ITKLJM62.js";
-import {
-  equals
-} from "./chunk-AWYL7S6O.js";
 import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-tabs.mjs
