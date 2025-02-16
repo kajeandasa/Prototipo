@@ -81,6 +81,19 @@ export class becasComponent implements OnInit {
         montobeca: '500,000.00',
         postulante: 'María Fernanda López Hernández',
         montoasignado: '400,000.00',
+        direccionDomicilio: 'Col. Centro, Tegucigalpa',
+        numeroIdentidad: '0801-1990-12345',
+        numeroRTN: '12345678901234',
+        estadoCivil: 'Soltero',
+        profesion: 'Ingeniería en Sistemas',
+        correoElectronico: 'juan.perez@example.com',
+        numeroTelefono: '9999-9999',
+        numeroEstudiante: '20210001',
+        nombreCarrera: 'Ingeniería en Sistemas',
+        nombreProyecto: 'Beca Nacional Universitaria',
+        aval: "Lic. Carlos Rodríguez",
+        estado: "Pendiente de aprobación de aval",
+        fechaCreacion: "2025-01-15",
     },
     {
         id: 2,
@@ -216,7 +229,7 @@ export class becasComponent implements OnInit {
       this.isNewModal = false;  // Es un modal de detalles
       this.displayModal = true;  // Abre el modal de detalles
     } else {
-      this.selectedTask = {};  // Inicializa la tarea vacía para nueva solicitud
+      this.selectedTask = {...task};  // Inicializa la tarea vacía para nueva solicitud
       this.isNewModal = true;  // Es un modal de nueva solicitud
       this.displayNewModal = true;  // Abre el modal de nueva solicitud
     }

@@ -97,6 +97,7 @@
     <p-dialog 
         header="Información sobre las solicitudes de prorroga" 
         [modal]="true" 
+        [maximizable]="true"
         [(visible)]="displayNewModal" 
         [style]="{ width: '40rem' }">
         <div class="card flex flex-col gap-4">
@@ -125,7 +126,8 @@
     <!-- Modal que muestra la informacion de las solicitudes de prorroga -->
     <p-dialog 
         header="Información sobre las solicitudes de prorroga" 
-        [modal]="true" 
+        [modal]="true"
+        [maximizable]="true" 
         [(visible)]="displayModal" 
         [style]="{ width: '40rem' }">
         <div class="card flex flex-col gap-4">

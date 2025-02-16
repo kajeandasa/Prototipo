@@ -12,12 +12,6 @@
             icon="pi pi-image" 
             (click)="openImageModal('becario')">
         </button>
-        <button 
-            pButton 
-            label="Nueva Beca" 
-            icon="pi pi-plus" 
-            (click)="openModal()">
-        </button>
     </div>
     
     <!-- Tabla que muestra las becas -->
@@ -156,6 +150,40 @@
                 optionLabel="name">
                 </p-dropdown>
             </div>
+            
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
+                    <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>    
+        </div>
+        <div class="flex justify-end gap-2">
+            <p-button label="Enviar" (click)="displayNewModal = false" />
+            <p-button label="Cerrar" (click)="displayNewModal = false" />
+        </div>
+    </p-dialog>
+
+    <!-- Modal que muestra la informacion de las becas -->  
+    <p-dialog 
+        header="Información sobre los tipos de becas" 
+        [modal]="true" 
+        [maximizable]="true"
+        [(visible)]="displayModal" 
+        [style]="{ width: '100rem' }">
+        <div class="card flex flex-col gap-4">
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
+                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Beca</strong> {{ selectedTask.becas }}
+                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                </div>
+            </div>
             <p-accordion [(value)]="activeIndex">
                 <p-accordion-panel [value]="0">
                 <p-accordion-header>Información del Postulante</p-accordion-header>
@@ -164,7 +192,7 @@
                         <div class="flex flex-wrap gap-6">
                             <div class="flex flex-col grow basis-0 gap-2">
                                 <strong>Nombre Completo</strong> {{ selectedTask.nombreCompletos }}
-                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.nombreCompleto"/>
+                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
                             </div>
                             <div class="flex flex-col grow basis-0 gap-2">
                                 <strong>Dirección Domicilio</strong> {{ selectedTask.direccionDomicilios }}
@@ -238,46 +266,7 @@
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>    
-        </div>
-        <div class="flex justify-end gap-2">
-            <p-button label="Enviar" (click)="displayNewModal = false" />
-            <p-button label="Cerrar" (click)="displayNewModal = false" />
-        </div>
-    </p-dialog>
-
-    <!-- Modal que muestra la informacion de las becas -->  
-    <p-dialog 
-        header="Información sobre los tipos de becas" 
-        [modal]="true" 
-        [maximizable]="true"
-        [(visible)]="displayModal" 
-        [style]="{ width: '100rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Beca</strong> {{ selectedTask.becas }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Postulante</strong> {{ selectedTask.postulantes }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
+                    <input pInputText  id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
                 </div>
             </div>
         </div>
