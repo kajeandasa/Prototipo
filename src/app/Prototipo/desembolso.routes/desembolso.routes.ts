@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 
 
 import { Seguimiento } from '../desembolso/seguimiento/seguimiento';
-import { Cierre } from '../desembolso/cierre';
+import { Cierre } from '../desembolso/cierre/cierre.component';
 import { Gestiondesembolso } from '../desembolso/gestionDesembolso/gestionDesembolsos';
 
 export default [

@@ -16,7 +16,7 @@ import { desembolsoBecaComponent } from './modulo desembolso/desembolsos por bec
 
 import { DesembolsoComponent } from './desembolso/desembolso.component';
 // import { Seguimiento } from './desembolso/seguimiento';
-import { Cierre } from './desembolso/cierre';
+import { Cierre } from './desembolso/cierre/cierre.component';
 
 // import { Gestiondesembolso } from './desembolso/gestionDesembolsos';
 
