@@ -3,36 +3,32 @@
         <h2>Documento Usuario "{{obtenerUsuarioPorId(id_usuario_postulante).Nombre}}"</h2>
     </div> <!-- Título -->
     <div class="font-semibold text-xl mb-4">
-        <h5><< tipo entidad (Aval ó Postulante) >></h5>
+        <h5> << tipo entidad (Aval ó Postulante) >></h5>
     </div> <!-- Subtítulo -->
 
     <!-- Botones -->
     <div class="flex gap-4 justify-end">
-        <button pButton label="Ver Items" icon="pi pi-eye"></button>
-        <button pButton label="Nuevo" icon="pi pi-plus"></button>
+        <button pButton label="Guardar los cambios"></button>
     </div>
 
     <!-- Tabla que muestra las solicitudes por aceptar de los postulantes -->
     <p-table
         #dt1
         [value]="obtenerDocumentosPorPersona(id_usuario_postulante)"
-        [rows]="10"
-        [paginator]="true"
         responsiveLayout="scroll"
         [globalFilterFields]="['Titulo', 'Descripcion', 'fechaCreacion']"
         sortMode="multiple"
         class="custom-table"
-        [rowsPerPageOptions]="[5, 10, 20]"
         stripedRows>
 
         <!-- Encabezado de la tabla -->
         <ng-template #header>
             <tr>
-                <th pSortableColumn="id">N° <p-sortIcon field="id"></p-sortIcon></th>
+                <th style="width: 5rem; min-width: 5rem;" pSortableColumn="id">N° <p-sortIcon field="id"></p-sortIcon></th>
                 <th pSortableColumn="Descripcion">Documento <p-sortIcon field="Descripcion"></p-sortIcon></th>
-                <th pSortableColumn="RutaRepositorio">Acción <p-sortIcon field="RutaRepositorio"></p-sortIcon></th>
-                <th>Check</th>
-                <th>Revisado por Usuario</th>
+                <th pSortableColumn="Descripcion">Archivo<p-sortIcon field="Descripcion"></p-sortIcon></th>
+                <th  style="width: 5rem; min-width: 5rem;">Check</th>
+                <th  style="width: 30rem; min-width: 30rem;" >Revisado por Usuario</th>
             </tr>
         </ng-template>
 
@@ -41,9 +37,19 @@
             <tr>
                 <td>{{ task.id }}</td>
                 <td>{{ obtenerDocumentoPorId(task.documento_id).Descripcion }}</td>
+
                 <td>
-                    <button pButton label="Detalles" icon="pi pi-eye"></button>
+                    <p-panel class="file-panel">
+                        <div class="file-container">
+                            <div class="file-info">
+                                <i class="pi pi-file file-icon"></i>
+                                <span>Último archivo</span>
+                            </div>
+                            <p-button label="Ver"></p-button>
+                        </div>
+                    </p-panel>
                 </td>
+
                 <td>
                     <p-checkbox
                         [binary]="true"
@@ -60,11 +66,16 @@
 
                 </td>
                 <td>
-                    <div *ngIf="getCheckValue(task.documento_id)"  class="error-container">
+                    <div *ngIf="getCheckValue(task.documento_id)" class="error-container">
                         <textarea rows="2" cols="30" pTextarea [autoResize]="true" [disabled]="true"></textarea>
                     </div>
+
                     <div *ngIf="getCheckValue_error(task.documento_id)" class="error-container">
-                        <textarea rows="2" cols="30" pTextarea [autoResize]="true"                  ></textarea>
+                        <textarea maxlength="100" rows="2" cols="30" pTextarea [autoResize]="true"></textarea>
+                    </div>
+
+                    <div *ngIf="!getCheckValue_error(task.documento_id) && !getCheckValue(task.documento_id)" class="error-container">
+                        <textarea rows="2" cols="30" pTextarea [autoResize]="true" [disabled]="true">{{getCheckPorId(task.documento_id).observacion}}</textarea>
                     </div>
                 </td>
 

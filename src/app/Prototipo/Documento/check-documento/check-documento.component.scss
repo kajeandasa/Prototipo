@@ -33,3 +33,32 @@
 ::ng-deep .error-container textarea {
     width: 100%; /* Que el textarea ocupe el ancho disponible */
 }
+
+
+
+
+
+
+
+
+
+::ng-deep .file-panel {
+    padding: 1px;
+}
+
+::ng-deep .file-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+::ng-deep .file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+::ng-deep .file-icon {
+    font-size: 24px;
+}
