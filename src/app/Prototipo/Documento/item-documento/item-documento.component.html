@@ -4,9 +4,10 @@
     <!-- Botones -->
     <div class="flex gap-4 justify-end">
         <button
-            pButton
-            label="Ver Items"
-            icon="pi pi-eye">
+        pButton
+        label="ejemplo para el checkList"
+        icon="pi pi-plus"
+        (click) = "iraVerCheckList()">
         </button>
         <button
             pButton
@@ -99,7 +100,9 @@
                     class="w-full">
                 </p-select>
                 </div>
+
             </div>
+            <p-fileupload accept="image/*" maxFileSize="1000000"/>
         </div>
        <div class="flex justify-end gap-2">
            <p-button label="Agregar" severity="success" (click)="Modal_agregar = false" />
@@ -184,6 +187,6 @@
 
                 <p-fileupload accept="image/*" maxFileSize="1000000"/>
 
-                
+
         </div>
    </p-dialog>

@@ -84,19 +84,30 @@ export class CheckDocumentoComponent {
     Persona_Documento=[
         {id:1,persona_id:3,documento_id:1,observacion:""},
         {id:2,persona_id:3,documento_id:2,observacion:""},
-        {id:3,persona_id:2,documento_id:3,observacion:""},
-        {id:4,persona_id:2,documento_id:4,observacion:""},
-        {id:5,persona_id:2,documento_id:5,observacion:""},
+        {id:3,persona_id:3,documento_id:3,observacion:""},
+        {id:4,persona_id:3,documento_id:4,observacion:""},
+        {id:5,persona_id:3,documento_id:5,observacion:""},
+        {id:6,persona_id:3,documento_id:6,observacion:""},
+        {id:7,persona_id:3,documento_id:7,observacion:""},
+        {id:8,persona_id:3,documento_id:8,observacion:""},
+        {id:9,persona_id:2,documento_id:9,observacion:""},
+        {id:10,persona_id:2,documento_id:10,observacion:""}
     ]
 
 
-    Item_Documento=[
-        {id:1,tipo_id:1,estado_id:1,Descripcion:"itemDocumento, RTN_ejemplo"},
-        {id:2,tipo_id:3,estado_id:3,Descripcion:"itemDocumento, Contrado de Explicacion"},
-        {id:3,tipo_id:3,estado_id:3,Descripcion:"itemDocumento, Contrado de Explicacion otro"},
-        {id:4,tipo_id:4,estado_id:3,Descripcion:"itemDocumento, Contrado de Explicacion otro"},
-        {id:5,tipo_id:5,estado_id:3,Descripcion:"itemDocumento, Contrado de Explicacion otro"},
-    ]
+    Item_Documento = [
+        { id: 1, tipo_id: 1, estado_id: 1, Descripcion: "Documento, Identificación Oficial" },
+        { id: 2, tipo_id: 3, estado_id: 3, Descripcion: "Documento, Contrato de Servicios" },
+        { id: 3, tipo_id: 3, estado_id: 3, Descripcion: "Documento, Pasaporte Vigente" },
+        { id: 4, tipo_id: 4, estado_id: 3, Descripcion: "Documento, Certificado de Nacimiento" },
+        { id: 5, tipo_id: 5, estado_id: 3, Descripcion: "Documento, Factura Comercial" },
+        { id: 6, tipo_id: 5, estado_id: 3, Descripcion: "Documento, Recibo de Pago" },
+        { id: 7, tipo_id: 5, estado_id: 3, Descripcion: "Documento, Permiso de Residencia" },
+        { id: 8, tipo_id: 5, estado_id: 3, Descripcion: "Documento, Comprobante de Domicilio" },
+        { id: 9, tipo_id: 5, estado_id: 3, Descripcion: "Documento, Acta Notarial" },
+        { id: 10, tipo_id: 5, estado_id: 3, Descripcion: "Documento, Título Universitario" },
+    ];
+
     Item_Documento_check=[
         {id:1,documento_id:1,Check:0,Check_error:0,observacion:"RTN_ejemplo"},
         {id:2,documento_id:2,Check:0,Check_error:0,observacion:"aawdad"},
@@ -105,6 +116,9 @@ export class CheckDocumentoComponent {
         {id:5,documento_id:5,Check:0,Check_error:0,observacion:""},
         {id:6,documento_id:6,Check:0,Check_error:0,observacion:""},
         {id:7,documento_id:7,Check:0,Check_error:0,observacion:""},
+        {id:8,documento_id:8,Check:0,Check_error:0,observacion:""},
+        {id:9,documento_id:9,Check:0,Check_error:0,observacion:""},
+        {id:10,documento_id:10,Check:0,Check_error:0,observacion:""},
     ]
     Item_Documento_Achivo = [
         { id: 1, id_Documento:1 ,Version: 1, observacion:" hola"},
