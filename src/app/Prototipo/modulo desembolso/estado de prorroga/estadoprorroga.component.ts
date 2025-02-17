@@ -78,37 +78,37 @@ export class estadoProrrogaComponent {
     {
         id: 1,
         estado: 'Aprobado',
-        tipo: 'Permitido',
+        tipo: 'PERMITIDO',
     },
     {
         id: 2,
         estado: 'Rechazado',
-        tipo: 'No Permitido',
+        tipo: 'NO PERMITIDO',
     },
     {
         id: 3,
         estado: 'En proceso de revisión',
-        tipo: 'Advertencia',
+        tipo: 'ADVERTENCIA',
     },
     {
         id: 4,
         estado: 'Suspendido',
-        tipo: 'No Permitido',
+        tipo: 'NO PERMITIDO',
     },
     {
         id: 5,
         estado: 'Nueva Solicitud',
-        tipo: 'Advertencia',
+        tipo: 'ADVERTENCIA',
     },
     {
         id: 6,
         estado: 'Pendiente de Aprobación',
-        tipo: 'Advertencia',
+        tipo: 'ADVERTENCIA',
     },
     {
         id: 7,
         estado: 'Habilitado',
-        tipo: 'Permitido',
+        tipo: 'PERMITIDO',
     }
 
 
@@ -128,10 +128,11 @@ export class estadoProrrogaComponent {
   selectedtipo: any[] = [];
 
   tipo = [
-      { name: 'Permitido', code: 'P' },
-      { name: 'No Permitido', code: 'N' },
-      { name: 'Advertencia', code: 'A' },
+      { name: 'PERMITIDO', code: 'P' },
+      { name: 'NO PERMITIDO', code: 'N' },
+      { name: 'ADVERTENCIA', code: 'A' },
   ];
+
   
   // Variable para controlar el estado de carga
   loading: boolean = true;
@@ -190,17 +191,18 @@ export class estadoProrrogaComponent {
 
   // Método para obtener el severity (color) de la tipo de estado
   getSeverity(tipo: string): "success" | "warn" | "danger" | "info" {
-    switch (tipo) {
-      case 'Permitido':
-        return 'success';   // Verde
-      case 'Advertencia':
-        return 'warn';      // Amarillo
-      case 'No Permitido':
-        return 'danger';    // Rojo
-      default:
-        return 'info';      // Otro color (opcional)
-    }
+      switch (tipo) {
+        case 'PERMITIDO':
+          return 'success';   // Verde
+        case 'ADVERTENCIA':
+          return 'warn';      // Amarillo
+        case 'NO PERMITIDO':
+          return 'danger';    // Rojo
+        default:
+          return 'info';      // Otro color (opcional)
+      }
   }
+
 
     
 }

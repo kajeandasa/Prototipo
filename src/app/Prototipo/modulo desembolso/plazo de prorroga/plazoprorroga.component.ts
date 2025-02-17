@@ -77,48 +77,61 @@ export class plazoProrrogaComponent {
   tasks = [
     {
         id: 1,
-        nombreplazo: 'Quincenas',
-        duracion: "1"
+        duracion: "1 Mes"
     },
     {
         id: 2,
-        nombreplazo: 'Mes',
-        duracion: "9"
+        duracion: "9 Años"
     },
     {
         id: 3,
-        nombreplazo: 'Bimestres',
-        duracion: "2"
+        duracion: "1 Año"
     },
     {
         id: 4,
-        nombreplazo: 'Trimestres',
-        duracion: "3"
+        duracion: "1 Semestre"
     },
     {
         id: 5,
-        nombreplazo: 'Semestres',
-        duracion: "2"
+        duracion: "2 Semestres"
     },
     {
         id: 6,
-        nombreplazo: 'Año',
-        duracion: "1"
+        duracion: "6 Meses"
     },
 
   ];
 
-  // Array para almacenar los plazos para el select
-  selectedplazo: any[] = [];
+  // Array para almacenar la cantidad para el select
+  selectedcantidad: any[] = [];
 
-  plazo = [
-      { name: 'Quincenas', code: 'Q' },
+  cantidad = [
+      { name: '1', code: '1' },
+      { name: '2', code: '2' },
+      { name: '3', code: '3' },
+      { name: '4', code: '4' },
+      { name: '5', code: '5' },
+      { name: '6', code: '6' },
+      { name: '7', code: '7' },
+      { name: '8', code: '8' },
+      { name: '9', code: '9' },
+      { name: '10', code: '10' },
+      { name: '11', code: '11' },
+      { name: '12', code: '12' },
+  ];
+
+  // Array para almacenar la unidad de tiempo para el select
+  selectedunidadtiempo: any[] = [];
+
+  unidadtiempo = [
       { name: 'Mes', code: 'M' },
-      { name: 'Bimestres', code: 'B' },
-      { name: 'Trimestres', code: 'T' },
-      { name: 'Semestres', code: 'S' },
+      { name: 'Meses', code: 'MM' },
+      { name: 'Semestre', code: 'S' },
+      { name: 'Semestres', code: 'SS' },
       { name: 'Año', code: 'A' },
-  ]; 
+      { name: 'Años', code: 'AA' },
+  ];
+
   
   // Variable para controlar el estado de carga
   loading: boolean = true;

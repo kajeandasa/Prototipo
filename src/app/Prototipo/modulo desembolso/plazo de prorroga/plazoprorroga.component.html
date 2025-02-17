@@ -60,8 +60,7 @@
         <ng-template #header>
             <tr>
                 <th pSortableColumn="id">Número de Plazo <p-sortIcon field="id"></p-sortIcon></th>
-                <th pSortableColumn="nombreplazo">Descripción del plazo <p-sortIcon field="nombreplazo"></p-sortIcon></th>
-                <th pSortableColumn="duracion">Duración <p-sortIcon field="duracion"></p-sortIcon></th>
+                <th pSortableColumn="duracion">Duración<p-sortIcon field="duracion"></p-sortIcon></th>
                 <th>Acciones</th>
             </tr>
         </ng-template>
@@ -69,7 +68,6 @@
         <ng-template #body let-task>
             <tr>
                 <td>{{ task.id }}</td>
-                <td>{{ task.nombreplazo }}</td>
                 <td>{{ task.duracion }}</td>
                 <td>
                     <button 
@@ -97,24 +95,35 @@
     <p-dialog 
         header="Información sobre los plazos" 
         [modal]="true" 
+        [maximizable]="true"
         [(visible)]="displayNewModal" 
-        [style]="{ width: '40rem' }">
+        [style]="{ width: '60rem' }">
         <div class="card flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-                <strong>Seleccione el plazo:</strong>
-                <p-dropdown 
-                  [options]="plazo" 
-                  placeholder="Seleccione el plazo"
-                  [editable]="true"
-                  optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Duración</strong> {{ selectedTask.duracions }}
-                    <input pInputText id="duracion" class="flex-auto" autocomplete="off"/>
+            <strong>Duración</strong> {{ selectedTask.duracions }}
+            <div class="card flex flex-col gap-4">
+                <div class="flex flex-wrap gap-6">
+                    <div class="flex flex-col grow gap-2">
+                        <strong>Seleccione la cantidad de la duración:</strong>
+                        <p-dropdown 
+                        [options]="cantidad" 
+                        placeholder="Seleccione la cantidad de la duración:"
+                        [editable]="true"
+                        optionLabel="name">
+                        </p-dropdown>
+                    </div>
+                    <div class="flex flex-col grow gap-2">
+                        <strong>Seleccione la unidad de tiempo:</strong>
+                        <p-dropdown 
+                        [options]="unidadtiempo" 
+                        placeholder="Seleccione la unidad de tiempo:"
+                        [editable]="true"
+                        optionLabel="name">
+                        </p-dropdown>
+                    </div>
                 </div>
             </div>
+            
+            
         </div>
         <div class="flex justify-end gap-2">
             <p-button label="Enviar" (click)="displayNewModal = false" />
@@ -124,20 +133,14 @@
 
     <!-- Modal que muestra la informacion de los plazos -->
     <p-dialog 
-        header="Información sobre los tipos de cierre" 
+        header="Información sobre los los plazos" 
         [modal]="true" 
         [(visible)]="displayModal" 
         [style]="{ width: '40rem' }">
         <div class="card flex flex-col gap-4">
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Plazo de la prorroga</strong> {{ selectedTask.nombreplazos }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="nombreplazos" class="flex-auto" autocomplete="off" [value]="selectedTask.nombreplazo"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Duración</strong> {{ selectedTask.duracions }}
+                    <strong>Duración del Plazo</strong> {{ selectedTask.duracions }}
                     <input pInputText pKeyFilter="alpha" [disabled]="true" id="duracion" class="flex-auto" autocomplete="off" [value]="selectedTask.duracion"/>
                 </div>
             </div>

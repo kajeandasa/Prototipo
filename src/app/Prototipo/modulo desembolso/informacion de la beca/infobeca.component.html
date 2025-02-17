@@ -171,106 +171,195 @@
         [maximizable]="true"
         [(visible)]="displayModal" 
         [style]="{ width: '100rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                </div>
+        <div class="card">
+            <div class="flex mb-4 gap-2 justify">
+                <!-- Botones que cambian el índice del acordeón -->
+                <p-button (click)="activeIndex = 0" [rounded]="true" label="1" class="w-8 h-8 p-0" [outlined]="activeIndex !== 0"></p-button>
+                <p-button (click)="activeIndex = 1" [rounded]="true" label="2" class="w-8 h-8 p-0" [outlined]="activeIndex !== 1"></p-button>
             </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Beca</strong> {{ selectedTask.becas }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                </div>
-            </div>
-            <p-accordion [(value)]="activeIndex">
+
+             <!-- Acordeón controlado -->
+             <p-accordion [(value)]="activeIndex">
                 <p-accordion-panel [value]="0">
-                <p-accordion-header>Información del Postulante</p-accordion-header>
-                <p-accordion-content>
-                    <div class="card flex flex-col gap-4">
-                        <div class="flex flex-wrap gap-6">
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Nombre Completo</strong> {{ selectedTask.nombreCompletos }}
-                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                    <p-accordion-header>Solicitud de Beca</p-accordion-header>
+                    <p-accordion-content>
+                        <div class="card flex flex-col gap-4">
+                            <div class="flex flex-wrap gap-6">
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
+                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                </div>
                             </div>
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Dirección Domicilio</strong> {{ selectedTask.direccionDomicilios }}
-                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.direccionDomicilio"/>
+                            <div class="flex flex-wrap gap-6">
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Beca</strong> {{ selectedTask.becas }}
+                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                </div>
+                            </div>
+                            <p-accordion [(value)]="datos">
+                                <p-accordion-panel [value]="0">
+                                    <p-accordion-header>Información del Postulante</p-accordion-header>
+                                    <p-accordion-content>
+                                        <div class="card flex flex-col gap-4">
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Nombre Completo</strong> {{ selectedTask.nombreCompletos }}
+                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Dirección Domicilio</strong> {{ selectedTask.direccionDomicilios }}
+                                                    <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.direccionDomicilio"/>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Número de identidad</strong> {{ selectedTask.numeroIdentidads }}
+                                                    <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroIdentidad"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Número de RTN</strong> {{ selectedTask.numeroRTNs }}
+                                                    <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroRTN"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Estado Civil</strong> {{ selectedTask.estadoCivils }}
+                                                    <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.estadoCivil"/>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Profesión</strong> {{ selectedTask.profesions }}
+                                                    <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.profesion"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Correo Electrónico</strong> {{ selectedTask.correoElectronicos }}
+                                                    <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.correoElectronico"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Número de Telefono</strong> {{ selectedTask.numeroTelefonos }}
+                                                    <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroTelefono"/>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="font-semibold text-xl">Información Universitaria</div>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Número de Estudiante</strong> {{ selectedTask.numeroEstudiantess }}
+                                                    <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroEstudiante"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Nombre de la carrera</strong> {{ selectedTask.nombreCarreras }}
+                                                    <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.nombreCarrera"/>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Nombre del proyecto</strong> {{ selectedTask.nombreProyectos }}
+                                                    <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.nombreProyecto"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Seleccione el Licenciado Aval</strong> {{ selectedTask.avals }}
+                                                    <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.aval"/>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Estado de la Solicitud</strong> {{ selectedTask.estados }}
+                                                    <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.estado"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Fecha de Creación</strong> {{ selectedTask.fechaCreacions }}
+                                                    <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </p-accordion-content>
+                                </p-accordion-panel>
+                                <p-accordion-panel [value]="1">
+                                    <p-accordion-header>Información del Aval</p-accordion-header>
+                                    <p-accordion-content>
+                                        <div class="card flex flex-col gap-4">
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Nombre Completo</strong> {{ selectedTask.nombreCompletoavals }}
+                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="nombrecompletoaval" class="flex-auto" autocomplete="off" [value]="selectedTask.nombrecompletoaval"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Dirección Domicilio</strong> {{ selectedTask.direccionDomicilioavals }}
+                                                    <input pInputText id="direccionDomicilioaval" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.direccionDomicilioaval"/>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Número de identidad</strong> {{ selectedTask.numeroIdentidadavals }}
+                                                    <input pInputText id="numeroIdentidadaval" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroIdentidadaval"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Número de RTN</strong> {{ selectedTask.numeroRTNavals }}
+                                                    <input pInputText id="numeroRTNaval" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroRTNaval"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Estado Civil</strong> {{ selectedTask.estadoCivilavals }}
+                                                    <input pInputText id="estadoCivilaval" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.estadoCivilaval"/>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Profesión</strong> {{ selectedTask.profesionavals }}
+                                                    <input pInputText id="profesionaval" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.profesionaval"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Correo Electrónico</strong> {{ selectedTask.correoElectronicoavals }}
+                                                    <input pInputText id="correoElectronicoaval" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.correoElectronicoaval"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Número de Telefono</strong> {{ selectedTask.numeroTelefonoavals }}
+                                                    <input pInputText id="numeroTelefonoaval" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroTelefonoaval"/>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Número de Empleado</strong> {{ selectedTask.numeroempleadoavals }}
+                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="numeroempleadoaval" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroempleadoaval"/>
+                                                </div>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Unidad/Departamento o Instancia a la que pertenece</strong> {{ selectedTask.unidepinstacias }}
+                                                    <input pInputText id="unidepinstacia" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.unidepinstacia"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </p-accordion-content>
+                                </p-accordion-panel>
+                                <p-accordion-panel [value]="2">
+                                    <p-accordion-header>Información del Proyecto</p-accordion-header>
+                                    <p-accordion-content>
+                                        
+                                    </p-accordion-content>
+                                </p-accordion-panel>
+                            </p-accordion>
+                        </div>
+                        <div class="flex justify-end gap-2">
+                            <p-button label="Rechazar" severity="danger" (click)="displayModal = false" />
+                            <p-button label="Aceptar" severity="success" (click)="activeIndex = 1" />
+                            <p-button label="Regresar" (click)="displayModal = false" />
+                        </div>
+                    </p-accordion-content>
+                    
+                </p-accordion-panel>
+                <p-accordion-panel [value]="1">
+                    <p-accordion-header>Asignación</p-accordion-header>
+                    <p-accordion-content>
+                        <div class="card flex flex-col gap-4">
+                            <div class="flex flex-wrap gap-6">
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Monto Asignado a la beca del postulante</strong> {{ selectedTask.montoasignados }}
+                                    <input pInputText  id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex flex-wrap gap-6">
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Número de identidad</strong> {{ selectedTask.numeroIdentidads }}
-                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroIdentidad"/>
-                            </div>
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Número de RTN</strong> {{ selectedTask.numeroRTNs }}
-                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroRTN"/>
-                            </div>
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Estado Civil</strong> {{ selectedTask.estadoCivils }}
-                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.estadoCivil"/>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-6">
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Profesión</strong> {{ selectedTask.profesions }}
-                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.profesion"/>
-                            </div>
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Correo Electrónico</strong> {{ selectedTask.correoElectronicos }}
-                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.correoElectronico"/>
-                            </div>
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Número de Telefono</strong> {{ selectedTask.numeroTelefonos }}
-                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroTelefono"/>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="font-semibold text-xl">Información Universitaria</div>
-                        <div class="flex flex-wrap gap-6">
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Número de Estudiante</strong> {{ selectedTask.numeroEstudiantess }}
-                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.numeroEstudiante"/>
-                            </div>
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Nombre de la carrera</strong> {{ selectedTask.nombreCarreras }}
-                                <input pInputText id="id_descipcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.nombreCarrera"/>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-6">
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Nombre del proyecto</strong> {{ selectedTask.nombreProyectos }}
-                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.nombreProyecto"/>
-                            </div>
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Seleccione el Licenciado Aval</strong> {{ selectedTask.avals }}
-                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.aval"/>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-6">
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Estado de la Solicitud</strong> {{ selectedTask.estados }}
-                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.estado"/>
-                            </div>
-                            <div class="flex flex-col grow basis-0 gap-2">
-                                <strong>Fecha de Creación</strong> {{ selectedTask.fechaCreacions }}
-                                <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/>
-                            </div>
-                        </div>
-                    </div>
-                </p-accordion-content>
+                    </p-accordion-content>
                 </p-accordion-panel>
             </p-accordion>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText  id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                </div>
-            </div>
-        </div>
-        
+        </div>  
         <div class="flex justify-end gap-2">
             <p-button label="Regresar" (click)="displayModal = false" />
         </div>

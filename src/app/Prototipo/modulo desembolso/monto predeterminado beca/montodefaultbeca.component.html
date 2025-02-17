@@ -68,6 +68,7 @@
                 <th pSortableColumn="id">Número de Monto <p-sortIcon field="id"></p-sortIcon></th>
                 <th pSortableColumn="nombre">Descripción del Monto <p-sortIcon field="nombre"></p-sortIcon></th>
                 <th pSortableColumn="monto">Monto de la Beca <p-sortIcon field="monto"></p-sortIcon></th>
+                <th pSortableColumn="duracion">Duración de la Beca <p-sortIcon field="duracion"></p-sortIcon></th>
                 <th>Acciones</th>
             </tr>
         </ng-template>
@@ -77,6 +78,7 @@
                 <td>{{ task.id }}</td>
                 <td>{{ task.nombre }}</td>
                 <td>{{ task.monto }}</td>
+                <td>{{ task.duracion }}</td>
                 <td>
                     <button 
                         pButton 
@@ -107,7 +109,8 @@
         [style]="{ width: '80rem' }">
         
         <div class="flex flex-col items-center">
-            <img src="assets/imagenes/monto default por beca.png" alt="Imagen de los montos de las becas" class="rounded-lg shadow-lg">
+            <img src="assets/imagenes/beca monto y duracion (1).png" alt="Imagen de los montos de las becas" class="rounded-lg shadow-lg">
+            <img src="assets/imagenes/beca monto y duracion (2).png" alt="Imagen de los montos de las becas" class="rounded-lg shadow-lg">
         </div>
 
     </p-dialog>
@@ -134,7 +137,13 @@
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Monto de la beca</strong> {{ selectedTask.montos }}
-                    <input pInputText id="descipcion" class="flex-auto" autocomplete="off"/>
+                    <input pInputText id="monto" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Duración de la beca</strong> {{ selectedTask.duracions }}
+                    <input pInputText id="duracion" class="flex-auto" autocomplete="off"/>
                 </div>
             </div>      
         </div>
@@ -162,6 +171,12 @@
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Monto de la beca</strong> {{ selectedTask.montos }}
                     <input pInputText pKeyFilter="alpha" [disabled]="true" id="monto" class="flex-auto" autocomplete="off" [value]="selectedTask.monto"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Duración de la beca</strong> {{ selectedTask.duracions }}
+                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="duracion" class="flex-auto" autocomplete="off" [value]="selectedTask.duracion"/>
                 </div>
             </div>       
         </div>

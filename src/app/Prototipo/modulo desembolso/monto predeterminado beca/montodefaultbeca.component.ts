@@ -78,26 +78,31 @@ export class montodefaultbecaComponent {
         id: 1,
         nombre: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
         monto: '500,000.00',
+        duracion: '12 meses',
     },
     {
         id: 2,
         nombre: 'Beca básica institucional para el fortalecimiento de grupos de investigación',
         monto: '75,000.00',
+        duracion: '12 meses',
     },
     {
         id: 3,
         nombre: 'Beca básica de grado como espacios de aprendizaje del método científico',
         monto: '25,000.00',
+        duracion: '6 meses',
     },
     {
         id: 4,
         nombre: 'Beca básica de postgrado para la eficiencia terminal de tesis',
         monto: '40,000.00',
+        duracion: '6 meses',
     },
     {
         id: 5,
         nombre: 'Beca básica de postgrado para la eficiencia terminal de tesis',
         monto: '80,000.00',
+        duracion: '6 meses',
     },
 
   ];
