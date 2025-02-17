@@ -1,14 +1,14 @@
 <div class="card">
     <!-- Título principal -->
     <div class="font-semibold text-xl mb-4 text-center">
-      <h2>Gestión de Plantilla</h2>
+      <h2>Gestión de Requisitos</h2>
     </div>
 
     <!-- Botón para abrir modal Agregar -->
     <div class="flex gap-4 justify-end mr-4">
       <button
         pButton
-        label="Agregar Plantilla"
+        label="Agregar"
         icon="pi pi-plus"
         (click)="abrirModalAgregarPlantilla()">
       </button>
@@ -61,7 +61,7 @@
             <p-sortIcon field="numero"></p-sortIcon>
           </th>
           <th pSortableColumn="nombrePlantilla" class="header-nowrap">
-            Nombre de la Plantilla
+            Nombre de requisito
             <p-sortIcon field="nombrePlantilla"></p-sortIcon>
           </th>
           <th class="header-nowrap">Acciones</th>
@@ -104,7 +104,7 @@
 
     <!-- Modal: Agregar Plantilla -->
     <p-dialog
-      header="Agregar Plantilla"
+      header="Agregar Requisito"
       [modal]="true"
       [(visible)]="modalAgregarPlantilla"
       [maximizable]="true"
@@ -123,7 +123,7 @@
 
         <!-- Campo: Nombre de la Plantilla -->
         <div class="flex flex-col gap-2">
-          <strong>Nombre de la Plantilla</strong>
+          <strong>Nombre del requisito</strong>
           <input
             pInputText
             type="text"
@@ -142,7 +142,7 @@
 
     <!-- Modal: Editar Plantilla -->
     <p-dialog
-      header="Editar Plantilla"
+      header="Editar Requisito"
       [modal]="true"
       [(visible)]="modalEditarPlantilla"
       [style]="{ width: '30rem' }">
@@ -160,7 +160,7 @@
 
         <!-- Campo: Nombre de la Plantilla -->
         <div class="flex flex-col gap-2">
-          <strong>Nombre de la Plantilla</strong>
+          <strong>Nombre del requisito</strong>
           <input
             pInputText
             type="text"

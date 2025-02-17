@@ -61,12 +61,11 @@ interface expandedRows {
   templateUrl: './alerta.component.html',
 })
 export class AlertaComponent implements OnInit {
-  // Listado de alertas
+  // Listado de alertas actualizado: se elimina la propiedad "categoria" y se asigna "AlertaTipo" como objeto
   alertas = [
     {
       id: 1,
-      AlertaTipo: 'INMEDIATA',
-      categoria: 'PERMITIDO',
+      AlertaTipo: { id_AlertaTipo: 1, tipo: 'INMEDIATA', categoria: 'PERMITIDO', descripcion: 'rápida' },
       fecha_creacion: '2025-02-07 14:27:49',
       fecha_final: '2025-12-24 14:26:36',
       recordatorio: '2025-10-24 14:26:36',
@@ -79,10 +78,9 @@ export class AlertaComponent implements OnInit {
     },
     {
       id: 2,
-      AlertaTipo: 'PERSONALIZADA',
-      categoria: 'ADVERTENCIA',
+      AlertaTipo: { id_AlertaTipo: 2, tipo: 'PERSONALIZADA', categoria: 'ADVERTENCIA', descripcion: 'detallada' },
       fecha_creacion: '2025-02-07 14:27:49',
-      fecha_final: '2025-12-24 14:26:36',
+      fecha_final: '2025-09-24 14:26:36',
       recordatorio: '2025-10-24 14:26:36',
       tipo_recordatorio: 'MES',
       cantidad_tiempo: 2,
@@ -93,10 +91,9 @@ export class AlertaComponent implements OnInit {
     },
     {
       id: 3,
-      AlertaTipo: 'PERSONALIZADA',
-      categoria: 'NO PERMITIDO',
-      fecha_creacion: '2025-02-07 14:27:49',
-      fecha_final: '2025-12-24 14:26:36',
+      AlertaTipo: { id_AlertaTipo: 3, tipo: 'PERSONALIZADA', categoria: 'NO PERMITIDO', descripcion: 'específica' },
+      fecha_creacion: '2025-03-08 12:27:49',
+      fecha_final: '2025-07-24 14:26:36',
       recordatorio: '2025-10-24 14:26:36',
       tipo_recordatorio: 'MES',
       cantidad_tiempo: 2,
@@ -106,58 +103,58 @@ export class AlertaComponent implements OnInit {
       tblentidad: 'CIERRE'
     },
     {
-        id: 4,
-        AlertaTipo: 'INMEDIATA',
-        categoria: 'ADVERTENCIA',
-        fecha_creacion: '2025-02-07 14:27:49',
-        fecha_final: '2025-12-24 14:26:36',
-        recordatorio: '2025-10-24 14:26:36',
-        tipo_recordatorio: 'BIMESTRE',
-        cantidad_tiempo: 1,
-        titulo: 'Prueba de alerta a prorroga',
-        observaciones: 'aaaaaaaaa',
-        TipoEntidad: 'ROL',
-        tblentidad: 'CIERRE'
-      },
-      {
-        id: 5,
-        AlertaTipo: 'PERSONALIZADA',
-        categoria: 'PERMITIDO',
-        fecha_creacion: '2025-02-07 14:27:49',
-        fecha_final: '2025-12-24 14:26:36',
-        recordatorio: '2025-10-24 14:26:36',
-        tipo_recordatorio: 'TRIMESTRE',
-        cantidad_tiempo: 3,
-        titulo: 'Prueba de alerta a prorroga',
-        observaciones: 'aaaaaaaaa',
-        TipoEntidad: 'ROL',
-        tblentidad: 'CIERRE'
-      },
-      {
-        id: 6,
-        AlertaTipo: 'INMEDIATA',
-        categoria: 'PERMITIDO',
-        fecha_creacion: '2025-02-07 14:27:49',
-        fecha_final: '2025-12-24 14:26:36',
-        recordatorio: '2025-10-24 14:26:36',
-        tipo_recordatorio: 'TRIMESTRE',
-        cantidad_tiempo: 3,
-        titulo: 'Prueba de alerta a prorroga',
-        observaciones: 'aaaaaaaaa',
-        TipoEntidad: 'ROL',
-        tblentidad: 'CIERRE'
-      }
+      id: 4,
+      // Originalmente tenía: AlertaTipo: 'INMEDIATA' y categoria 'ADVERTENCIA'
+      // Se asigna la opción con categoría ADVERTENCIA (opción 2)
+      AlertaTipo: { id_AlertaTipo: 2, tipo: 'PERSONALIZADA', categoria: 'ADVERTENCIA', descripcion: 'detallada' },
+      fecha_creacion: '2025-08-01 08:27:49',
+      fecha_final: '2025-12-24 14:26:36',
+      recordatorio: '2025-10-24 14:26:36',
+      tipo_recordatorio: 'BIMESTRE',
+      cantidad_tiempo: 1,
+      titulo: 'Prueba de alerta a prorroga',
+      observaciones: 'aaaaaaaaa',
+      TipoEntidad: 'ROL',
+      tblentidad: 'CIERRE'
+    },
+    {
+      id: 5,
+      // Originalmente: AlertaTipo: 'PERSONALIZADA' y categoria 'PERMITIDO'
+      // Al no existir opción para PERSONALIZADA con PERMITIDO, se asigna la opción 1 (INMEDIATA) para obtener categoría PERMITIDO
+      AlertaTipo: { id_AlertaTipo: 1, tipo: 'INMEDIATA', categoria: 'PERMITIDO', descripcion: 'rápida' },
+      fecha_creacion: '2025-02-07 14:27:49',
+      fecha_final: '2025-12-24 14:26:36',
+      recordatorio: '2025-10-24 14:26:36',
+      tipo_recordatorio: 'TRIMESTRE',
+      cantidad_tiempo: 3,
+      titulo: 'Prueba de alerta a prorroga',
+      observaciones: 'aaaaaaaaa',
+      TipoEntidad: 'ROL',
+      tblentidad: 'CIERRE'
+    },
+    {
+      id: 6,
+      AlertaTipo: { id_AlertaTipo: 1, tipo: 'INMEDIATA', categoria: 'PERMITIDO', descripcion: 'rápida' },
+      fecha_creacion: '2025-02-07 14:27:49',
+      fecha_final: '2025-12-24 14:26:36',
+      recordatorio: '2025-10-24 14:26:36',
+      tipo_recordatorio: 'TRIMESTRE',
+      cantidad_tiempo: 3,
+      titulo: 'Prueba de alerta a prorroga',
+      observaciones: 'aaaaaaaaa',
+      TipoEntidad: 'ROL',
+      tblentidad: 'CIERRE'
+    }
   ];
 
   // Variables para controlar la visualización de los modales
   modalAgregar: boolean = false;
   modalEditar: boolean = false;
 
-  // Objeto para crear una nueva alerta
+  // Objeto para crear una nueva alerta actualizado: se utiliza la propiedad "AlertaTipo" en lugar de "id_AlertaTipo" y se elimina "id_categoria"
   nuevaAlerta: any = {
     titulo: '',
-    id_AlertaTipo: '',
-    id_categoria: '',
+    AlertaTipo: null,
     fecha_final: null,
     recordatorio: null,
     tipo_recordatorio: null,
@@ -170,20 +167,14 @@ export class AlertaComponent implements OnInit {
   // Alerta seleccionada para editar
   alertaSeleccionada: any = null;
 
-  // Opciones para el dropdown de tipo_Alerta
+  // Opciones para el dropdown de tipo de alerta (nuevas opciones)
   tipoAlertaOptions = [
-    { name: 'INMEDIATA', code: 'INMEDIATA' },
-    { name: 'PERSONALIZADA', code: 'PERSONALIZADA' },
-    { name: 'INMEDIATA', code: 'INMEDIATA' },
-    { name: 'PERSONALIZADA', code: 'PERSONALIZADA' },
-    { name: 'INMEDIATA', code: 'INMEDIATA' },
-    { name: 'PERSONALIZADA', code: 'PERSONALIZADA' },
-    { name: 'INMEDIATA', code: 'INMEDIATA' },
-    { name: 'PERSONALIZADA', code: 'PERSONALIZADA' },
-    { name: 'INMEDIATA', code: 'INMEDIATA' },
-    { name: 'PERSONALIZADA', code: 'PERSONALIZADA' }
+    { id_AlertaTipo: 1, tipo: 'INMEDIATA', categoria: 'PERMITIDO', descripcion: 'rápida' },
+    { id_AlertaTipo: 2, tipo: 'PERSONALIZADA', categoria: 'ADVERTENCIA', descripcion: 'detallada' },
+    { id_AlertaTipo: 3, tipo: 'PERSONALIZADA', categoria: 'NO PERMITIDO', descripcion: 'específica' }
   ];
 
+  // Opciones para otros dropdowns
   categoriaOptions = [
     { name: 'PERMITIDO', code: 'PERMITIDO' },
     { name: 'ADVERTENCIA', code: 'ADVERTENCIA' },
@@ -204,11 +195,11 @@ export class AlertaComponent implements OnInit {
     { name: 'MINUTO', code: 'MINUTO' }
   ];
 
-  // Propiedades para la selección dinámica de columnas
+  // Propiedades para la selección dinámica de columnas.
+  // Se eliminó la columna "categoria"
   alertCols: any[] = [
     { field: 'id', header: 'N°' },
     { field: 'AlertaTipo', header: 'Tipo Alerta' },
-    { field: 'categoria', header: 'Categoria' },
     { field: 'fecha_creacion', header: 'Fecha Creación' },
     { field: 'fecha_final', header: 'Fecha Final' },
     { field: 'recordatorio', header: 'Recordatorio' },
@@ -232,8 +223,6 @@ export class AlertaComponent implements OnInit {
     { name: 'CIERRE', code: 'CIERRE' }
   ];
 
-
-
   ngOnInit(): void {
     // Inicialmente se seleccionan todas las columnas disponibles
     this.selectedAlertColumns = [...this.alertCols];
@@ -241,20 +230,35 @@ export class AlertaComponent implements OnInit {
 
   // Método para abrir el modal de agregar alerta
   abrirModalAgregar() {
-    this.nuevaAlerta = {}; // Reinicia el objeto de alerta
+    this.nuevaAlerta = {
+      titulo: '',
+      AlertaTipo: null,
+      fecha_final: null,
+      recordatorio: null,
+      tipo_recordatorio: null,
+      cantidad_tiempo: null,
+      observaciones: '',
+      idTipoEntidad: '',
+      tblentidad: ''
+    };
     this.modalAgregar = true;
   }
 
   // Método para abrir el modal de editar alerta
   abrirModalEditar(alerta: any) {
-    this.alertaSeleccionada = { ...alerta }; // Clona el objeto para editar
+    // Se clona el objeto para editar sin modificar el original de inmediato
+    this.alertaSeleccionada = { ...alerta };
     this.modalEditar = true;
   }
 
-  // Método para agregar la alerta (aquí se haría la llamada al servicio o API)
+  // Método para agregar la alerta (por ejemplo, enviarla al backend)
   agregarAlerta() {
-    // Asignar fecha_creacion si es necesario, enviar this.nuevaAlerta al backend, etc.
-    this.alertas.push({ ...this.nuevaAlerta, id: this.alertas.length + 1, fecha_creacion: new Date() });
+    // Se asigna la fecha de creación y se agrega la nueva alerta al listado
+    this.alertas.push({
+      ...this.nuevaAlerta,
+      id: this.alertas.length + 1,
+      fecha_creacion: new Date()
+    });
     this.modalAgregar = false;
   }
 
@@ -274,17 +278,20 @@ export class AlertaComponent implements OnInit {
     table.filterGlobal(event.target.value, 'contains');
   }
 
-  // Método para obtener el severity (color) de la categoría
+  /**
+   * Retorna la severidad (color) basado en la categoría del objeto AlertaTipo.
+   * Se utiliza en el template para mostrar el p-tag con el semáforo.
+   */
   getSeverity(categoria: string): "success" | "warn" | "danger" | "info" {
     switch (categoria) {
       case 'PERMITIDO':
-        return 'success';   // Verde
+        return 'success'; // Verde
       case 'ADVERTENCIA':
-        return 'warn';      // Amarillo
+        return 'warn';    // Amarillo
       case 'NO PERMITIDO':
-        return 'danger';    // Rojo
+        return 'danger';  // Rojo
       default:
-        return 'info';      // Otro color (opcional)
+        return 'info';
     }
   }
 

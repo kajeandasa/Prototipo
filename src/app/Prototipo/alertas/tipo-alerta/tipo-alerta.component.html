@@ -8,7 +8,7 @@
     <div class="flex gap-4 justify-end mr-4">
       <button
         pButton
-        label="Agregar Tipo de Alerta"
+        label="Agregar"
         icon="pi pi-plus"
         (click)="abrirModalAgregar()">
       </button>
@@ -21,7 +21,7 @@
       [rows]="5"
       [paginator]="true"
       responsiveLayout="scroll"
-      [globalFilterFields]="['id_AlertaTipo', 'tipo', 'descripcion']"
+      [globalFilterFields]="['id_AlertaTipo', 'tipo', 'categoria', 'descripcion']"
       sortMode="multiple"
       class="custom-table"
       [tableStyle]="{ 'min-width': '30rem' }"
@@ -46,6 +46,7 @@
               <input
                 pInputText
                 type="text"
+                [(ngModel)]="globalFilter"
                 (input)="onGlobalFilter(dt1, $event)"
                 placeholder="Buscar..." />
             </p-iconfield>
@@ -57,12 +58,16 @@
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="id_AlertaTipo" class="header-nowrap">
-            ID Tipo de Alerta
+            Nº
             <p-sortIcon field="id_AlertaTipo"></p-sortIcon>
           </th>
           <th pSortableColumn="tipo" class="header-nowrap">
             Tipo
             <p-sortIcon field="tipo"></p-sortIcon>
+          </th>
+          <th pSortableColumn="categoria" class="header-nowrap">
+            Categoría
+            <p-sortIcon field="categoria"></p-sortIcon>
           </th>
           <th pSortableColumn="descripcion" class="header-nowrap">
             Descripción
@@ -78,6 +83,13 @@
         <tr>
           <td>{{ tipoAlerta.id_AlertaTipo }}</td>
           <td>{{ tipoAlerta.tipo }}</td>
+          <td>
+            <p-tag
+              [icon]="getIcon(tipoAlerta.categoria)"
+              [severity]="getSeverity(tipoAlerta.categoria)"
+              [value]="tipoAlerta.categoria">
+            </p-tag>
+          </td>
           <td>{{ tipoAlerta.descripcion }}</td>
           <td>
             <button
@@ -111,12 +123,12 @@
       <div class="card flex flex-col gap-4">
         <!-- Campo: ID Tipo de Alerta -->
         <div class="flex flex-col gap-2">
-          <strong>ID Tipo de Alerta</strong>
+          <strong>Nº</strong>
           <input
             pInputText
             type="number"
             [(ngModel)]="nuevoTipoAlerta.id_AlertaTipo"
-            placeholder="ID Tipo de Alerta" />
+            placeholder="Nº" />
         </div>
 
         <!-- Campo: Tipo -->
@@ -126,6 +138,17 @@
             [options]="tipoOptions"
             [(ngModel)]="nuevoTipoAlerta.tipo"
             placeholder="Selecciona un tipo"
+            [filter]="true">
+          </p-dropdown>
+        </div>
+
+        <!-- Campo: Categoría (desplegable) -->
+        <div class="flex flex-col gap-2">
+          <strong>Categoría</strong>
+          <p-dropdown
+            [options]="categoriaOptions"
+            [(ngModel)]="nuevoTipoAlerta.categoria"
+            placeholder="Selecciona una categoría"
             [filter]="true">
           </p-dropdown>
         </div>
@@ -158,7 +181,7 @@
       <div class="card flex flex-col gap-4" *ngIf="tipoAlertaSeleccionado">
         <!-- Campo: ID Tipo de Alerta -->
         <div class="flex flex-col gap-2">
-          <strong>ID Tipo de Alerta</strong>
+          <strong>Nº</strong>
           <input
             pInputText
             type="number"
@@ -173,6 +196,17 @@
             [options]="tipoOptions"
             [(ngModel)]="tipoAlertaSeleccionado.tipo"
             placeholder="Selecciona un tipo"
+            [filter]="true">
+          </p-dropdown>
+        </div>
+
+        <!-- Campo: Categoría (desplegable) -->
+        <div class="flex flex-col gap-2">
+          <strong>Categoría</strong>
+          <p-dropdown
+            [options]="categoriaOptions"
+            [(ngModel)]="tipoAlertaSeleccionado.categoria"
+            placeholder="Selecciona una categoría"
             [filter]="true">
           </p-dropdown>
         </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Para redirección, si fuera necesaria
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -34,21 +34,21 @@ export interface Contenido {
     InputIconModule,
     IconFieldModule
   ],
-  templateUrl: './plantillas.component.html', // Ruta al archivo HTML (si lo separas)
-  styleUrls: ['./plantillas.component.css'] // Ruta al archivo CSS (si lo separas)
+  templateUrl: './plantillas.component.html',
+  styleUrls: ['./plantillas.component.css']
 })
 export class PlantillasComponent implements OnInit {
-  // --- Datos de Plantillas ---
+  // Datos de Plantillas
   plantillas: Plantilla[] = [
-    { numero: 1, nombrePlantilla: 'Plantilla de requisito postulante' },
-    { numero: 2, nombrePlantilla: 'Plantilla de requisito Aval' }
+    { numero: 1, nombrePlantilla: 'Requisito Postulante' },
+    { numero: 2, nombrePlantilla: 'Requisito Aval' }
   ];
   modalAgregarPlantilla: boolean = false;
   modalEditarPlantilla: boolean = false;
   nuevaPlantilla: Partial<Plantilla> = {};
   plantillaSeleccionada: Plantilla | null = null;
 
-  // --- Datos de Contenido ---
+  // Datos de Contenido
   contenidos: Contenido[] = [
     { numero: 1, tipoItemDocumento: 'Fotocopia de identidad del postulante' },
     { numero: 2, tipoItemDocumento: 'Comprobante de estudiante (matriculado en la carrera)' },
@@ -81,7 +81,7 @@ export class PlantillasComponent implements OnInit {
       this.nuevaPlantilla.numero = maxNumero + 1;
     }
     if (!this.nuevaPlantilla.nombrePlantilla) {
-      this.nuevaPlantilla.nombrePlantilla = 'Plantilla de requisito postulante';
+      this.nuevaPlantilla.nombrePlantilla = 'Nueva Plantilla';
     }
     this.plantillas.push(this.nuevaPlantilla as Plantilla);
     this.modalAgregarPlantilla = false;
@@ -103,12 +103,6 @@ export class PlantillasComponent implements OnInit {
   }
 
   // --- Métodos de Contenido ---
-  _verContenido(plantilla: Plantilla) {
-    // Aquí podrías filtrar el contenido según la plantilla, si es necesario.
-    // Por ahora, simplemente se muestra el modal con todo el contenido.
-    this.modalContenido = true;
-  }
-
   abrirModalAgregarContenido() {
     this.nuevoContenido = {};
     this.modalAgregarContenido = true;
@@ -120,10 +114,12 @@ export class PlantillasComponent implements OnInit {
       this.nuevoContenido.numero = maxNumero + 1;
     }
     if (!this.nuevoContenido.tipoItemDocumento) {
-      this.nuevoContenido.tipoItemDocumento = '';
+      this.nuevoContenido.tipoItemDocumento = 'Nuevo Documento';
     }
     this.contenidos.push(this.nuevoContenido as Contenido);
     this.modalAgregarContenido = false;
+    // Redirige a la pantalla principal de plantillas
+    this.router.navigate(['/mantenimiento/plantillas']);
   }
 
   abrirModalEditarContenido(contenido: Contenido) {
@@ -139,17 +135,22 @@ export class PlantillasComponent implements OnInit {
       }
     }
     this.modalEditarContenido = false;
+    // Redirige a la pantalla principal de plantillas
+    this.router.navigate(['/mantenimiento/plantillas']);
   }
 
+  // Método para limpiar filtros en la tabla
   clear(table: any) {
     table.clear();
   }
 
+  // Método para filtro global en la tabla
   onGlobalFilter(table: any, event: any) {
     table.filterGlobal(event.target.value, 'contains');
   }
 
-  verContenido(id: number){
-    this.router.navigate(['/mantenimiento/contenido/', id])
+  // Navegar a la pantalla de contenido
+  verContenido(id: number) {
+    this.router.navigate(['/mantenimiento/contenido/', id]);
   }
 }
