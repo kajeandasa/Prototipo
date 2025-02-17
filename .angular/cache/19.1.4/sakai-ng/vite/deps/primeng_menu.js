@@ -15,6 +15,15 @@ import {
   DomSanitizer
 } from "./chunk-SONCM3RT.js";
 import {
+  Badge,
+  BadgeModule
+} from "./chunk-ZDAXZQQL.js";
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule
+} from "./chunk-LO7VQN2J.js";
+import {
   ConnectedOverlayScrollHandler
 } from "./chunk-5G7WYC4N.js";
 import {
@@ -22,14 +31,22 @@ import {
 } from "./chunk-2ZXM7VXU.js";
 import {
   Ripple
+<<<<<<< HEAD
+} from "./chunk-UROOUTK7.js";
+=======
 } from "./chunk-T3CA6OBR.js";
+>>>>>>> 0727698d3db7116c334feb0da53ff9df2f1f1ec0
 import {
   BaseComponent
 } from "./chunk-ZNYJTQVC.js";
 import "./chunk-U5APQUJP.js";
 import {
   BaseStyle
+<<<<<<< HEAD
+} from "./chunk-IACFBNRL.js";
+=======
 } from "./chunk-T3L7WQK5.js";
+>>>>>>> 0727698d3db7116c334feb0da53ff9df2f1f1ec0
 import {
   OverlayService,
   PrimeTemplate,

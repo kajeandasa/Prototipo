@@ -4,21 +4,19 @@ import { RouterModule } from '@angular/router'; // Importa RouterModule para man
 
 @Component({
     standalone: true,
-    selector: 'app-gestiondesembolso',
-    imports: [CommonModule],
+    selector: 'app-cierre',
+    // templateUrl: './desembolso.component.html',
+    imports: [CommonModule, RouterModule], // Agrega RouterModule para que routerLink funcione
     // styleUrls: ['./desembolso.component.css'],
     template: `
         <div class="container">
             <div class="service-item">
-                <h3>Gestión de Desembolso</h3>
-                <!-- <button [routerLink]="['/desembolso/gestionDesembolso']">Ver más</button> -->
+                <h3>Cierre de Beca</h3>
+                <button [routerLink]="['/desembolso/cierre']">Ver más</button>
             </div>
         </div>
     `
 })
 
-export class Gestiondesembolso {
-    verMas() {
-        alert('Más información sobre Desembolsos');
-      }
+export class Cierre {
 }
