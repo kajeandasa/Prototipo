@@ -36,7 +36,7 @@ export class AppMenu {
                         icon: 'pi pi-fw pi-circle',
                         items: [
                         { label: 'Convocatoria',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/convocatoria']},
-                        { label: 'Solicituds',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
+                        { label: 'Solicitud',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud'] },
                         { label: 'Alerta',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/alerta'] },
                         { label: 'Formulario',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/formulario'] },
                         { label: 'Documentos',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/ItemDocumento'] },
@@ -57,14 +57,13 @@ export class AppMenu {
                                 label: 'Alerta',
                                 icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    { label: 'Tipo Alerta', routerLink: ['/mantenimiento/alerta_tipo'] },
-                                    { label: 'Categoria', routerLink: ['/mantenimiento/categoria'] }
+                                    { label: 'Tipo Alerta', routerLink: ['/mantenimiento/alerta_tipo'] }
                                 ]
                             },                            {
                                 label: 'Documentos',
                                 icon: 'pi pi-fw pi-bookmark',
                                 items: [
-                                    { label: 'Plantilla', routerLink: ['/mantenimiento/plantilla'] }
+                                    { label: 'Requisitos', routerLink: ['/mantenimiento/plantilla'] }
 
 
                                 ]
