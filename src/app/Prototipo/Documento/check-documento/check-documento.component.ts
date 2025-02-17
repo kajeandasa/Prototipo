@@ -99,7 +99,7 @@ export class CheckDocumentoComponent {
     ]
     Item_Documento_check=[
         {id:1,documento_id:1,Check:0,Check_error:0,observacion:"RTN_ejemplo"},
-        {id:2,documento_id:2,Check:0,Check_error:0,observacion:""},
+        {id:2,documento_id:2,Check:0,Check_error:0,observacion:"aawdad"},
         {id:3,documento_id:3,Check:0,Check_error:0,observacion:""},
         {id:4,documento_id:4,Check:0,Check_error:0,observacion:""},
         {id:5,documento_id:5,Check:0,Check_error:0,observacion:""},
