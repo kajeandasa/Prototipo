@@ -1,14 +1,9 @@
 <div class="card">
-    <div class="font-semibold text-xl mb-4"><h2>Solicitud</h2></div> <!-- Titulo -->
+    <div class="font-semibold text-xl mb-4"><h2>Gestion de Solicitudes</h2> </div> <!-- Titulo -->
 
     <!-- Botones -->
     <div class="flex gap-4 justify-end">
-        <button
-        pButton
-        label="ejemplo para el checkList"
-        icon="pi pi-plus"
-        (click) = "iraVerCheckList()">
-        </button>
+
         <button
             pButton
             label="nuevo"
@@ -20,7 +15,7 @@
     <!-- Tabla que muestra las solicitudes por aceptar de los postulantes -->
     <p-table
         #dt1
-        [value]="Solicitud"
+        [value]="obtenerPersona(id_usuario_solicitante)"
         [rows]="10"
         [paginator]="true"
         responsiveLayout="scroll"
@@ -54,10 +49,19 @@
             <tr>
                 <td>{{ task.id }}</td>
                 <td>{{ task.nombre }}</td>
-                <td>{{ TipoSolicitud_Get(task.Tipo_id).Nombre_tipo }}</td>
-                <td>{{ TipoEstado_Get(task.estado_id).Nombre_estado }}</td>
+
+                <td>
+                    {{TipoSolicitud_Get(task.Tipo_id).Nombre_tipo}}
+                </td>
+                <td>
+                    <p-tag
+                    [severity]="getSeverity(task.estado_id)"
+                    [value]="TipoEstado_Get(task.estado_id).Nombre_estado"
+                    >
+                    </p-tag>
+                </td>
                 <td>{{ task.descripcion }}</td>
-                <td>{{ task.persona_id }}</td>
+                <td>{{ Usuario_Get(task.persona_id).Nombre }}</td>
                 <td>
                     <button
                         pButton
@@ -76,7 +80,7 @@
 
    <!-- Modal que muestra una imagen del formulario -->
    <p-dialog
-   header="Agregar Formulario"
+   header="Agregar Solicitud"
    [modal]="true"
    [maximizable]="true"
    [(visible)]="Modal_agregar"
@@ -85,24 +89,29 @@
         <div class="card flex flex-col gap-4">
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Titulo</strong>
+                    <strong>Nombre de Solicitud</strong>
                     <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off">
                 </div>
                 <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Tipo Documento</strong>
+                    <strong>Tipo Solicitud</strong>
                     <p-select
                     [options]="Solicitud_tipo"
                     [filter]="true"
                     optionLabel="Nombre_tipo"
                     optionValue="id"
-                    placeholder="Tipo de Documento"
+                    placeholder="Tipo de solicitud"
                     appendTo="body"
                     class="w-full">
-                </p-select>
+                    </p-select>
                 </div>
-
             </div>
-            <p-fileupload accept="image/*" maxFileSize="1000000"/>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Descripcion</strong>
+                    <textarea pTextarea id="id_descipcion" [rows]="5"></textarea>
+                </div>
+            </div>
+
         </div>
        <div class="flex justify-end gap-2">
            <p-button label="Agregar" severity="success" (click)="Modal_agregar = false" />
@@ -121,27 +130,32 @@
    [maximizable]="true"
    [style]="{ width: '50rem' }">
 
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Titulo</strong>
-                    <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.Descripcion" [disabled]="true">
-                </div>
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Tipo Documento</strong>
-                    <p-select
-                    [options]="Solicitud_tipo"
-                    [filter]="true"
-                    optionLabel="Nombre_estado"
-                    optionValue="id"
-                    placeholder="Tipo de Documento"
-                    appendTo="body"
-                    [(ngModel)]="selectedTask.tipo_id"
-                    [disabled]="true"
-                    class="w-full">
-                </p-select>
-                </div>
-            </div>
-
+   <div class="card flex flex-col gap-4">
+    <div class="flex flex-wrap gap-6">
+        <div class="flex flex-col grow basis-0 gap-2">
+            <strong>Nombre de Solicitud</strong>
+            <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.nombre">
         </div>
+        <div class="flex flex-col grow basis-0 gap-2">
+            <strong>Tipo Documento</strong>
+            <p-select
+            [options]="Solicitud_tipo"
+            [filter]="true"
+            optionLabel="Nombre_tipo"
+            optionValue="id"
+            placeholder="Tipo de solicitud"
+            [(ngModel)]="selectedTask.Tipo_id"
+            appendTo="body"
+            class="w-full">
+            </p-select>
+        </div>
+    </div>
+    <div class="flex flex-wrap gap-6">
+        <div class="flex flex-col grow basis-0 gap-2">
+            <strong>Descripcion</strong>
+            <textarea pTextarea id="id_descipcion" [rows]="5">{{selectedTask.descripcion}}</textarea>
+        </div>
+    </div>
+
+</div>
    </p-dialog>

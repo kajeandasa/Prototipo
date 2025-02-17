@@ -64,11 +64,18 @@ import { FileUploadModule } from 'primeng/fileupload';
 })
 export class SolicitudComponent  {
 
+    id_usuario_solicitante = 2
+    Usuario=[
+        {id:1,Nombre:"La lic.",Entidad:1},
+        {id:2,Nombre:"usuario postulante 1",Entidad:2},
+        {id:3,Nombre:"usuario postulante 2",Entidad:2}
+    ]
+
     Solicitud=[
-        {id:1,Tipo_id:1,estado_id:1,persona_id:1, nombre:" nombre solicitud", descripcion: "holaa", obervacion:" no se puede"},
-        {id:1,Tipo_id:2,estado_id:2,persona_id:1, nombre:" nombre solicitud", descripcion: "holaa", obervacion:" no se puede"},
-        {id:1,Tipo_id:3,estado_id:1,persona_id:1, nombre:" nombre solicitud", descripcion: "holaa", obervacion:" no se puede"},
-        {id:1,Tipo_id:2,estado_id:3,persona_id:1, nombre:" nombre solicitud", descripcion: "holaa", obervacion:" no se puede"},
+        {id:1,Tipo_id:1,estado_id:1,persona_id:3, nombre:" nombre solicitud", descripcion: "holaa", obervacion:" no se puede"},
+        {id:1,Tipo_id:2,estado_id:2,persona_id:3, nombre:" nombre solicitud", descripcion: "holaa", obervacion:" no se puede"},
+        {id:1,Tipo_id:3,estado_id:1,persona_id:3, nombre:" nombre solicitud", descripcion: "holaa", obervacion:" no se puede"},
+        {id:1,Tipo_id:2,estado_id:3,persona_id:2, nombre:" nombre solicitud", descripcion: "holaa", obervacion:" no se puede"},
     ]
     Solicitud_tipo = [
         { id: 1, Nombre_tipo:"Beca" , descripcion:"Beca"},
@@ -81,6 +88,9 @@ export class SolicitudComponent  {
         { id: 3, Nombre_estado:"Cancelado" , descripcion:"Fondo"},
     ];
 
+    obtenerPersona(personaId: number):any {
+        return this.Solicitud.filter(doc => doc.persona_id === personaId);
+    }
 
     TipoSolicitud_Get(solicitudId: number): any{
         const tipo = this.Solicitud_tipo.find(tipo => tipo.id === solicitudId);
@@ -92,7 +102,23 @@ export class SolicitudComponent  {
         if (!tipo) return "Tipo de documento no encontrado";
         return tipo;
     }
-
+    Usuario_Get(estadoId: number): any{
+        const tipo = this.Usuario.find(tipo => tipo.id === estadoId);
+        if (!tipo) return "Tipo de documento no encontrado";
+        return tipo;
+    }
+    getSeverity(id: number): "success" | "warn" | "danger" | "info" {
+        switch (id) {
+          case 1:
+            return 'success'; // Verde
+          case 2:
+            return 'warn';    // Amarillo
+          case 3:
+            return 'danger';  // Rojo
+          default:
+            return 'info';
+        }
+      }
 
 
     date: Date | undefined;
