@@ -105,8 +105,9 @@ export class tipoCierreComponent {
   }
 
   // Método para limpiar los filtros aplicados en la tabla
-  clear(table: any) {
-    table.clear();
+  clear(table: Table, searchInput: HTMLInputElement) {
+    table.clear(); // Limpia los filtros aplicados en la tabla
+    searchInput.value = ''; // Borra el contenido del input de búsqueda
   }
 
   // Filtro global para buscar en todas las columnas de la tabla
