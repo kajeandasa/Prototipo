@@ -15,10 +15,10 @@ import { solicitudProrrogaComponent } from './modulo desembolso/solicitud prorro
 import { desembolsoBecaComponent } from './modulo desembolso/desembolsos por beca/desembolsosbeca.component';
 
 import { DesembolsoComponent } from './desembolso/desembolso.component';
-import { Seguimiento } from './desembolso/seguimiento';
+// import { Seguimiento } from './desembolso/seguimiento';
 import { Cierre } from './desembolso/cierre';
 
-import { Gestiondesembolso } from './desembolso/gestionDesembolsos';
+// import { Gestiondesembolso } from './desembolso/gestionDesembolsos';
 
 export default [
     { path: 'tipobeca', data: { breadcrumb: 'tipobeca' }, component: TipoBecaComponent },
@@ -36,13 +36,13 @@ export default [
     { path: 'desembolsosbeca', component: desembolsoBecaComponent, data: { breadcrumb: 'Desembolsos Beca' } },
     {
       path: 'desembolso', component: DesembolsoComponent, children: [
-        { path: 'gestionDesembolso', component: Gestiondesembolso },
-        { path: 'seguimiento', component: Seguimiento },
+        // { path: 'gestionDesembolso', component: Gestiondesembolso },
+        // { path: 'seguimiento', component: Seguimiento },
         { path: 'cierre', component: Cierre }
       ]
     }
 
-    
+
 
 ] as Routes;
 

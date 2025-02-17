@@ -1,4 +1,3 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 // Importación de módulos de PrimeNG para usarlos en la vista y funcionalidad.
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
@@ -9,8 +8,6 @@ import { Table, TableModule } from 'primeng/table';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ToastModule } from 'primeng/toast';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { RatingModule } from 'primeng/rating';
 import { RippleModule } from 'primeng/ripple';
@@ -30,44 +27,71 @@ import { TabsModule } from 'primeng/tabs';
 import { FileUpload } from 'primeng/fileupload';
 import { DropdownModule } from 'primeng/dropdown';
 
+import { Component } from '@angular/core';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { CommonModule } from '@angular/common';
 
+// Importar el módulo de Timeline
+import { TimelineModule } from 'primeng/timeline';
 @Component({
-    selector: 'app-seguimiento',
     standalone: true,
+    selector: 'app-gestiondesembolso',
+    templateUrl: 'gestionDesembolso.component.html',
     imports: [
-        ListboxModule,
-        CalendarModule,
-        DatePickerModule,
-        TextareaModule,
-        TableModule,
-        MultiSelectModule,
-        SelectModule,
-        InputIconModule,
-        TagModule,
-        InputTextModule,
-        SliderModule,
-        ProgressBarModule,
-        ToggleButtonModule,
-        ToastModule,
-        CommonModule,
-        FormsModule,
-        ButtonModule,
-        RatingModule,
-        RippleModule,
-        IconFieldModule,
-        DialogModule,
-        KeyFilterModule,
-        AccordionModule,
-        TabsModule,
-        DropdownModule,
-
-        SelectButtonModule
-      ],
-    templateUrl: './seguimiento.component.html',
-    providers: [MessageService, ConfirmationService], // Asegurar que MessageService esté disponible
+            ListboxModule,
+            CalendarModule,
+            DatePickerModule,
+            TextareaModule,
+            TableModule,
+            MultiSelectModule,
+            SelectModule,
+            InputIconModule,
+            TagModule,
+            InputTextModule,
+            SliderModule,
+            ProgressBarModule,
+            ToggleButtonModule,
+            ToastModule,
+            CommonModule,
+            FormsModule,
+            ButtonModule,
+            RatingModule,
+            RippleModule,
+            IconFieldModule,
+            DialogModule,
+            KeyFilterModule,
+            AccordionModule,
+            TabsModule,
+            DropdownModule,
+            SelectButtonModule,
+            TimelineModule,
+            SelectButtonModule,
+            CommonModule,
+            FormsModule
+    ],
 })
-export class Seguimiento {
+
+export class Gestiondesembolso {
+    // para selector del panel que se quiere mostrar
+    tiposBeca = [
+        { name: 'Beca sustantiva de investigación e innovación', selectTiposBeca: '1' },
+        { name: 'Beca Básica Institucional para Grupos de Investigación', selectTiposBeca: '2' },
+        { name: 'Beca Básica de Grado', selectTiposBeca: '3' },
+        { name: 'Beca Básica de Postgrado (Profesores UNAH)', selectTiposBeca: '4' },
+        { name: 'Beca Básica de Postgrado (Estudiantes)', selectTiposBeca: '5' },
+    ];
+
+    selectTiposBeca: string = '1'; // Opción por defecto
+
+    // seguimiento de desembolso
+    events = [
+        { status: 'Solicitud enviada', date: '2024-01-01' },
+        { status: 'En proceso', date: '2024-01-05' },
+        { status: 'Aprobado', date: '2024-01-10' },
+        { status: 'Para Entrega', date: '2024-01-15' }
+    ];
 
   // Array con los datos de la tabla becas
   tasks = [
@@ -82,47 +106,38 @@ export class Seguimiento {
     {
         id: 2,
         soli: 'BCHI-2',
-        beca: 'Beca básica institucional para el fortalecimiento de grupos de investigación',
-        montobeca: '75,000.00',
+        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+        montobeca: '500,000.00',
         postulante: 'Juan Carlos Rodríguez Martínez',
         montoasignado: '70,000.00',
     },
     {
         id: 3,
         soli: 'BCHI-3',
-        beca: 'Beca básica de grado como espacios de aprendizaje del método científico',
-        montobeca: '25,000.00',
+        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+        montobeca: '500,000.00',
         postulante: 'Sofía Isabel Torres Ramírez',
         montoasignado: '20,000.00',
     },
     {
         id: 4,
         soli: 'BCHI-4',
-        beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
-        montobeca: '40,000.00',
+        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+        montobeca: '500,000.00',
         postulante: 'Pedro Antonio García Fernández',
         montoasignado: '30,000.00',
     },
     {
         id: 5,
         soli: 'BCHI-5',
-        beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
-        montobeca: '80,000.00',
+        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+        montobeca: '500,000.00',
         postulante: 'Ana Lucía Martínez Vega',
         montoasignado: '75,000.00',
     },
 
   ];
-// selector de los tipos de beca para mostrar
-tiposBeca = [
-    { name: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional/500,000.00', value: '1' },
-    { name: 'Beca básica institucional para el fortalecimiento de grupos de investigación/75,000.00', value: '2' },
-    { name: 'Beca básica de grado como espacios de aprendizaje del método científico25,000.00', value: '3' },
-    { name: 'Beca básica de postgrado para la eficiencia terminal de tesis/40,000.00', value: '4' },
-    { name: 'Beca básica de postgrado para la eficiencia terminal de tesis/80,000.00', value: '5' },
-  ];
 
-  selectTiposBeca: any[] = [];
 // ----------------------------------------------------------------
 
   // Array para almacenar las solicitudes para el select
@@ -163,11 +178,11 @@ tiposBeca = [
   // Propiedades para la selección dinámica de columnas
   Cols: any[] = [
     { field: 'id', header: 'Número de Beca' },
-    { field: 'soli', header: 'Número de Solicitud' },
     { field: 'beca', header: 'Beca' },
-    { field: 'montobeca', header: 'Monto de la Beca' },
     { field: 'postulante', header: 'Postulante' },
-    { field: 'montoasignado', header: 'Monto Asignado' },
+    // { field: 'soli', header: 'Número de Solicitud' },
+    // { field: 'montobeca', header: 'Monto de la Beca' },
+    // { field: 'montoasignado', header: 'Monto Asignado' },
   ];
 
   //Muestra por defecto todas las columnas en la tabla
@@ -235,5 +250,7 @@ tiposBeca = [
 
   //Declara que el boton de switch esta en no o cancelar
   checked: boolean = false;
+
+
 
 }

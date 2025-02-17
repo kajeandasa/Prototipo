@@ -23,12 +23,7 @@ import { RevenueStreamWidget } from './components/revenuestreamwidget';
         <app-stats-widget class="w-full xl:w-auto" />
     </div>
 
-<<<<<<< HEAD
-    <!-- Sección de ventas rec
-    ientes y productos más vendidos -->
-=======
     <!--h-->
->>>>>>> 5208918dc350ba47a166aa56b88db40bd0a15075
     <div class="col-span-12 xl:col-span-6">
         <app-best-selling-widget />
     </div>
