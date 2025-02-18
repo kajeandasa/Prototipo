@@ -77,39 +77,80 @@ export class solicitudProrrogaComponent {
   tasks = [
     {
         id: 1,
-        desembolso: 'DSO-1',
         estado: 'En proceso de revisión',
-        fecha_solicitud: '13/02/2025',
+        solicitud: 'SPB-001',
+        becario: 'María Fernanda López Hernández',
+        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional' ,
+        motivosoli: 'Necesidad de realizar investigaciones adicionales para completar el informe.',
+        fechasoli: '15/02/2025',
+        montoasignado: '400,000.00',
+        direccionDomicilio: 'Col. Centro, Tegucigalpa',
+        numeroIdentidad: '0801-1990-12345',
+        numeroRTN: '12345678901234',
+        estadoCivil: 'Soltero',
+        profesion: 'Ingeniería en Sistemas',
+        correoElectronico: 'juan.perez@example.com',
+        numeroTelefono: '9999-9999',
+        numeroEstudiante: '20210001',
+        nombreCarrera: 'Ingeniería en Sistemas',
+        nombreProyecto: 'Beca Nacional Universitaria',
+        aval: "Lic. Carlos Rodríguez",
+        fechaCreacion: "2025-01-15",
+        nombrecompletoaval: 'Carlos Andrés Rodríguez Martínez',
+        direccionDomicilioaval: 'Col. Centroamérica',
+        numeroIdentidadaval: '0801-1980-12345',
+        numeroRTNaval: '0801-1980-12345',
+        estadoCivilaval: 'Soltero',
+        profesionaval: 'Ingeniero Industrial',
+        correoElectronicoaval: 'carlos.andres.rodriguez@email.com',
+        numeroTelefonoaval: '+504 1234-5678',
+        numeroempleadoaval: '123456',
+        unidepinstacia: 'Departamento de Ingenieria',
+
+        
+
     },
     {
         id: 2,
-        desembolso: 'DSO-2',
         estado: 'Aprobado',
-        fecha_solicitud: '08/02/2025',
+        solicitud: 'SPB-002',
+        becario: 'Juan Carlos Rodríguez Martínez',
+        beca: 'Beca básica institucional para el fortalecimiento de grupos de investigación' ,
+        motivosoli: 'Problemas de salud del becario que impidieron el avance del trabajo.',
+        fechasoli: '17/02/2025',
+
+
+
+
     },
     {
         id: 3,
-        desembolso: 'DSO-3',
         estado: 'Rechazado',
-        fecha_solicitud: '28/08/2025',
+        solicitud: 'SPB-003',
+        becario: 'Sofía Isabel Torres Ramírez',
+        beca: 'Beca básica de grado como espacios de aprendizaje del método científico' ,
+        motivosoli: 'Acceso tardío a datos cruciales o recursos necesarios.',
+        fechasoli: '1/03/2025',
     },
     {
         id: 4,
-        desembolso: 'DSO-4',
         estado: 'Rechazado',
-        fecha_solicitud: '13/12/2025',
+        solicitud: 'SPB-004',
+        becario: 'Pedro Antonio García Fernández',
+        beca: 'Beca básica de postgrado para la eficiencia terminal de tesis' ,
+        motivosoli: 'Dificultades técnicas o problemas con equipo que retrasaron el progreso.',
+        fechasoli: '14/04/2025',
+
     },
     {
         id: 5,
-        desembolso: 'DSO-5',
         estado: 'Nueva Solicitud',
-        fecha_solicitud: '04/03/2025',
-    },
-    {
-        id: 6,
-        desembolso: 'DSO-6',
-        estado: 'En proceso de revisión',
-        fecha_solicitud: '06/02/2025',
+        solicitud: 'SPB-005',
+        becario: 'Ana Lucía Martínez Vega',
+        beca: 'Beca básica de postgrado para la eficiencia terminal de tesis' ,
+        motivosoli: 'Emergencias personales o familiares.',
+        fechasoli: '7/05/2025',
+
     },
 
   ];
@@ -137,9 +178,11 @@ export class solicitudProrrogaComponent {
   }
 
   // Método para limpiar los filtros aplicados en la tabla
-  clear(table: any) {
-    table.clear();
+  clear(table: Table, searchInput: HTMLInputElement) {
+    table.clear(); // Limpia los filtros aplicados en la tabla
+    searchInput.value = ''; // Borra el contenido del input de búsqueda
   }
+  
 
   // Filtro global para buscar en todas las columnas de la tabla
   onGlobalFilter(table: any, event: any) {
@@ -180,5 +223,30 @@ export class solicitudProrrogaComponent {
   //Declara que el boton de switch esta en no o cancelar
   checked: boolean = false;
 
-    
+    //Abre el apartado de informacion 
+  datos: number = 0;
+
+  datosChange(index: number) {
+      this.datos = index;
+  }
+
+  //Sirve para que los botones de numeros funciones
+  activeIndex: number = 0;
+
+  activeIndexChange(index : number){
+      this.activeIndex = index;
+  }
+
+  // Array para almacenar la unidad de tiempo para el select
+  selectedduracion: any[] = [];
+
+  duracion = [
+      { name: '1 Mes', code: 'M' },
+      { name: '6 Meses', code: 'MM' },
+      { name: '12 Meses', code: 'MMM' },
+      { name: '1 Semestre', code: 'S' },
+      { name: '2 Semestres', code: 'SS' },
+      { name: '1 Año', code: 'A' },
+      { name: '2 Años', code: 'AA' },
+  ];
 }

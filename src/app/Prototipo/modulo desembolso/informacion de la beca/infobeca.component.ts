@@ -70,6 +70,7 @@ interface expandedRows {
   standalone: true,
   providers: [MessageService, ConfirmationService], // Asegurar que MessageService esté disponible
 })
+
 export class becasComponent implements OnInit {
 
   // Array con los datos de la tabla becas
@@ -94,6 +95,17 @@ export class becasComponent implements OnInit {
         aval: "Lic. Carlos Rodríguez",
         estado: "Pendiente de aprobación de aval",
         fechaCreacion: "2025-01-15",
+        nombrecompletoaval: 'Carlos Andrés Rodríguez Martínez',
+        direccionDomicilioaval: 'Col. Centroamérica',
+        numeroIdentidadaval: '0801-1980-12345',
+        numeroRTNaval: '0801-1980-12345',
+        estadoCivilaval: 'Soltero',
+        profesionaval: 'Ingeniero Industrial',
+        correoElectronicoaval: 'carlos.andres.rodriguez@email.com',
+        numeroTelefonoaval: '+504 1234-5678',
+        numeroempleadoaval: '123456',
+        unidepinstacia: 'Departamento de Ingenieria',
+
     },
     {
         id: 2,
@@ -184,12 +196,19 @@ export class becasComponent implements OnInit {
     return this.selectedColumns.some(col => col.field === field);
   }
 
+  //Abre el apartado de informacion 
+  datos: number = 0;
+
+  datosChange(index: number) {
+      this.datos = index;
+  }
+
+  //Sirve para que los botones de numeros funciones
   activeIndex: number = 0;
 
   activeIndexChange(index : number){
       this.activeIndex = index;
   }
-  
   
   // Variable para controlar el estado de carga
   loading: boolean = true;
