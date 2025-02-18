@@ -30,8 +30,67 @@ import { PanelModule } from 'primeng/panel';
 import { AccordionModule } from 'primeng/accordion';
 
 import { FileUploadModule } from 'primeng/fileupload';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+
+// Importación de módulos de PrimeNG para usarlos en la vista y funcionalidad.
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SelectModule } from 'primeng/select';
+import { SliderModule } from 'primeng/slider';
+import { Table, TableModule } from 'primeng/table';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { ToastModule } from 'primeng/toast';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { RatingModule } from 'primeng/rating';
+import { RippleModule } from 'primeng/ripple';
+import { InputIconModule } from 'primeng/inputicon';
+import { IconFieldModule } from 'primeng/iconfield';
+import { TagModule } from 'primeng/tag';
+import { Router } from '@angular/router';
+// Importación de componentes de PrimeNG para trabajar con formularios, tablas, fechas y validaciones.
+import { DialogModule } from 'primeng/dialog';
+import { TextareaModule } from 'primeng/textarea';
+import { ListboxModule } from 'primeng/listbox';
+// Importación de las validaciones de los inputs con KeyFilter
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { PanelModule } from 'primeng/panel';
+import { AccordionModule } from 'primeng/accordion';
+
+import { FileUploadModule } from 'primeng/fileupload';
 
 @Component({
+  selector: 'app-item-documento',
+  imports: [
+    FileUploadModule,
+    AccordionModule,
+    PanelModule,
+    ListboxModule,
+    TextareaModule,
+    TableModule,
+    MultiSelectModule,
+    SelectModule,
+    InputIconModule,
+    TagModule,
+    InputTextModule,
+    SliderModule,
+    ProgressBarModule,
+    ToggleButtonModule,
+    ToastModule,
+    CommonModule,
+    FormsModule,
+    ButtonModule,
+    RatingModule,
+    RippleModule,
+    IconFieldModule,
+    DialogModule,
+    KeyFilterModule,
+    ConfirmDialogModule
+],
   selector: 'app-item-documento',
   imports: [
     FileUploadModule,

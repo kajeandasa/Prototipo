@@ -94,6 +94,7 @@ export class ItemDocumentoComponent {
         { id: 3, Nombre: " hola" }
     ];
 
+
     Item_Documento_estado = [
         { id: 1, Estado: "Aprovado",Descripcion:" Documento RTN documentoacion"},
         { id: 2, Estado: "Rechazado",Descripcion:" Documento RTN documentoacion"},
