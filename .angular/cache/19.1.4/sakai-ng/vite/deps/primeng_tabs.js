@@ -1,22 +1,22 @@
 import {
   Ripple,
   RippleModule
-} from "./chunk-T3CA6OBR.js";
+} from "./chunk-UROOUTK7.js";
 import {
   ChevronLeftIcon,
   ChevronRightIcon
-} from "./chunk-R4JJAFGN.js";
+} from "./chunk-H3IGEOWI.js";
 import {
   BaseComponent
-} from "./chunk-ZNYJTQVC.js";
-import "./chunk-U5APQUJP.js";
+} from "./chunk-LJOVEYLY.js";
+import "./chunk-2NRYLL4N.js";
 import {
   BaseStyle
-} from "./chunk-T3L7WQK5.js";
+} from "./chunk-IACFBNRL.js";
 import {
   PrimeTemplate,
   SharedModule
-} from "./chunk-JGAZH2SF.js";
+} from "./chunk-XEULJ72G.js";
 import {
   findSingle,
   focus,
@@ -37,7 +37,7 @@ import {
   NgClass,
   NgTemplateOutlet,
   isPlatformBrowser
-} from "./chunk-MIK25KY6.js";
+} from "./chunk-D4GJKCIF.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -90,11 +90,10 @@ import {
   ɵɵsetNgModuleScope,
   ɵɵtemplate,
   ɵɵviewQuery
-} from "./chunk-IEGLS5AT.js";
-import "./chunk-CXNAVVMS.js";
-import "./chunk-KKSL7W6X.js";
-import "./chunk-XQSEKRDZ.js";
-import "./chunk-HM5YLMWO.js";
+} from "./chunk-D22RMT7D.js";
+import "./chunk-4N4GOYJH.js";
+import "./chunk-5OPE3T2R.js";
+import "./chunk-FHTVLBLO.js";
 import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-tabs.mjs
