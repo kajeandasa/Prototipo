@@ -68,6 +68,18 @@ export class AppMenu {
 
                                 ]
                             },
+
+                            {
+                                label: 'Convocatoria',
+                                icon: 'pi pi-fw pi-bookmark',
+                                items: [
+                                    { label: 'Estado convocatoria', routerLink: ['/mantenimiento/estado'] },
+                                    { label: 'Tipo convocatoria', routerLink: ['/mantenimiento/tipo'] }
+
+
+
+                                ]
+                            },
                             { label: 'Desembolso', icon: 'pi pi-fw pi-bookmark' },
                             { label: 'Cierre', icon: 'pi pi-fw pi-bookmark' }
                         ]

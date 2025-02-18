@@ -56,11 +56,10 @@ import { DropdownModule } from 'primeng/dropdown';
   styleUrls: ['./convocatoria.component.scss']
 })
 export class ConvocatoriaComponent implements OnInit {
-  // Lista de convocatorias con los campos necesarios
+  // Lista de convocatorias sin el campo "id"
   convocatorias: any[] = [
     {
-      id: 1,
-      title: 'I CONVOCATORIA',
+      nombre: 'I CONVOCATORIA',
       description: 'Convocatoria para estudiantes de pregrado en universidades nacionales.',
       startDate: new Date('2025-01-15'),
       endDate: new Date('2025-03-15'),
@@ -68,8 +67,7 @@ export class ConvocatoriaComponent implements OnInit {
       status: 'ABIERTA'
     },
     {
-      id: 2,
-      title: 'II CONVOCATORIA',
+      nombre: 'II CONVOCATORIA',
       description: 'Oportunidad de beca para cursar maestrías en el extranjero.',
       startDate: new Date('2025-02-01'),
       endDate: new Date('2025-04-30'),
@@ -77,8 +75,7 @@ export class ConvocatoriaComponent implements OnInit {
       status: 'ABIERTA'
     },
     {
-      id: 3,
-      title: 'CONVOCATORIA EXTRAORDINARIA',
+      nombre: 'CONVOCATORIA EXTRAORDINARIA',
       description: 'Apoyo financiero para estudiantes con rendimiento académico destacado.',
       startDate: new Date('2025-03-01'),
       endDate: new Date('2025-05-31'),
@@ -99,11 +96,19 @@ export class ConvocatoriaComponent implements OnInit {
 
   // Objeto para la convocatoria seleccionada (modal Editar)
   convocatoriaSeleccionada: any = null;
+  selectedIndex: number | null = null;
 
-  // Opciones para el dropdown con label/value
+  // Opciones para el dropdown de Estado (nuevos labels)
   estadoOptions = [
-    { label: 'ABIERTA', value: 'ABIERTA' },
-    { label: 'CERRADA', value: 'CERRADA' }
+    { label: 'Vigencia', value: 'ABIERTA' },
+    { label: 'Terminada', value: 'CERRADA' }
+  ];
+
+  // Opciones para el dropdown de Nombre Convocatoria
+  nombreConvocatoriaOptions = [
+    { label: 'I CONVOCATORIA', value: 'I CONVOCATORIA' },
+    { label: 'II CONVOCATORIA', value: 'II CONVOCATORIA' },
+    { label: 'CONVOCATORIA EXTRAORDINARIA', value: 'CONVOCATORIA EXTRAORDINARIA' }
   ];
 
   ngOnInit() {
@@ -126,8 +131,7 @@ export class ConvocatoriaComponent implements OnInit {
   // Abre el modal para agregar una nueva convocatoria y resetea el objeto
   abrirModalAgregar() {
     this.nuevaConvocatoria = {
-      id: null,
-      title: '',
+      nombre: '',
       description: '',
       startDate: null,
       endDate: null,
@@ -139,24 +143,23 @@ export class ConvocatoriaComponent implements OnInit {
 
   // Agrega la nueva convocatoria al arreglo y cierra el modal
   agregarConvocatoria() {
-    // Genera un ID automáticamente (incremental)
-    this.nuevaConvocatoria.id = this.convocatorias.length + 1;
     this.convocatorias.push({ ...this.nuevaConvocatoria });
     this.modalAgregar = false;
   }
 
-  // Abre el modal de edición copiando la convocatoria seleccionada
-  abrirModalEditar(convocatoria: any) {
+  // Abre el modal de edición copiando la convocatoria seleccionada y guardando su índice
+  abrirModalEditar(convocatoria: any, index: number) {
     this.convocatoriaSeleccionada = { ...convocatoria };
+    this.selectedIndex = index;
     this.modalEditar = true;
   }
 
   // Guarda los cambios realizados en la convocatoria seleccionada
   editarConvocatoria() {
-    const index = this.convocatorias.findIndex(c => c.id === this.convocatoriaSeleccionada.id);
-    if (index !== -1) {
-      this.convocatorias[index] = { ...this.convocatoriaSeleccionada };
+    if (this.selectedIndex !== null) {
+      this.convocatorias[this.selectedIndex] = { ...this.convocatoriaSeleccionada };
     }
     this.modalEditar = false;
+    this.selectedIndex = null;
   }
 }

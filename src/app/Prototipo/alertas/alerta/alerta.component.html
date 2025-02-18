@@ -159,9 +159,9 @@
         <!-- Se eliminó el campo Categoría -->
 
         <!-- Fila horizontal: Fecha Creación, Fecha Final y Recordatorio -->
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-wrap gap-6">
           <!-- Campo: Fecha Creación -->
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col grow basis-0 gap-2 w-full">
             <strong>Fecha Creación</strong>
             <p-calendar
               [(ngModel)]="nuevaAlerta.fecha_creacion"
@@ -170,7 +170,7 @@
           </div>
 
           <!-- Campo: Fecha Final -->
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col grow basis-0 gap-2 w-full">
             <strong>Fecha Final</strong>
             <p-calendar
               [(ngModel)]="nuevaAlerta.fecha_final"
@@ -179,7 +179,7 @@
           </div>
 
           <!-- Campo: Recordatorio -->
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col grow basis-0 gap-2 w-full">
             <strong>Recordatorio</strong>
             <p-calendar
               [(ngModel)]="nuevaAlerta.recordatorio"
@@ -348,7 +348,7 @@
 
         <!-- Campo: ID Tipo Entidad -->
         <div class="flex flex-col gap-2">
-          <strong>ID Tipo Entidad</strong>
+          <strong>Tipo Entidad</strong>
           <input
             pInputText
             type="number"
@@ -358,7 +358,7 @@
 
         <!-- Campo: Tblentidad -->
         <div class="flex flex-col gap-2">
-          <strong>Tblentidad</strong>
+          <strong>Entidad</strong>
           <input
             pInputText
             type="number"

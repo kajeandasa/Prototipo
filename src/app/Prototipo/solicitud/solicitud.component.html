@@ -1,1 +1,168 @@
-<p>solicitud works!</p>
+<div class="card">
+    <div class="font-semibold text-xl mb-4"><h2>Gestion de Solicitudes</h2> </div> <!-- Titulo -->
+
+    <!-- Botones -->
+    <div class="flex gap-4 justify-end">
+
+        <button
+            pButton
+            label="nuevo"
+            icon="pi pi-plus"
+            (click) = "modalabrir_agregar()">
+        </button>
+    </div>
+
+    <!-- Tabla que muestra las solicitudes por aceptar de los postulantes -->
+    <p-table
+        #dt1
+        [value]="obtenerPersona(id_usuario_solicitante)"
+        [rows]="10"
+        [paginator]="true"
+        responsiveLayout="scroll"
+        [globalFilterFields]="['Titulo', 'Descripcion', 'fechaCreacion']"
+        sortMode="multiple"
+        class="custom-table"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        stripedRows>
+        <!-- Encabezado personalizado con buscador global y botón -->
+        <ng-template #caption>
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+
+            </div>
+        </ng-template>
+
+        <!-- Encabezados de la tabla -->
+        <ng-template #header>
+            <tr>
+
+                <th pSortableColumn="id" >N° <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="Descripcion">Nombre Solicitud<p-sortIcon field="Descripcion"></p-sortIcon></th>
+                <th pSortableColumn="tipo_id" >Tipo <p-sortIcon field="tipo_id"></p-sortIcon></th>
+                <th pSortableColumn="tipo_id" >Estado<p-sortIcon field="tipo_id"></p-sortIcon></th>
+                <th pSortableColumn="tipo_id" >Descripcion <p-sortIcon field="tipo_id"></p-sortIcon></th>
+                <th pSortableColumn="estado_id" >Persona <p-sortIcon field="estado_id"></p-sortIcon></th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+
+        <ng-template #body let-task>
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.nombre }}</td>
+
+                <td>
+                    {{TipoSolicitud_Get(task.Tipo_id).Nombre_tipo}}
+                </td>
+                <td>
+                    <p-tag
+                    [severity]="getSeverity(task.estado_id)"
+                    [value]="TipoEstado_Get(task.estado_id).Nombre_estado"
+                    >
+                    </p-tag>
+                </td>
+                <td>{{ task.descripcion }}</td>
+                <td>{{ Usuario_Get(task.persona_id).Nombre }}</td>
+                <td>
+                    <button
+                        *ngIf="task.estado_id==2"
+                        pButton
+                        label="Detalles"
+                        icon="pi pi-eye"
+                        (click) = "modalabrir_editar(task)">
+                    </button>
+                    <button
+                        *ngIf="task.estado_id==1"
+                        pButton
+                        label="Hacer Formulario"
+                        icon="pi pi-file-edit"
+                        (click) = "iraRuta_beca('formulario-usuario')">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+</div>
+
+
+   <!-- Modal que muestra una imagen del formulario -->
+   <p-dialog
+   header="Agregar Solicitud"
+   [modal]="true"
+   [maximizable]="true"
+   [(visible)]="Modal_agregar"
+   [style]="{ width: '50rem' }">
+
+        <div class="card flex flex-col gap-4">
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Nombre de Solicitud</strong>
+                    <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off">
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Tipo Solicitud</strong>
+                    <p-select
+                    [options]="Solicitud_tipo"
+                    [filter]="true"
+                    optionLabel="Nombre_tipo"
+                    optionValue="id"
+                    placeholder="Tipo de solicitud"
+                    appendTo="body"
+                    class="w-full">
+                    </p-select>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Descripcion</strong>
+                    <textarea pTextarea id="id_descipcion" [rows]="5"></textarea>
+                </div>
+            </div>
+
+        </div>
+       <div class="flex justify-end gap-2">
+           <p-button label="Agregar" severity="success" (click)="Modal_agregar = false" />
+           <p-button label="Regresar" severity="danger" (click)="Modal_agregar = false" />
+       </div>
+   </p-dialog>
+
+
+
+
+   <!-- Modal que muestra la informacion de la solicitud del postulante -->
+   <p-dialog
+   header="Editar Documento '{{selectedTask.Descripcion}}'"
+   [modal]="true"
+   [(visible)]="Modal_Editar"
+   [maximizable]="true"
+   [style]="{ width: '50rem' }">
+
+   <div class="card flex flex-col gap-4">
+    <div class="flex flex-wrap gap-6">
+        <div class="flex flex-col grow basis-0 gap-2">
+            <strong>Nombre de Solicitud</strong>
+            <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="selectedTask.nombre">
+        </div>
+        <div class="flex flex-col grow basis-0 gap-2">
+            <strong>Tipo Documento</strong>
+            <p-select
+            [options]="Solicitud_tipo"
+            [filter]="true"
+            optionLabel="Nombre_tipo"
+            optionValue="id"
+            placeholder="Tipo de solicitud"
+            [(ngModel)]="selectedTask.Tipo_id"
+            appendTo="body"
+            class="w-full">
+            </p-select>
+        </div>
+    </div>
+    <div class="flex flex-wrap gap-6">
+        <div class="flex flex-col grow basis-0 gap-2">
+            <strong>Descripcion</strong>
+            <textarea pTextarea id="id_descipcion" [rows]="5">{{selectedTask.descripcion}}</textarea>
+        </div>
+    </div>
+
+</div>
+   </p-dialog>

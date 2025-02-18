@@ -214,7 +214,11 @@ export class AlertaComponent implements OnInit {
 
   tipoEntidadOptions = [
     { name: 'USUARIO', code: 'USUARIO' },
-    { name: 'ROL', code: 'ROL' }
+    { name: 'ROL', code: 'ROL' },
+    { name: 'USUARIO', code: 'USUARIO' },
+    { name: 'ROL', code: 'ROL' },
+    { name: 'USUARIO', code: 'USUARIO' },
+    { name: 'ROL', code: 'ROL' },
   ];
 
   entidadOptions = [
@@ -299,4 +303,6 @@ export class AlertaComponent implements OnInit {
   isColumnSelected(field: string): boolean {
     return this.selectedAlertColumns.some(col => col.field === field);
   }
+
+
 }

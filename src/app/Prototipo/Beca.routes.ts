@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ConvocatoriaComponent } from './convocatoria/convocatoria.component';
+import { ConvocatoriaComponent } from './Convocatorias/convocatoria/convocatoria.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { FormularioComponent } from './Formularios/formulario/formulario.component'
 import { ItemFormularioComponent } from './Formularios/item-formulario/item-formulario.component'

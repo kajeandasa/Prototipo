@@ -21,7 +21,7 @@
       [rows]="5"
       [paginator]="true"
       responsiveLayout="scroll"
-      [globalFilterFields]="['id', 'title', 'description', 'startDate', 'endDate', 'years', 'status']"
+      [globalFilterFields]="['nombre', 'description', 'startDate', 'endDate', 'years', 'status']"
       sortMode="multiple"
       class="custom-table"
       [tableStyle]="{ 'min-width': '30rem' }"
@@ -57,13 +57,9 @@
       <!-- Encabezado de la tabla -->
       <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="id" class="header-nowrap">
-            Nº
-            <p-sortIcon field="id"></p-sortIcon>
-          </th>
-          <th pSortableColumn="title" class="header-nowrap">
-            Título
-            <p-sortIcon field="title"></p-sortIcon>
+          <th pSortableColumn="nombre" class="header-nowrap">
+            Nombre Convocatoria
+            <p-sortIcon field="nombre"></p-sortIcon>
           </th>
           <th pSortableColumn="description" class="header-nowrap">
             Descripción
@@ -78,7 +74,7 @@
             <p-sortIcon field="endDate"></p-sortIcon>
           </th>
           <th pSortableColumn="years" class="header-nowrap">
-            Años
+            Año
             <p-sortIcon field="years"></p-sortIcon>
           </th>
           <th pSortableColumn="status" class="header-nowrap">
@@ -91,23 +87,21 @@
       </ng-template>
 
       <!-- Cuerpo de la tabla -->
-      <ng-template pTemplate="body" let-convocatoria>
+      <ng-template pTemplate="body" let-convocatoria let-i="rowIndex">
         <tr>
-          <td>{{ convocatoria.id }}</td>
-          <td>{{ convocatoria.title }}</td>
+          <td>{{ convocatoria.nombre }}</td>
           <td>{{ convocatoria.description }}</td>
-          <!-- Se muestra solo mes y día -->
           <td>{{ convocatoria.startDate | date:'MM/dd' }}</td>
           <td>{{ convocatoria.endDate | date:'MM/dd' }}</td>
           <td>{{ convocatoria.years }}</td>
           <td>
             <ng-container [ngSwitch]="convocatoria.status">
-              <p-tag *ngSwitchCase="'ABIERTA'" value="ABIERTA" severity="success">
+              <p-tag *ngSwitchCase="'ABIERTA'" value="Vigencia" severity="success">
                 <ng-template pTemplate="icon">
                   <i class="pi pi-unlock" style="margin-right: 0.5em;"></i>
                 </ng-template>
               </p-tag>
-              <p-tag *ngSwitchCase="'CERRADA'" value="CERRADA" severity="danger">
+              <p-tag *ngSwitchCase="'CERRADA'" value="Terminada" severity="danger">
                 <ng-template pTemplate="icon">
                   <i class="pi pi-lock" style="margin-right: 0.5em;"></i>
                 </ng-template>
@@ -120,7 +114,7 @@
               pButton
               label="Editar"
               icon="pi pi-pencil"
-              (click)="abrirModalEditar(convocatoria)">
+              (click)="abrirModalEditar(convocatoria, i)">
             </button>
           </td>
         </tr>
@@ -142,26 +136,17 @@
       [modal]="true"
       [(visible)]="modalAgregar"
       [maximizable]="true"
-      [style]="{ width: '30rem' }">
+      [style]="{ width: '50rem' }">
       <div class="card flex flex-col gap-4">
-        <!-- Campo: Nº -->
+        <!-- Campo: Nombre Convocatoria (Dropdown) -->
         <div class="flex flex-col gap-2">
-          <strong>Nº</strong>
-          <input
-            pInputText
-            type="number"
-            [(ngModel)]="nuevaConvocatoria.id"
-            placeholder="Nº" />
-        </div>
-
-        <!-- Campo: Título -->
-        <div class="flex flex-col gap-2">
-          <strong>Título</strong>
-          <input
-            pInputText
-            type="text"
-            [(ngModel)]="nuevaConvocatoria.title"
-            placeholder="Título" />
+          <strong>Nombre Convocatoria</strong>
+          <p-dropdown
+            [options]="nombreConvocatoriaOptions"
+            [(ngModel)]="nuevaConvocatoria.nombre"
+            placeholder="Selecciona un nombre"
+            [filter]="true">
+          </p-dropdown>
         </div>
 
         <!-- Campo: Descripción -->
@@ -194,7 +179,7 @@
 
         <!-- Campo: Años -->
         <div class="flex flex-col gap-2">
-          <strong>Años</strong>
+          <strong>Año</strong>
           <input
             pInputText
             type="number"
@@ -202,7 +187,7 @@
             placeholder="Años" />
         </div>
 
-        <!-- Campo: Estado -->
+        <!-- Campo: Estado (Dropdown) -->
         <div class="flex flex-col gap-2">
           <strong>Estado</strong>
           <p-dropdown
@@ -225,26 +210,17 @@
       header="Editar Convocatoria"
       [modal]="true"
       [(visible)]="modalEditar"
-      [style]="{ width: '30rem' }">
+      [style]="{ width: '50rem' }">
       <div class="card flex flex-col gap-4" *ngIf="convocatoriaSeleccionada">
-        <!-- Campo: Nº -->
+        <!-- Campo: Nombre Convocatoria (Dropdown) -->
         <div class="flex flex-col gap-2">
-          <strong>Nº</strong>
-          <input
-            pInputText
-            type="number"
-            [(ngModel)]="convocatoriaSeleccionada.id"
-            placeholder="Nº" />
-        </div>
-
-        <!-- Campo: Título -->
-        <div class="flex flex-col gap-2">
-          <strong>Título</strong>
-          <input
-            pInputText
-            type="text"
-            [(ngModel)]="convocatoriaSeleccionada.title"
-            placeholder="Título" />
+          <strong>Nombre Convocatoria</strong>
+          <p-dropdown
+            [options]="nombreConvocatoriaOptions"
+            [(ngModel)]="convocatoriaSeleccionada.nombre"
+            placeholder="Selecciona un nombre"
+            [filter]="true">
+          </p-dropdown>
         </div>
 
         <!-- Campo: Descripción -->
@@ -277,7 +253,7 @@
 
         <!-- Campo: Años -->
         <div class="flex flex-col gap-2">
-          <strong>Años</strong>
+          <strong>Año</strong>
           <input
             pInputText
             type="number"
@@ -285,7 +261,7 @@
             placeholder="Años" />
         </div>
 
-        <!-- Campo: Estado -->
+        <!-- Campo: Estado (Dropdown) -->
         <div class="flex flex-col gap-2">
           <strong>Estado</strong>
           <p-dropdown

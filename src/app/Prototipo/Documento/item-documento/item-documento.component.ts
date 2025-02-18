@@ -93,7 +93,7 @@ export class ItemDocumentoComponent {
         { id: 2, Nombre: "Documentos administrativos" },
         { id: 3, Nombre: " hola" }
     ];
-    
+
     Item_Documento_estado = [
         { id: 1, Estado: "Aprovado",Descripcion:" Documento RTN documentoacion"},
         { id: 2, Estado: "Rechazado",Descripcion:" Documento RTN documentoacion"},
@@ -141,6 +141,11 @@ export class ItemDocumentoComponent {
 
         this.selectedTask = { ...task };
     };
-
+    iraRuta_beca(Ruta: String) {
+        this.router.navigate(['/beca/'+Ruta]);
+    }
+    constructor(
+        private router: Router
+      ) {}
 }
 
