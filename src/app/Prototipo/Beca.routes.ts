@@ -15,13 +15,10 @@ import { solicitudProrrogaComponent } from './modulo desembolso/solicitud prorro
 import { desembolsoBecaComponent } from './modulo desembolso/desembolsos por beca/desembolsosbeca.component';
 
 import { DesembolsoComponent } from './desembolso/desembolso.component';
-<<<<<<< HEAD
 // import { Seguimiento } from './desembolso/seguimiento';
 import { Cierre } from './desembolso/cierre/cierre.component';
-=======
-//import { Seguimiento } from './desembolso/seguimiento';
-//import { Cierre } from './desembolso/cierre';
->>>>>>> 0727698d3db7116c334feb0da53ff9df2f1f1ec0
+
+import { interesesComponent } from './modulo desembolso/intereses/intereses.component';
 
 // import { Gestiondesembolso } from './desembolso/gestionDesembolsos';
 
@@ -41,17 +38,12 @@ export default [
     { path: 'desembolsosbeca', component: desembolsoBecaComponent, data: { breadcrumb: 'Desembolsos Beca' } },
     {
       path: 'desembolso', component: DesembolsoComponent, children: [
-<<<<<<< HEAD
         // { path: 'gestionDesembolso', component: Gestiondesembolso },
         // { path: 'seguimiento', component: Seguimiento },
         { path: 'cierre', component: Cierre }
-=======
-        //{ path: 'gestionDesembolso', component: Gestiondesembolso },
-        //{ path: 'seguimiento', component: Seguimiento },
-        //{ path: 'cierre', component: Cierre }
->>>>>>> 0727698d3db7116c334feb0da53ff9df2f1f1ec0
       ]
-    }
+    },
+    { path: 'intereses', component: interesesComponent, data: { breadcrumb: 'Intereses' } },
 
 
 

@@ -36,13 +36,8 @@ export class AppMenu {
                         { label: 'Becas',icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/infobeca']},
                         { label: 'Solicitudes',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitud']},
                         { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/desembolso']},
-                        { label: 'Prorroga de Beca',  icon: 'pi pi-fw pi-bookmark', 
-                            items: [
-                                { label: 'Solicitud de Prorroga', icon: 'pi pi-send', routerLink: ['/beca/solicitudprorroga'] },
-                                { label: 'Prorroga Resolución', icon: 'pi pi-check', routerLink: ['/beca/prorrogabeca'] }
-                            ]
-                        },
-                        { label: 'Cierre',      icon: 'pi pi-fw pi-bookmark'}
+                        { label: 'Prorroga de Beca',  icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitudprorroga'] },
+                        { label: 'Intereses',      icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/intereses'] },
                     ] },
                     {   label: 'Becario',
                         icon: 'pi pi-fw pi-circle',

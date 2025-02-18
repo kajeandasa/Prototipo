@@ -30,6 +30,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { TabsModule } from 'primeng/tabs';
 import { FileUpload } from 'primeng/fileupload';
 import { ToggleSwitch } from 'primeng/toggleswitch';
+import { DropdownModule } from 'primeng/dropdown';
 
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
@@ -63,39 +64,87 @@ interface expandedRows {
     KeyFilterModule,
     AccordionModule,
     TabsModule,
+    DropdownModule
   ],
-  templateUrl: './tipocierre.component.html',  // Enlaza la plantilla HTML del componente
-  styleUrl: './tipocierre.component.scss',   // Enlaza el archivo de estilos SCSS del componente
+  templateUrl: './intereses.component.html',  // Enlaza la plantilla HTML del componente
+  styleUrl: './intereses.component.scss',   // Enlaza el archivo de estilos SCSS del componente
   standalone: true,
   providers: [MessageService, ConfirmationService], // Asegurar que MessageService esté disponible
 })
-export class tipoCierreComponent {
+export class interesesComponent { 
 
-  // Array con los datos de la tabla tipo de cierre 
+  // Array con los datos de la tabla solicitud prorroga
   tasks = [
     {
         id: 1,
+        becario: 'María Fernanda López Hernández',
+        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional' ,
+        porcentaje: '10%',
+        descripcioninteres: 'No se entregó el informe final en el plazo estipulado',
+        montotal: '550,000.00',
+
+        fecha: '01/01/2025',
         tipo: 'Suspención de la Beca',
+        descripcion: 'No se entregó el informe final en el plazo estipulado.',
     },
     {
         id: 2,
-        tipo: 'Cancelación de la Beca',
+        becario: 'Juan Carlos Rodríguez Martínez',
+        beca: 'Beca básica institucional para el fortalecimiento de grupos de investigación' ,
+        porcentaje: '20%',
+        descripcioninteres: 'Problemas con el proyecto llevaron a la suspensión de la beca',
+        montotal: '90,000.00',
+
+        fecha: '14/02/2025',
+        tipo: 'Cancelación  de la Beca',
+        descripcion: 'Debido a problemas con el proyecto, se ha decidido suspender la beca.',
     },
     {
         id: 3,
-        tipo: 'Finalización de la Beca',
+        becario: 'Sofía Isabel Torres Ramírez',
+        beca: 'Beca básica de grado como espacios de aprendizaje del método científico' ,
+        porcentaje: '15%',
+        descripcioninteres: 'Falta de presentación de avances del proyecto en los plazos estipulados',
+        montotal: '28,750.00',
+
+        fecha: '01/05/2025',
+        tipo: 'Suspención de la Beca',
+        descripcion: 'No se han presentado los avances del proyecto en los plazos estipulados.',
+    },
+    {
+        id: 4,
+        becario: 'Pedro Antonio García Fernández',
+        beca: 'Beca básica de postgrado para la eficiencia terminal de tesis' ,
+        porcentaje: '25%',
+        descripcioninteres: 'Falta de presentación de avances del proyecto en los plazos estipulados',
+        montotal: '50,000.00',
+        
+        fecha: '15/09/2025',
+        tipo: 'Cancelación de la Beca',
+        descripcion: 'Se ha utilizado el monto de la beca sin completar el proyecto propuesto.',
+    },
+    {
+        id: 5,
+        becario: 'Ana Lucía Martínez Vega',
+        beca: 'Beca básica de postgrado para la eficiencia terminal de tesis' ,
+        porcentaje: '5%',
+        descripcioninteres: 'Falta de presentación de avances del proyecto en los plazos estipulados',
+        montotal: '84,000.00',
+
+        fecha: '25/12/2025',
+        tipo: 'Suspención de la Beca',
+        descripcion: 'Los directivos de la universidad han decidido cancelar la beca.',
     },
 
   ];
 
-  // Array para almacenar las becas para el select
-  selectedBeca: any[] = [];
+  // Array para almacenar los tipos de cierre para el select
+  selectedtipoCierre: any[] = [];
 
-  beca: any[] = [
-      { name: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional', code: 'BS' },
-      { name: 'Beca básica institucional para el fortalecimiento de grupos de investigación', code: 'BGI' },
-      { name: 'Beca básica de grado como espacios de aprendizaje del método científico', code: 'BG' },
-      { name: 'Beca básica de postgrado para la eficiencia terminal de tesis', code: 'BP' }
+  tipoCierre = [
+      { name: 'Suspención de la Beca', code: 'S' },
+      { name: 'Cancelación de la Beca', code: 'C' },
+      { name: 'Finalización de la Beca', code: 'F' },
   ];
   
   // Variable para controlar el estado de carga
@@ -113,6 +162,7 @@ export class tipoCierreComponent {
     table.clear(); // Limpia los filtros aplicados en la tabla
     searchInput.value = ''; // Borra el contenido del input de búsqueda
   }
+  
 
   // Filtro global para buscar en todas las columnas de la tabla
   onGlobalFilter(table: any, event: any) {
@@ -153,5 +203,30 @@ export class tipoCierreComponent {
   //Declara que el boton de switch esta en no o cancelar
   checked: boolean = false;
 
-    
+    //Abre el apartado de informacion 
+  datos: number = 0;
+
+  datosChange(index: number) {
+      this.datos = index;
+  }
+
+  //Sirve para que los botones de numeros funciones
+  activeIndex: number = 0;
+
+  activeIndexChange(index : number){
+      this.activeIndex = index;
+  }
+
+  // Array para almacenar la unidad de tiempo para el select
+  selectedduracion: any[] = [];
+
+  duracion = [
+      { name: '1 Mes', code: 'M' },
+      { name: '6 Meses', code: 'MM' },
+      { name: '12 Meses', code: 'MMM' },
+      { name: '1 Semestre', code: 'S' },
+      { name: '2 Semestres', code: 'SS' },
+      { name: '1 Año', code: 'A' },
+      { name: '2 Años', code: 'AA' },
+  ];
 }
