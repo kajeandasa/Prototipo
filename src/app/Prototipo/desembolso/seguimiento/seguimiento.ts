@@ -35,6 +35,12 @@ import { CommonModule } from '@angular/common';
 
 
 import { StepperModule } from 'primeng/stepper';
+import { FileUploadEvent } from 'primeng/fileupload';
+
+
+import { Dialog } from 'primeng/dialog';
+
+
 
 @Component({
     selector: 'app-seguimiento',
@@ -66,15 +72,17 @@ import { StepperModule } from 'primeng/stepper';
         TabsModule,
         DropdownModule,
         SelectButtonModule,
-
         SelectButtonModule,
         CommonModule,
         FormsModule,
-
-        StepperModule
+        StepperModule,
+        FileUpload,
+        ToastModule,
+        CommonModule,
+        Dialog
       ],
     templateUrl: './seguimiento.component.html',
-    // styleUrls: ['./seguimiento.component.css'],
+    styleUrls: ['./seguimiento.component.css'],
     providers: [MessageService, ConfirmationService], // Asegurar que MessageService esté disponible
 
 })
@@ -253,8 +261,28 @@ this.imagenClase = imageType === 'becario' ? 'imagen-becario' : 'imagen-aval';
 this.imagen = true;
 }
 
-//Declara que el boton de switch esta en no o cancelar
-checked: boolean = false;
+    //Declara que el boton de switch esta en no o cancelar
+    checked: boolean = false;
+
+    uploadedFiles: any[] = [];
+
+    constructor(private messageService: MessageService) {}
+
+    onUpload(event: FileUploadEvent) {
+        for (let file of event.files) {
+            this.uploadedFiles.push(file);
+        }
+
+        this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+    }
+
+    // modal para dictaminar
+    DicatminarMostrar: boolean = false;
+
+    ModalDictaminar() {
+        this.DicatminarMostrar = true;
+    }
+
 
 
 }
