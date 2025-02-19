@@ -19,7 +19,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { TagModule } from 'primeng/tag';
 import { Router } from '@angular/router';
-// Importación de componentes de PrimeNG para trabajar con formularios, tablas, fechas y validaciones.
+// Importación de componentes de PrimeNG para trabajar con formularios, tablas, fechas y validaciones..
 import { DialogModule } from 'primeng/dialog';
 import { TextareaModule } from 'primeng/textarea';
 import { ListboxModule } from 'primeng/listbox';
