@@ -1,5 +1,14 @@
     <div class="font-semibold text-xl mb-4"><h2>Formulario - {{getTaskById(id)?.Titulo}}</h2></div> <!-- Titulo -->
 
+    <p-card>
+        <div class="flex gap-4 justify-end">
+            <button
+                pButton
+                label="Guardar"
+                icon="">
+            </button>
+        </div>
+    </p-card>
     <ul>
         <li *ngFor="let t of getFilteredInput(id); let i = index">
             <p-card>
@@ -81,7 +90,7 @@
     </ul>
 
 
-    <p-card class="flex justify-center items-center h-32">
+    <p-card class="flex justify-center items-center h-64">
         <div class="flex justify-center items-center w-full h-full">
             <p-button icon="pi pi-plus"></p-button>
         </div>
