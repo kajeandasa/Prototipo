@@ -51,7 +51,7 @@ export default [
       path: 'desembolso', component: DesembolsoComponent, children: [
         // { path: 'gestionDesembolso', component: Gestiondesembolso },
         // { path: 'seguimiento', component: Seguimiento },
-        { path: 'cierre', component: Cierre }
+        //{ path: 'cierre', component: Cierre }
       ]
     },
     { path: 'intereses', component: interesesComponent, data: { breadcrumb: 'Intereses' } },
