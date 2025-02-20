@@ -41,7 +41,11 @@
   }
 
   .modal-header h2 {
+<<<<<<< HEAD
+    color: #fff;
+=======
     color: #0e0c0c; /* color del titulo*/
+>>>>>>> Desembolso
   }
 
   .close-btn {
@@ -54,6 +58,11 @@
 
   /* Cuerpo del modal */
   .modal-body {
+<<<<<<< HEAD
+    color: #ddd;
+    margin-top: 10px;
+  }
+=======
     color: #0d0d0d;/* color de las letras de los parrafos*/
     margin-top: 10px;
   }
@@ -188,3 +197,4 @@
     transform: rotate(90deg);
     color: var(--accent-color);
   }
+>>>>>>> Desembolso
