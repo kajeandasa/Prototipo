@@ -38,6 +38,9 @@ export class AppMenu {
                         { label: 'Desembolso',  icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/desembolso']},
                         { label: 'Prorroga de Beca',  icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/solicitudprorroga'] },
                         { label: 'Intereses',      icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/intereses'] },
+                        { label: 'Alerta',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/alerta'] },
+                        { label: 'Formulario',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/formulario'] },
+                        { label: 'Documentos',   icon: 'pi pi-fw pi-bookmark', routerLink: ['/beca/ItemDocumento'] },
                     ] },
                     {   label: 'Becario',
                         icon: 'pi pi-fw pi-circle',
@@ -64,6 +67,35 @@ export class AppMenu {
                                 { label: 'Estado Desembolso Pagado', icon: 'pi pi-asterisk', routerLink: ['/beca/'] },
                                 { label: 'Tipos de Becas', icon: 'pi pi-address-book', routerLink: ['/beca/tipobeca'] },
                                 { label: 'Monto de la Beca', icon: 'pi pi-money-bill', routerLink: ['/beca/montodefaultbeca'] },
+                                { label: 'Formulario', icon: 'pi pi-fw pi-bookmark', routerLink: ['/mantenimiento/formulario'] },
+                                {
+                                    label: 'Alerta',
+                                    icon: 'pi pi-fw pi-bookmark',
+                                    items: [
+                                        { label: 'Tipo Alerta', routerLink: ['/mantenimiento/alerta_tipo'] }
+                                    ]
+                                },                            {
+                                    label: 'Documentos',
+                                    icon: 'pi pi-fw pi-bookmark',
+                                    items: [
+                                        { label: 'Requisitos', routerLink: ['/mantenimiento/plantilla'] }
+    
+    
+                                    ]
+                                },
+                                {
+                                    label: 'Convocatoria',
+                                    icon: 'pi pi-fw pi-bookmark',
+                                    items: [
+                                        { label: 'Estado convocatoria', routerLink: ['/mantenimiento/estado'] },
+                                        { label: 'Tipo convocatoria', routerLink: ['/mantenimiento/tipo'] }
+    
+    
+    
+                                    ]
+                                },
+                                { label: 'Desembolso', icon: 'pi pi-fw pi-bookmark' },
+                                { label: 'Cierre', icon: 'pi pi-fw pi-bookmark' }
                             ]
                         },
                         { label: 'Seguimiento',   icon: 'pi pi-fw pi-folder-open', 
@@ -84,9 +116,12 @@ export class AppMenu {
                             ]
                         }
                     ] },
-                ]
+                ],
+
+
             },
             
         ];
     }
 }
+
