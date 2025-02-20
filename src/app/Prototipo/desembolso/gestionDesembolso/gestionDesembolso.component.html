@@ -107,68 +107,6 @@
             }
         </style>
 
-        <!-- Modal que muestra una imagen del formulario -->
-        <p-dialog
-            header="Información general de la beca"
-            [modal]="true"
-            [(visible)]="imagen"
-            [style]="{ width: '80rem' }">
-
-            <div class="flex flex-col items-center">
-                <img src="assets/imagenes/monto default por beca.png" alt="Imagen de las becas" class="rounded-lg shadow-lg">
-            </div>
-
-        </p-dialog>
-
-
-
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-            header="Información Becario"
-            [modal]="true"
-            [(visible)]="displayNewModal"
-            [style]="{ width: '50rem' }">
-            <div class="card flex flex-col gap-4">
-                <div class="flex flex-col gap-2">
-                    <strong>Número de Solicitud</strong>
-                    <p-dropdown
-                    [options]="soli"
-                    placeholder="Seleccione una Solicitud"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <strong>Beca</strong>
-                    <p-dropdown
-                    [options]="beca"
-                    placeholder="Seleccione una Beca"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <strong>Postulante</strong>
-                    <p-dropdown
-                    [options]="postulante"
-                    placeholder="Seleccione una Beca"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                        <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-end gap-2">
-                <p-button label="Enviar" (click)="displayNewModal = false" />
-                <p-button label="Cerrar" (click)="displayNewModal = false" />
-            </div>
-        </p-dialog>
-
 <!-- Modal que muestra la informacion de la beca que se selecciona en detalle-->
         <p-dialog
             header="Información Becario"
@@ -176,114 +114,157 @@
             [maximizable]="true"
             [(visible)]="displayModal"
             [style]="{ width: '50rem' }">
-            <div class="card flex flex-col gap-4">
-                <div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Nombre Completo</strong> {{ selectedTask.Postulante }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Número de identida</strong> {{ selectedTask.numeroIdentidads }}
-                        <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Número de RTN</strong> {{ selectedTask.numeroRTNs }}
-                        <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Número de Telefono</strong> {{ selectedTask.numeroTelefonos }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Correo Electrónico</strong> {{ selectedTask.correoElectronicos }}
-                        <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                    </div>
-                </div>
-                <br>
-                <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Beca</strong> {{ selectedTask.becas }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Monto Total de la Beca</strong> {{ selectedTask.montoasignados }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                    </div>
-                </div>
-                <br>
-                <div class="font-semibold text-xl"><strong>DESEMBOLSOS</strong></div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Desembolso N.1</strong> {{ selectedTask.Postulante }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>N. de Solicitud de Pago</strong> {{ selectedTask.correoElectronicos }}
-                        <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>N. de Orden de Pago</strong> {{ selectedTask.numeroTelefonos }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Fecha Oficial de Desembolso</strong> {{ selectedTask.fechaOficial }}
-                        <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                        <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/> -->
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Fecha de Desembolso Entregado</strong> {{ selectedTask.fechaEntrega }}
-                        <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaEntrega"/> -->
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaEntrega"/>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <strong>Estado Desembolso N.1</strong>
-                    <!-- seguimiento del desembolso -->
-                    <p-timeline [value]="events" [layout]="'horizontal'">
-                        <ng-template #content let-event>
-                        {{ event.status }}
-                        </ng-template>
-                    </p-timeline>
-                </div>
+            <div class="card">
+                <p-stepper [value]="1">
+                    <p-step-item [value]="1">
+                        <p-step><div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div></p-step>
+                        <p-step-panel>
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <div class="flex flex-col h-100">
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Nombre Completo</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Número de identida</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Número de RTN</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Número de Telefono</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="telefono" class="flex-auto" autocomplete="off" [value]="selectedTask.telefono"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Correo Electrónico</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="correo" class="flex-auto" autocomplete="off" [value]="selectedTask.correo"/>
+                                        </div>
+                                    </div>
+                                    <p-divider />
+                                    <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Beca</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Monto Total de la Beca</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <br>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Desembolso N.2</strong> {{ selectedTask.Postulante }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>N. de Solicitud de Pago</strong> {{ selectedTask.correoElectronicos }}
-                        <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>N. de Orden de Pago</strong> {{ selectedTask.numeroTelefonos }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Fecha Oficial de Desembolso</strong> {{ selectedTask.correoElectronicos }}
-                        <input pInputText id="id_titulo" class="flex-auto" autocomplete="off"/>
-                    </div>
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Fecha de Desembolso Entregado</strong> {{ selectedTask.numeroTelefonos }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                    </div>
-                </div>
+                                <div class="py-6">
+                                    <p-button label="Siguiente" (onClick)="activateCallback(2)" />
+                                </div>
+                            </ng-template>
+                        </p-step-panel>
+                    </p-step-item>
 
+                    <p-step-item [value]="2">
+                        <p-step><div class="font-semibold text-xl"><strong>DESEMBOLSO N.1</strong></div></p-step>
+                        <p-step-panel>
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <div class="flex flex-col h-100">
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Desembolso:</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="Desembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.Desembolso"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>N. de Solicitud de Pago</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="SolicitudPago" class="flex-auto" autocomplete="off" [value]="selectedTask.SolicitudPago"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>N. de Orden de Pago</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="OrdenPago" class="flex-auto" autocomplete="off" [value]="selectedTask.OrdenPago"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Fecha Oficial de Desembolso</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                            <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/> -->
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Fecha de Desembolso Entregado</strong>
+                                            <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaEntrega"/> -->
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaRealDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaRealDesembolso"/>
+                                        </div>
+                                    </div>
+                                        <div class="flex flex-wrap gap-6">
+                                            <strong>Estado Desembolso N.1</strong>
+                                            <!-- seguimiento del desembolso -->
+                                            <p-timeline [value]="events" [layout]="'horizontal'">
+                                                <ng-template #content let-event>
+                                                {{ event.status }}
+                                                </ng-template>
+                                            </p-timeline>
+                                        </div>
+                                    </div>
+
+                                <div class="flex py-6 gap-2">
+                                    <p-button label="Regresar" severity="secondary" (onClick)="activateCallback(1)" />
+                                    <p-button label="Siguiente" (onClick)="activateCallback(3)" />
+                                </div>
+                            </ng-template>
+                        </p-step-panel>
+                    </p-step-item>
+
+                    <p-step-item [value]="3">
+                        <p-step><div class="font-semibold text-xl"><strong>DESEMBOLSO N.2</strong></div></p-step>
+                        <p-step-panel>
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <div class="flex flex-col h-100">
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Desembolso:</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="Desembolso2" class="flex-auto" autocomplete="off" [value]="selectedTask.Desembolso2"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>N. de Solicitud de Pago</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="SolicitudPago2" class="flex-auto" autocomplete="off" [value]="selectedTask.SolicitudPago2"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>N. de Orden de Pago</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="OrdenPago2" class="flex-auto" autocomplete="off" [value]="selectedTask.OrdenPago2"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Fecha Oficial de Desembolso</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso2" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso2"/>
+                                            <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/> -->
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Fecha de Desembolso Entregado</strong>
+                                            <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaEntrega"/> -->
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaRealDesembolso2" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaRealDesembolso2"/>
+                                        </div>
+                                    </div>
+
+                                <!-- </div> -->
+                                <div class="flex flex-wrap gap-6">
+                                    <strong>Estado Desembolso N.2</strong>
+                                    <!-- seguimiento del desembolso -->
+                                    <p-timeline [value]="events" [layout]="'horizontal'">
+                                        <ng-template #content let-event>
+                                        {{ event.status }}
+                                        </ng-template>
+                                    </p-timeline>
+                                </div>
+                                    </div>
+
+                                <div class="py-6">
+                                    <p-button label="Regresar" severity="secondary" (onClick)="activateCallback(2)" />
+                                </div>
+                            </ng-template>
+                        </p-step-panel>
+                    </p-step-item>
+                </p-stepper>
             </div>
-            <div class="flex flex-wrap gap-6">
-                <strong>Estado Desembolso N.2</strong>
-                <!-- seguimiento del desembolso -->
-                <p-timeline [value]="events" [layout]="'horizontal'">
-                    <ng-template #content let-event>
-                    {{ event.status }}
-                    </ng-template>
-                </p-timeline>
-            </div>
+
             <div class="flex justify-end gap-2">
                 <p-button label="Cerrar" (click)="displayModal = false" />
             </div>
@@ -296,7 +277,7 @@
         <!-- Tabla PrimeNG -->
         <p-table
             #dt1
-            [value]="tasks"
+            [value]="tasks1"
             [rows]="5"
             [paginator]="true"
             responsiveLayout="scroll"
@@ -376,7 +357,6 @@
             </ng-template>
         </p-table>
 
-
         <!-- CSS para corregir encabezados -->
         <style>
             .header-nowrap {
@@ -386,102 +366,117 @@
             }
         </style>
 
-        <!-- Modal que muestra una imagen del formulario -->
+    <!-- Modal que muestra la informacion de la beca que se selecciona en detalle-->
         <p-dialog
-            header="Información general de la beca"
+            header="Información Becario"
             [modal]="true"
-            [(visible)]="imagen"
-            [style]="{ width: '80rem' }">
-
-            <div class="flex flex-col items-center">
-                <img src="assets/imagenes/monto default por beca.png" alt="Imagen de las becas" class="rounded-lg shadow-lg">
-            </div>
-
-        </p-dialog>
-
-
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-            header="Información sobre las becas"
-            [modal]="true"
-            [(visible)]="displayNewModal"
-            [style]="{ width: '50rem' }">
-            <div class="card flex flex-col gap-4">
-                <div class="flex flex-col gap-2">
-                    <strong>Número de Solicitud</strong>
-                    <p-dropdown
-                    [options]="soli"
-                    placeholder="Seleccione una Solicitud"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <strong>Beca</strong>
-                    <p-dropdown
-                    [options]="beca"
-                    placeholder="Seleccione una Beca"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <strong>Postulante</strong>
-                    <p-dropdown
-                    [options]="postulante"
-                    placeholder="Seleccione una Beca"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                        <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-end gap-2">
-                <p-button label="Enviar" (click)="displayNewModal = false" />
-                <p-button label="Cerrar" (click)="displayNewModal = false" />
-            </div>
-        </p-dialog>
-
-        <!-- Modal que muestra la informacion de las becas -->
-        <p-dialog
-            header="Información sobre los tipos de becas"
-            [modal]="true"
+            [maximizable]="true"
             [(visible)]="displayModal"
             [style]="{ width: '50rem' }">
-            <div class="card flex flex-col gap-4">
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Beca</strong> {{ selectedTask.becas }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Postulante</strong> {{ selectedTask.postulantes }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                    </div>
-                </div>
-            </div>
+            <div class="card">
+                <p-stepper [value]="1">
+                    <p-step-item [value]="1">
+                        <p-step><div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div></p-step>
+                        <p-step-panel>
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <div class="flex flex-col h-100">
+                                        <div class="flex flex-wrap gap-6">
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Nombre Completo</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                            </div>
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Número de identida</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap gap-6">
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Número de RTN</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
+                                            </div>
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Número de Telefono</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="telefono" class="flex-auto" autocomplete="off" [value]="selectedTask.telefono"/>
+                                            </div>
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Correo Electrónico</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="correo" class="flex-auto" autocomplete="off" [value]="selectedTask.correo"/>
+                                            </div>
+                                        </div>
+                                        <p-divider />
+                                        <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                        <div class="flex flex-wrap gap-6">
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Beca</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                            </div>
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Monto Total de la Beca</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                            </div>
+                                        </div>
+                                </div>
 
+                                <div class="py-6">
+                                    <p-button label="Siguiente" (onClick)="activateCallback(2)" />
+                                </div>
+                            </ng-template>
+                        </p-step-panel>
+                    </p-step-item>
+
+                    <p-step-item [value]="2">
+                        <p-step><div class="font-semibold text-xl"><strong>DESEMBOLSO</strong></div></p-step>
+                        <p-step-panel>
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <div class="flex flex-col h-100">
+                                        <div class="flex flex-wrap gap-6">
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Desembolso:</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="Desembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.Desembolso"/>
+                                            </div>
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>N. de Solicitud de Pago</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="SolicitudPago" class="flex-auto" autocomplete="off" [value]="selectedTask.SolicitudPago"/>
+                                            </div>
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>N. de Orden de Pago</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="OrdenPago" class="flex-auto" autocomplete="off" [value]="selectedTask.OrdenPago"/>
+                                            </div>
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Fecha Oficial de Desembolso</strong>
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                                <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/> -->
+                                            </div>
+                                            <div class="flex flex-col grow basis-0 gap-2">
+                                                <strong>Fecha de Desembolso Entregado</strong>
+                                                <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaEntrega"/> -->
+                                                <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaRealDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaRealDesembolso"/>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-wrap gap-6">
+                                            <strong>Estado Desembolso</strong>
+                                            <!-- seguimiento del desembolso -->
+                                            <p-timeline [value]="events" [layout]="'horizontal'">
+                                                <ng-template #content let-event>
+                                                {{ event.status }}
+                                                </ng-template>
+                                            </p-timeline>
+                                        </div>
+                                    </div>
+
+                                <div class="flex py-6 gap-2">
+                                    <p-button label="Regresar" severity="secondary" (onClick)="activateCallback(1)" />
+                                    <!-- <p-button label="Siguiente" (onClick)="activateCallback(3)" /> -->
+                                </div>
+                            </ng-template>
+                        </p-step-panel>
+                    </p-step-item>
+
+                </p-stepper>
+            </div>
             <div class="flex justify-end gap-2">
-                <p-button label="Regresar" (click)="displayModal = false" />
+                <p-button label="Cerrar" (click)="displayModal = false" />
             </div>
         </p-dialog>
     </div>
@@ -492,7 +487,7 @@
         <!-- Tabla PrimeNG -->
         <p-table
         #dt1
-        [value]="tasks"
+        [value]="tasks2"
         [rows]="5"
         [paginator]="true"
         responsiveLayout="scroll"
@@ -582,104 +577,119 @@
         }
         </style>
 
-        <!-- Modal que muestra una imagen del formulario -->
-        <p-dialog
-        header="Información general de la beca"
-        [modal]="true"
-        [(visible)]="imagen"
-        [style]="{ width: '80rem' }">
+    <!-- Modal que muestra la informacion de la beca que se selecciona en detalle-->
+    <p-dialog
+    header="Información Becario"
+    [modal]="true"
+    [maximizable]="true"
+    [(visible)]="displayModal"
+    [style]="{ width: '50rem' }">
+    <div class="card">
+        <p-stepper [value]="1">
+            <p-step-item [value]="1">
+                <p-step><div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div></p-step>
+                <p-step-panel>
+                    <ng-template #content let-activateCallback="activateCallback">
+                        <div class="flex flex-col h-100">
+                                <div class="flex flex-wrap gap-6">
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Nombre Completo</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                    </div>
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Número de identida</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-6">
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Número de RTN</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
+                                    </div>
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Número de Telefono</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="telefono" class="flex-auto" autocomplete="off" [value]="selectedTask.telefono"/>
+                                    </div>
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Correo Electrónico</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="correo" class="flex-auto" autocomplete="off" [value]="selectedTask.correo"/>
+                                    </div>
+                                </div>
+                                <p-divider />
+                                <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                <div class="flex flex-wrap gap-6">
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Beca</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                    </div>
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Monto Total de la Beca</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                    </div>
+                                </div>
+                        </div>
 
-        <div class="flex flex-col items-center">
-            <img src="assets/imagenes/monto default por beca.png" alt="Imagen de las becas" class="rounded-lg shadow-lg">
-        </div>
+                        <div class="py-6">
+                            <p-button label="Siguiente" (onClick)="activateCallback(2)" />
+                        </div>
+                    </ng-template>
+                </p-step-panel>
+            </p-step-item>
 
-        </p-dialog>
+            <p-step-item [value]="2">
+                <p-step><div class="font-semibold text-xl"><strong>DESEMBOLSO</strong></div></p-step>
+                <p-step-panel>
+                    <ng-template #content let-activateCallback="activateCallback">
+                        <div class="flex flex-col h-100">
+                                <div class="flex flex-wrap gap-6">
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Desembolso:</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="Desembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.Desembolso"/>
+                                    </div>
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>N. de Solicitud de Pago</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="SolicitudPago" class="flex-auto" autocomplete="off" [value]="selectedTask.SolicitudPago"/>
+                                    </div>
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>N. de Orden de Pago</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="OrdenPago" class="flex-auto" autocomplete="off" [value]="selectedTask.OrdenPago"/>
+                                    </div>
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Fecha Oficial de Desembolso</strong>
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                        <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/> -->
+                                    </div>
+                                    <div class="flex flex-col grow basis-0 gap-2">
+                                        <strong>Fecha de Desembolso Entregado</strong>
+                                        <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaEntrega"/> -->
+                                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaRealDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaRealDesembolso"/>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-6">
+                                    <strong>Estado Desembolso</strong>
+                                    <!-- seguimiento del desembolso -->
+                                    <p-timeline [value]="events" [layout]="'horizontal'">
+                                        <ng-template #content let-event>
+                                        {{ event.status }}
+                                        </ng-template>
+                                    </p-timeline>
+                                </div>
+                            </div>
 
+                        <div class="flex py-6 gap-2">
+                            <p-button label="Regresar" severity="secondary" (onClick)="activateCallback(1)" />
+                            <!-- <p-button label="Siguiente" (onClick)="activateCallback(3)" /> -->
+                        </div>
+                    </ng-template>
+                </p-step-panel>
+            </p-step-item>
 
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-        header="Información sobre las becas"
-        [modal]="true"
-        [(visible)]="displayNewModal"
-        [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-                <strong>Número de Solicitud</strong>
-                <p-dropdown
-                [options]="soli"
-                placeholder="Seleccione una Solicitud"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Beca</strong>
-                <p-dropdown
-                [options]="beca"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Postulante</strong>
-                <p-dropdown
-                [options]="postulante"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-end gap-2">
-            <p-button label="Enviar" (click)="displayNewModal = false" />
-            <p-button label="Cerrar" (click)="displayNewModal = false" />
-        </div>
-        </p-dialog>
-
-        <!-- Modal que muestra la informacion de las becas -->
-        <p-dialog
-        header="Información sobre los tipos de becas"
-        [modal]="true"
-        [(visible)]="displayModal"
-        [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Beca</strong> {{ selectedTask.becas }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Postulante</strong> {{ selectedTask.postulantes }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex justify-end gap-2">
-            <p-button label="Regresar" (click)="displayModal = false" />
-        </div>
-        </p-dialog>
+        </p-stepper>
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Cerrar" (click)="displayModal = false" />
+    </div>
+    </p-dialog>
     </div>
 
     <!-- Beca Básica de Grado como Espacios de Aprendizaje del Método Científico (PROFESOR UNAH) -->
@@ -688,7 +698,7 @@
         <!-- Tabla PrimeNG -->
         <p-table
         #dt1
-        [value]="tasks"
+        [value]="tasks4"
         [rows]="5"
         [paginator]="true"
         responsiveLayout="scroll"
@@ -768,7 +778,6 @@
         </ng-template>
         </p-table>
 
-
         <!-- CSS para corregir encabezados -->
         <style>
         .header-nowrap {
@@ -778,106 +787,120 @@
         }
         </style>
 
-        <!-- Modal que muestra una imagen del formulario -->
+        <!-- Modal que muestra la informacion de la beca que se selecciona en detalle-->
         <p-dialog
-        header="Información general de la beca"
+        header="Información Becario"
         [modal]="true"
-        [(visible)]="imagen"
-        [style]="{ width: '80rem' }">
-
-        <div class="flex flex-col items-center">
-            <img src="assets/imagenes/monto default por beca.png" alt="Imagen de las becas" class="rounded-lg shadow-lg">
-        </div>
-
-        </p-dialog>
-
-
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-        header="Información sobre las becas"
-        [modal]="true"
-        [(visible)]="displayNewModal"
-        [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-                <strong>Número de Solicitud</strong>
-                <p-dropdown
-                [options]="soli"
-                placeholder="Seleccione una Solicitud"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Beca</strong>
-                <p-dropdown
-                [options]="beca"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Postulante</strong>
-                <p-dropdown
-                [options]="postulante"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-end gap-2">
-            <p-button label="Enviar" (click)="displayNewModal = false" />
-            <p-button label="Cerrar" (click)="displayNewModal = false" />
-        </div>
-        </p-dialog>
-
-        <!-- Modal que muestra la informacion de las becas -->
-        <p-dialog
-        header="Información sobre los tipos de becas"
-        [modal]="true"
+        [maximizable]="true"
         [(visible)]="displayModal"
         [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Beca</strong> {{ selectedTask.becas }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Postulante</strong> {{ selectedTask.postulantes }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                </div>
-            </div>
-        </div>
+        <div class="card">
+            <p-stepper [value]="1">
+                <p-step-item [value]="1">
+                    <p-step><div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div></p-step>
+                    <p-step-panel>
+                        <ng-template #content let-activateCallback="activateCallback">
+                            <div class="flex flex-col h-100">
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Nombre Completo</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Número de identida</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Número de RTN</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Número de Telefono</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="telefono" class="flex-auto" autocomplete="off" [value]="selectedTask.telefono"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Correo Electrónico</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="correo" class="flex-auto" autocomplete="off" [value]="selectedTask.correo"/>
+                                        </div>
+                                    </div>
+                                    <p-divider />
+                                    <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Beca</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Monto Total de la Beca</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                        </div>
+                                    </div>
+                            </div>
 
+                            <div class="py-6">
+                                <p-button label="Siguiente" (onClick)="activateCallback(2)" />
+                            </div>
+                        </ng-template>
+                    </p-step-panel>
+                </p-step-item>
+
+                <p-step-item [value]="2">
+                    <p-step><div class="font-semibold text-xl"><strong>DESEMBOLSO</strong></div></p-step>
+                    <p-step-panel>
+                        <ng-template #content let-activateCallback="activateCallback">
+                            <div class="flex flex-col h-100">
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Desembolso:</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="Desembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.Desembolso"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>N. de Solicitud de Pago</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="SolicitudPago" class="flex-auto" autocomplete="off" [value]="selectedTask.SolicitudPago"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>N. de Orden de Pago</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="OrdenPago" class="flex-auto" autocomplete="off" [value]="selectedTask.OrdenPago"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Fecha Oficial de Desembolso</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                            <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/> -->
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Fecha de Desembolso Entregado</strong>
+                                            <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaEntrega"/> -->
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaRealDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaRealDesembolso"/>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-6">
+                                        <strong>Estado Desembolso</strong>
+                                        <!-- seguimiento del desembolso -->
+                                        <p-timeline [value]="events" [layout]="'horizontal'">
+                                            <ng-template #content let-event>
+                                            {{ event.status }}
+                                            </ng-template>
+                                        </p-timeline>
+                                    </div>
+                                </div>
+
+                            <div class="flex py-6 gap-2">
+                                <p-button label="Regresar" severity="secondary" (onClick)="activateCallback(1)" />
+                                <!-- <p-button label="Siguiente" (onClick)="activateCallback(3)" /> -->
+                            </div>
+                        </ng-template>
+                    </p-step-panel>
+                </p-step-item>
+
+            </p-stepper>
+        </div>
         <div class="flex justify-end gap-2">
-            <p-button label="Regresar" (click)="displayModal = false" />
+            <p-button label="Cerrar" (click)="displayModal = false" />
         </div>
         </p-dialog>
     </div>
-
 
     <!-- Beca Básica de Grado como Espacios de Aprendizaje del Método Científico (ESTUDIANTE) -->
     <div *ngIf="selectTiposBeca  === '5'">
@@ -885,7 +908,7 @@
         <!-- Tabla PrimeNG -->
         <p-table
         #dt1
-        [value]="tasks"
+        [value]="tasks3"
         [rows]="5"
         [paginator]="true"
         responsiveLayout="scroll"
@@ -965,7 +988,6 @@
         </ng-template>
         </p-table>
 
-
         <!-- CSS para corregir encabezados -->
         <style>
         .header-nowrap {
@@ -975,104 +997,118 @@
         }
         </style>
 
-        <!-- Modal que muestra una imagen del formulario -->
+        <!-- Modal que muestra la informacion de la beca que se selecciona en detalle-->
         <p-dialog
-        header="Información general de la beca"
+        header="Información Becario"
         [modal]="true"
-        [(visible)]="imagen"
-        [style]="{ width: '80rem' }">
-
-        <div class="flex flex-col items-center">
-            <img src="assets/imagenes/monto default por beca.png" alt="Imagen de las becas" class="rounded-lg shadow-lg">
-        </div>
-
-        </p-dialog>
-
-
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-        header="Información sobre las becas"
-        [modal]="true"
-        [(visible)]="displayNewModal"
-        [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-                <strong>Número de Solicitud</strong>
-                <p-dropdown
-                [options]="soli"
-                placeholder="Seleccione una Solicitud"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Beca</strong>
-                <p-dropdown
-                [options]="beca"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Postulante</strong>
-                <p-dropdown
-                [options]="postulante"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-end gap-2">
-            <p-button label="Enviar" (click)="displayNewModal = false" />
-            <p-button label="Cerrar" (click)="displayNewModal = false" />
-        </div>
-        </p-dialog>
-
-        <!-- Modal que muestra la informacion de las becas -->
-        <p-dialog
-        header="Información sobre los tipos de becas"
-        [modal]="true"
+        [maximizable]="true"
         [(visible)]="displayModal"
         [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Beca</strong> {{ selectedTask.becas }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Postulante</strong> {{ selectedTask.postulantes }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                </div>
-            </div>
-        </div>
+        <div class="card">
+            <p-stepper [value]="1">
+                <p-step-item [value]="1">
+                    <p-step><div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div></p-step>
+                    <p-step-panel>
+                        <ng-template #content let-activateCallback="activateCallback">
+                            <div class="flex flex-col h-100">
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Nombre Completo</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Número de identida</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Número de RTN</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Número de Telefono</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="telefono" class="flex-auto" autocomplete="off" [value]="selectedTask.telefono"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Correo Electrónico</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="correo" class="flex-auto" autocomplete="off" [value]="selectedTask.correo"/>
+                                        </div>
+                                    </div>
+                                    <p-divider />
+                                    <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Beca</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Monto Total de la Beca</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                        </div>
+                                    </div>
+                            </div>
 
+                            <div class="py-6">
+                                <p-button label="Siguiente" (onClick)="activateCallback(2)" />
+                            </div>
+                        </ng-template>
+                    </p-step-panel>
+                </p-step-item>
+
+                <p-step-item [value]="2">
+                    <p-step><div class="font-semibold text-xl"><strong>DESEMBOLSO</strong></div></p-step>
+                    <p-step-panel>
+                        <ng-template #content let-activateCallback="activateCallback">
+                            <div class="flex flex-col h-100">
+                                    <div class="flex flex-wrap gap-6">
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Desembolso:</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="Desembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.Desembolso"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>N. de Solicitud de Pago</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="SolicitudPago" class="flex-auto" autocomplete="off" [value]="selectedTask.SolicitudPago"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>N. de Orden de Pago</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="OrdenPago" class="flex-auto" autocomplete="off" [value]="selectedTask.OrdenPago"/>
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Fecha Oficial de Desembolso</strong>
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                            <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/> -->
+                                        </div>
+                                        <div class="flex flex-col grow basis-0 gap-2">
+                                            <strong>Fecha de Desembolso Entregado</strong>
+                                            <!-- <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaEntrega"/> -->
+                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaRealDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaRealDesembolso"/>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-6">
+                                        <strong>Estado Desembolso</strong>
+                                        <!-- seguimiento del desembolso -->
+                                        <p-timeline [value]="events" [layout]="'horizontal'">
+                                            <ng-template #content let-event>
+                                            {{ event.status }}
+                                            </ng-template>
+                                        </p-timeline>
+                                    </div>
+                                </div>
+
+                            <div class="flex py-6 gap-2">
+                                <p-button label="Regresar" severity="secondary" (onClick)="activateCallback(1)" />
+                                <!-- <p-button label="Siguiente" (onClick)="activateCallback(3)" /> -->
+                            </div>
+                        </ng-template>
+                    </p-step-panel>
+                </p-step-item>
+
+            </p-stepper>
+        </div>
         <div class="flex justify-end gap-2">
-            <p-button label="Regresar" (click)="displayModal = false" />
+            <p-button label="Cerrar" (click)="displayModal = false" />
         </div>
         </p-dialog>
     </div>
-
 </div>

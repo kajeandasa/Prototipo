@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; // ✅ Importación necesaria
+import { ButtonModule } from 'primeng/button';
 
+// import { Dashboard } from './app/pages/dashboard/dashboard';
 @Component({
   selector: 'app-desembolso',
   standalone: true, // ✅ Asegura que pueda importar módulos de forma independiente
-  imports: [CommonModule], // ✅ Importar CommonModule para usar *ngFor y otras directivas
+  imports: [CommonModule, ButtonModule], // ✅ Importar CommonModule para usar *ngFor y otras directivas
   styleUrls: ['./desembolso.component.css'],
   templateUrl: './desembolso.component.html',
 })

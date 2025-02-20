@@ -8,8 +8,6 @@ import { Gestiondesembolso } from '../desembolso/gestionDesembolso/gestionDesemb
 import { tablasmantenimiento } from '../desembolso/estandares/tablasmantenimiento.component';
 import { tablasprocesos } from '../desembolso/estandares/tablasprocesos.component';
 
-
-
 export default [
     { path: 'gestionDesembolso', component: Gestiondesembolso, data: { breadcrumb: 'Gestion Desembolso' } },
     { path: 'seguimiento', component: Seguimiento, data: { breadcrumb: 'Seguimiento' } },

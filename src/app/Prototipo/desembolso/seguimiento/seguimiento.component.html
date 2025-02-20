@@ -106,53 +106,6 @@
             }
         </style>
 
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-            header="Información Becario"
-            [modal]="true"
-            [(visible)]="displayNewModal"
-            [style]="{ width: '50rem' }">
-            <div class="card flex flex-col gap-4">
-                <div class="flex flex-col gap-2">
-                    <strong>Número de Solicitud</strong>
-                    <p-dropdown
-                    [options]="soli"
-                    placeholder="Seleccione una Solicitud"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <strong>Beca</strong>
-                    <p-dropdown
-                    [options]="beca"
-                    placeholder="Seleccione una Beca"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <strong>Postulante</strong>
-                    <p-dropdown
-                    [options]="postulante"
-                    placeholder="Seleccione una Beca"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                        <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-end gap-2">
-                <p-button label="Enviar" (click)="displayNewModal = false" />
-                <p-button label="Cerrar" (click)="displayNewModal = false" />
-            </div>
-        </p-dialog>
-
         <!-- Modal que muestra la informacion de la beca que se selecciona en detalle-->
         <p-dialog
                 header="INFORMACION PERSONAL (BECARIO)"
@@ -160,91 +113,179 @@
                 [maximizable]="true"
                 [(visible)]="displayModal"
                 [style]="{ width: '50rem' }">
-            <!-- <div class="card flex flex-col gap-4">
-                <div class="font-semibold text-xl">
-                <strong>INFORMACION PERSONAL (BECARIO)</strong>
-                </div>
-            </div> -->
-            <div class="card flex justify-center">
-                <p-stepper [value]="1" class="basis-[50rem]">
-                    <p-step-list>
-                        <p-step [value]="1">Seguimiento Primer Desembolso</p-step>
-                        <p-step [value]="2">Seguimiento Segundo Desembolso</p-step>
-                        <!-- <p-step [value]="3">Header II</p-step> -->
-                    </p-step-list>
-                    <p-step-panels>
-                        <p-step-panel [value]="1">
-                            <ng-template #content let-activateCallback="activateCallback">
-                                <div class="flex flex-col h-48">
-                                    <div
-                                        class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-                                    >
-                                        <div class="card flex flex-col gap-4">
-                                            <div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div>
-                                            <div class="flex flex-wrap gap-6">
-                                                <div class="flex flex-col grow basis-0 gap-2">
-                                                    <strong>Nombre Completo</strong> {{ selectedTask.Postulante }}
-                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                                                </div>
-                                                <div class="flex flex-col grow basis-0 gap-2">
-                                                    <strong>Número de identida</strong> {{ selectedTask.numeroIdentidads }}
-                                                    <input pInputText id="id_descipcion" class="flex-auto" autocomplete="off"/>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
-                                            <div class="flex flex-wrap gap-6">
-                                                <div class="flex flex-col grow basis-0 gap-2">
-                                                    <strong>Beca</strong> {{ selectedTask.becas }}
-                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                                                </div>
-                                                <div class="flex flex-col grow basis-0 gap-2">
-                                                    <strong>Monto Total de la Beca</strong> {{ selectedTask.montoasignados }}
-                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="font-semibold text-xl"><strong>ENTREGABLES</strong></div>
-                                            <div class="flex flex-wrap gap-6">
-                                                <div class="flex flex-col grow basis-0 gap-2">
-                                                    <strong>Tipo Avance</strong> {{ selectedTask.TipoAvance }}
-                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.TipoAvance"/>
-                                                </div>
-                                                <div class="flex flex-col grow basis-0 gap-2">
-                                                    <strong>Estado Avance</strong> {{ selectedTask.EstadoAvance }}
-                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.EstadoAvance"/>
-                                                </div>
-                                                <div class="flex flex-col grow basis- gap-2">
-                                                    <strong>Fecha Entrega</strong> {{ selectedTask.fechaEntrega }}
-                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaEntrega"/>
-                                                </div>
-                                            </div>
-                                            <div class="flex flex-wrap gap-6">
-                                                <div class="flex flex-col grow basis-0 gap-2">
-                                                    <strong>Informe de Avance </strong> {{ selectedTask.formpostulacion }}
-                                                    <p>Conteniendo el informe de avances del proyecto de investigación global en el cual se involucra.</p>
-                                                    <p-fileupload name="archivo"
-                                                                url="https://www.primefaces.org/cdn/api/upload.php"
-                                                                (onUpload)="onUpload($event)"
-                                                                [multiple]="false"
-                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx"
-                                                                maxFileSize="100000000000000"
-                                                                mode="advanced"
-                                                                [showUploadButton]="false"
-                                                                [showCancelButton]="false">
-                                                    </p-fileupload>
-                                                </div>
-                                                <div class="flex pt-6 justify-end">
-                                                    <p-button label="Dictaminar" icon="pi pi-arrow-right" iconPos="right" (click)="ModalDictaminar()" />
-                                                </div>
 
-                                            </div>
+            <div class="card flex justify-center">
+                <p-stepper [value]="1" class="basis-[200m]">
+                    <p-step-panels >
+                        <p-step-panel [value]="1"class="basis-[200m]">
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <div class="flex flex-col h-100">
+                                    <!-- <div
+                                        class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                                    > -->
+                                    <!-- <div class="card flex flex-col gap-4"></div> -->
+                                        <div class="card flex justify-center">
+                                            <p-stepper [value]="1" class="basis-[200rem]" [linear]="true">
+                                                <p-step-list>
+                                                    <p-step [value]="1">Seguimiento Primer Desembolso</p-step>
+                                                    <p-step [value]="2">Seguimiento Segundo Desembolso</p-step>
+                                                    <!-- <p-step [value]="3">Header II</p-step> -->
+                                                </p-step-list>
+                                                <p-step-panels>
+                                                    <p-step-panel [value]="1">
+                                                        <ng-template #content let-activateCallback="activateCallback">
+                                                            <div class="flex flex-col h-400">
+
+                                                                <div class="card flex flex-col gap-4">
+                                                                    <div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Nombre Completo</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Número de identida</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Beca</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Monto Total de la Beca</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="font-semibold text-xl"><strong>ENTREGABLES</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Tipo Avance</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="TipoAvance" class="flex-auto" autocomplete="off" [value]="selectedTask.TipoAvance"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Estado Avance</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="events" class="flex-auto" autocomplete="off" [value]="selectedTask.events"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis- gap-2">
+                                                                            <strong>Fecha Entrega</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Informe de Avance </strong> {{ selectedTask.formpostulacion }}
+                                                                            <p>Conteniendo el informe de avances del proyecto de investigación global en el cual se involucra.</p>
+                                                                            <p-fileupload name="archivo"
+                                                                                        url="https://www.primefaces.org/cdn/api/upload.php"
+                                                                                        (onUpload)="onUpload($event)"
+                                                                                        [multiple]="false"
+                                                                                        accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx"
+                                                                                        maxFileSize="100000000000000"
+                                                                                        mode="advanced"
+                                                                                        [showUploadButton]="false"
+                                                                                        [showCancelButton]="false">
+                                                                            </p-fileupload>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis- gap-2">
+                                                                            <strong>Observaciones</strong>
+                                                                            <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                                                                        </div>
+                                                                        <!-- <div class="flex pt-6 justify-end">
+                                                                            <p-button label="Dictaminar" icon="pi pi-arrow-right" iconPos="right" (click)="ModalDictaminar()" />
+                                                                        </div> -->
+                                                                    </div>
+                                                                    <div class="flex pt-6 justify-end">
+                                                                        <p-button label="Dictaminar" icon="pi pi-file-o" iconPos="right" (click)="ModalDictaminar()" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex pt-6 justify-end">
+                                                                    <p-button label="Siguiente" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
+                                                                </div>
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-step-panel>
+
+                                                    <p-step-panel [value]="2">
+                                                        <ng-template #content let-activateCallback="activateCallback">
+                                                            <div class="flex flex-col h-400">
+                                                                <!-- <div class="border-2 border-dashed border-surface-500 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex justify-center items-center font-medium h-screen w-screen ">
+                                                                    Content II
+                                                                </div> -->
+                                                                <div class="card flex flex-col gap-4">
+                                                                    <div class="font-semibold text-xl"><strong>ENTREGABLES</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Tipo Avance</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="AvanceFinal" class="flex-auto" autocomplete="off" [value]="selectedTask.AvanceFinal"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Estado de Revision del Avance</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="events" class="flex-auto" autocomplete="off" [value]="selectedTask.events"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis- gap-2">
+                                                                            <strong>Fecha Entrega</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Informe de Avance </strong> {{ selectedTask.formpostulacion }}
+                                                                            <p>Conteniendo el informe de avances del proyecto de investigación global en el cual se involucra.</p>
+                                                                            <p-fileupload name="archivo"
+                                                                                        url="https://www.primefaces.org/cdn/api/upload.php"
+                                                                                        (onUpload)="onUpload($event)"
+                                                                                        [multiple]="false"
+                                                                                        accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx"
+                                                                                        maxFileSize="100000000000000"
+                                                                                        mode="advanced"
+                                                                                        [showUploadButton]="false"
+                                                                                        [showCancelButton]="false">
+                                                                            </p-fileupload>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis- gap-2">
+                                                                            <strong>Observaciones</strong>
+                                                                            <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="flex pt-6 justify-end">
+                                                                        <p-button label="Dictaminar" icon="pi pi-file-o" iconPos="right" (click)="ModalDictaminar()" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex pt-6 justify-between">
+                                                                <p-button label="Back" severity="secondary" icon="pi pi-arrow-left" (onClick)="activateCallback(1)" />
+                                                                <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-step-panel>
+
+                                                    <p-step-panel [value]="3">
+                                                        <ng-template #content let-activateCallback="activateCallback">
+                                                            <div class="flex flex-col h-48">
+                                                                <div
+                                                                    class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                                                                >
+                                                                    Content III
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex pt-6 justify-start">
+                                                                <p-button label="Back" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-step-panel>
+                                                </p-step-panels>
+                                            </p-stepper>
                                         </div>
-                                    </div>
-                                    <div class="flex pt-6 justify-end">
-                                        <p-button label="Siguiente" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
-                                    </div>
                                 </div>
+                                <!-- </div> -->
                             </ng-template>
                         </p-step-panel>
 
@@ -259,7 +300,7 @@
                                 </div>
                                 <div class="flex pt-6 justify-between">
                                     <p-button label="Regresar" severity="secondary" icon="pi pi-arrow-left" (onClick)="activateCallback(1)" />
-                                    <p-button label="Siguiente" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                                    <p-button label="Cerrar" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
                                 </div>
                             </ng-template>
                         </p-step-panel>
@@ -283,119 +324,144 @@
             </div>
         </p-dialog>
 
-
         <!-- modal para dicaminar -->
         <div class="card flex justify-center">
             <!-- <p-button (click)="ModalDictaminar()" label="Dictaminar" /> -->
-            <p-dialog [(visible)]="DicatminarMostrar" [modal]="true" [style]="{ width: '50rem' }"
+            <p-dialog [(visible)]="DicatminarMostrar" [modal]="true" [style]="{ width: '50rem', padding: '4rem' }"
             [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
-                <!-- Header personalizado -->
-                <ng-template pTemplate="header">
-                    <div class="text-center text-2xl font-bold">
 
-                        <div class="block font-semibold"><strong>Universidad Nacional Autónoma de Honduras</strong></div>
-                        <div class="block"><strong>Vicerrectoría Académica</strong></div>
-                        <div class="block"><strong>Dirección de Investigación Científica, Humanística y Tecnológica</strong></div>
-                    </div>
-                </ng-template>
-                <span class="p-text-secondary block mb-8">DICTAMEN INFORME TECNICO-METODOLOGICO A BECAS DE INVESTIGACION Y FONDOS CONCURSABLES</span>
-                <P>1. DATOS GENERALES:</P>
+                <!-- Header personalizado -->
+                <!-- <ng-template pTemplate="header"> -->
+                    <span class="p-text-secondary text-center block mb-10">
+                        <img src="assets/DICIHT_Izquierdo.png" alt="Logo DICIHT"
+                            style="width: 400px; height: auto; margin: 0 auto 8px; display: block;" />
+
+                            <div class="block font-semibold" style="font-size: 1.5rem;">
+                                <strong>UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>VICERRECTORÍA ACADÉMICA</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>DIRECCIÓN DE INVESTIGACIÓN CIENTÍFICA, HUMANÍSTICA Y TECNOLÓGICA</strong>
+                            </div>
+                    </span>
+                <!-- </ng-template> -->
+                     <!-- imagen del sol -->
+                <div class="relative" style="position: relative;">
+                <img src="assets/Sol_Izquierdo.png" alt="Sol Izquierdo"
+                style="width: 80%; height: 100%; object-fit: cover; position: absolute; top: 0; right: 0; z-index: -1;" />
+
+                <span class="p-text-secondary text-center block mb-8"><strong>DICTAMEN INFORME TECNICO-METODOLOGICO A BECAS DE INVESTIGACION Y FONDOS CONCURSABLES</strong></span>
+                <!-- <strong>I. DATOS GENERALES:</strong> -->
+                <span class="p-text-secondary block mb-8"><strong>I. DATOS GENERALES:</strong></span>
                 <div class="flex flex-col grow basis-0 gap-2">
-                    <div class="flex items-center gap-4 mb-4">
-                        <strong>Numero de dictamen</strong> {{ selectedTask.fechaEntrega }}
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Numero de dictamen</p> {{ selectedTask.fechaEntrega }}
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Beca de Investigacion/Fondos Concursables</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Nombre de Beneficiario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Facultad o Campus Universitario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Año de Convocatoria y codigo de proyecto DICIHT</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Titulo del Proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Titulo del Proyecto</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Enfoque de la investigacion</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Enfoque de la investigacion</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Periodo de Adjudicacion el proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Periodo de Adjudicacion el proyecto</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Fecha Finalizacion Metodologica de la beca</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Fecha Finalizacion Metodologica de la beca</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                </div>
+                <p-divider />
+                <P><strong>II. CUMPLIMIENTO DE ACTIVIDADES PLANIFICADAS:</strong></P>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>1.Cumplimiento de objetivos: [Descripción breve sobre si se lograron los objetivos propuestos.]</p> {{ selectedTask.fechaEntrega }}
                         <!-- <label for="username" class="font-semibold w-24">Numero de dictamen</label> -->
                         <!-- <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/> -->
                         <input pInputText id="username" class="flex-auto" autocomplete="off" />
                     </div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <strong>Beca de Investigacion/Fondos Concursables</strong> {{ selectedTask.fechaEntrega }}
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>2.Metodología: [Evaluación de la claridad, pertinencia y rigor metodológico empleado en la investigación.]</p> {{ selectedTask.fechaEntrega }}
                         <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
                         <input pInputText id="email" class="flex-auto" autocomplete="off" />
                     </div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <strong>Nombre de Beneficiario</strong> {{ selectedTask.fechaEntrega }}
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>3.Resultados y Contribuciones: [Resumen de los hallazgos relevantes y su impacto, conforme al informe entregado]</p> {{ selectedTask.fechaEntrega }}
                         <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
                         <input pInputText id="username" class="flex-auto" autocomplete="off" />
                     </div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <strong>Facultad o Campus Universitario</strong> {{ selectedTask.fechaEntrega }}
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>4.Calidad del Informe: [Valoración de la redacción, claridad y cumplimiento con los lineamientos establecidos.]</p> {{ selectedTask.fechaEntrega }}
                         <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
                         <input pInputText id="email" class="flex-auto" autocomplete="off" />
                     </div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <strong>Año de Convocatoria y codigo de proyecto DICIHT</strong> {{ selectedTask.fechaEntrega }}
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>5.Pertinencia del Impacto: [Resumen del impacto del proyecto, conforme a los medios de verificación
+                            y las líneas de acción para el desarrollo de la investigación]</p> {{ selectedTask.fechaEntrega }}
                         <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
                         <input pInputText id="username" class="flex-auto" autocomplete="off" />
                     </div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <strong>Titulo del Proyecto</strong> {{ selectedTask.fechaEntrega }}
-                        <!-- <label for="email" class="font-semibold w-24">Titulo del Proyecto</label> -->
-                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
-                    </div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <strong>Enfoque de la investigacion</strong> {{ selectedTask.fechaEntrega }}
-                        <!-- <label for="email" class="font-semibold w-24">Enfoque de la investigacion</label> -->
-                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
-                    </div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <strong>Periodo de Adjudicacion el proyecto</strong> {{ selectedTask.fechaEntrega }}
-                        <!-- <label for="username" class="font-semibold w-24">Periodo de Adjudicacion el proyecto</label> -->
-                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
-                    </div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <strong>Fecha Finalizacion Metodologica de la beca</strong> {{ selectedTask.fechaEntrega }}
-                        <!-- <label for="email" class="font-semibold w-24">Fecha Finalizacion Metodologica de la beca</label> -->
-                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
-                    </div>
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>III. DOCUMENTOS ENTREGADOS:</strong></P>
+                    <P>[Listado de los documentos presentados, conforme el informe entregado]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>IV. RECOMENDACIONES:</strong></P>
+                    <P>[En esta sección, se pueden incluir observaciones, áreas de mejora por el trabajo realizado.
+                         Si es necesario, puede recomendarse ajustes o un plazo para realizar correcciones.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>V. CONCLUSIONES:</strong></P>
+                    <P>En virtud de lo anterior, este analista dictamina [favorable o no favorable] el [informe final] presentado por el/la becario/a
+                    [nombre completo] en el marco del programa [nombre del programa de becas], considerando que [razones principales.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
                     <div class="flex justify-end gap-2">
                         <p-button label="Cancelar" severity="secondary" (click)="DicatminarMostrar = false" />
                         <p-button label="Guardar" (click)="DicatminarMostrar = false" />
                     </div>
                 </div>
 
-
-                <!-- <div class="card">
-                    <p-table  [resizableColumns]="true" styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '50rem'}">
-                        <ng-template #header>
-                            <tr>
-                                <th pResizableColumn class="left-align">Numero de dictamen</th>
-                                <th pResizableColumn class="left-align">Beca de Investigacion/
-                                Fondos Concursables
-                                </th>
-                                <th pResizableColumn class="left-align">Nombre de Beneficiario</th>
-                                <th pResizableColumn class="left-align">Facultad o Campus Universitario</th>
-                                <th pResizableColumn class="left-align">Ano de Convocatoria y codigo de proyecto DICIHT</th>
-                                <th pResizableColumn class="left-align">Titulo del Proyecto</th>
-                                <th pResizableColumn class="left-align">Enfoque de la investigacion</th>
-                                <th pResizableColumn class="left-align">Periodo de Adjudicacion el proyecto</th>
-                                <th pResizableColumn class="left-align">Fecha Finalizacion Metodologica de la beca</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-product>
-                            <tr>
-                                <td>{{product.code}}</td>
-                                <td>{{product.name}}</td>
-                                <td>{{product.category}}</td>
-                                <td>{{product.quantity}}</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div> -->
-
+            </div>
             </p-dialog>
-
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
 
 <!-- beca grupos -->
     <div *ngIf="selectTiposBeca === '2'">
@@ -403,7 +469,7 @@
         <!-- Tabla PrimeNG -->
         <p-table
             #dt1
-            [value]="tasks"
+            [value]="tasks1"
             [rows]="5"
             [paginator]="true"
             responsiveLayout="scroll"
@@ -493,104 +559,259 @@
             }
         </style>
 
-        <!-- Modal que muestra una imagen del formulario -->
         <p-dialog
-            header="Información general de la beca"
-            [modal]="true"
-            [(visible)]="imagen"
-            [style]="{ width: '80rem' }">
+                header="INFORMACION PERSONAL (BECARIO)"
+                [modal]="true"
+                [maximizable]="true"
+                [(visible)]="displayModal"
+                [style]="{ width: '50rem' }">
 
-            <div class="flex flex-col items-center">
-                <img src="assets/imagenes/monto default por beca.png" alt="Imagen de las becas" class="rounded-lg shadow-lg">
+            <div class="card flex justify-center">
+                <p-stepper [value]="1" class="basis-[200m]">
+                    <p-step-panels >
+                        <p-step-panel [value]="1"class="basis-[200m]">
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <div class="flex flex-col h-100">
+                                    <!-- <div
+                                        class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                                    > -->
+                                    <!-- <div class="card flex flex-col gap-4"></div> -->
+                                        <div class="card flex justify-center">
+                                            <p-stepper [value]="1" class="basis-[200rem]" [linear]="true">
+                                                <p-step-list>
+                                                    <p-step [value]="1">Seguimiento Beca</p-step>
+                                                    <!-- <p-step [value]="2">Seguimiento Segundo Desembolso</p-step> -->
+                                                    <!-- <p-step [value]="3">Header II</p-step> -->
+                                                </p-step-list>
+                                                <p-step-panels>
+                                                    <p-step-panel [value]="1">
+                                                        <ng-template #content let-activateCallback="activateCallback">
+                                                            <div class="flex flex-col h-400">
+                                                                <div class="card flex flex-col gap-4">
+                                                                    <div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Nombre Completo</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Número de identida</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Beca</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Monto Total de la Beca</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="font-semibold text-xl"><strong>ENTREGABLES</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Tipo Avance</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="TipoAvance" class="flex-auto" autocomplete="off" [value]="selectedTask.TipoAvance"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Estado Avance</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="events" class="flex-auto" autocomplete="off" [value]="selectedTask.events"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis- gap-2">
+                                                                            <strong>Fecha Entrega</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Informe de Avance </strong> {{ selectedTask.formpostulacion }}
+                                                                            <p>Conteniendo el informe de avances del proyecto de investigación global en el cual se involucra.</p>
+                                                                            <p-fileupload name="archivo"
+                                                                                        url="https://www.primefaces.org/cdn/api/upload.php"
+                                                                                        (onUpload)="onUpload($event)"
+                                                                                        [multiple]="false"
+                                                                                        accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx"
+                                                                                        maxFileSize="100000000000000"
+                                                                                        mode="advanced"
+                                                                                        [showUploadButton]="false"
+                                                                                        [showCancelButton]="false">
+                                                                            </p-fileupload>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis- gap-2">
+                                                                            <strong>Observaciones</strong>
+                                                                            <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                                                                        </div>
+                                                                        <!-- <div class="flex pt-6 justify-end">
+                                                                            <p-button label="Dictaminar" icon="pi pi-arrow-right" iconPos="right" (click)="ModalDictaminar()" />
+                                                                        </div> -->
+                                                                    </div>
+                                                                    <div class="flex pt-6 justify-end">
+                                                                        <p-button label="Dictaminar" icon="pi pi-file-o" iconPos="right" (click)="ModalDictaminar()" />
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <div class="flex pt-6 justify-end">
+                                                                    <p-button label="Regresar" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                                                                </div> -->
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-step-panel>
+
+                                                </p-step-panels>
+                                            </p-stepper>
+                                        </div>
+                                </div>
+                                <!-- </div> -->
+                            </ng-template>
+                        </p-step-panel>
+
+                    </p-step-panels>
+                </p-stepper>
             </div>
-
         </p-dialog>
 
+        <!-- modal para dicaminar -->
+        <div class="card flex justify-center">
+            <!-- <p-button (click)="ModalDictaminar()" label="Dictaminar" /> -->
+            <p-dialog [(visible)]="DicatminarMostrar" [modal]="true" [style]="{ width: '50rem', padding: '4rem' }"
+            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
 
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-            header="Información sobre las becas"
-            [modal]="true"
-            [(visible)]="displayNewModal"
-            [style]="{ width: '50rem' }">
-            <div class="card flex flex-col gap-4">
-                <div class="flex flex-col gap-2">
-                    <strong>Número de Solicitud</strong>
-                    <p-dropdown
-                    [options]="soli"
-                    placeholder="Seleccione una Solicitud"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <strong>Beca</strong>
-                    <p-dropdown
-                    [options]="beca"
-                    placeholder="Seleccione una Beca"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <strong>Postulante</strong>
-                    <p-dropdown
-                    [options]="postulante"
-                    placeholder="Seleccione una Beca"
-                    [editable]="true"
-                    optionLabel="name">
-                    </p-dropdown>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                        <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-end gap-2">
-                <p-button label="Enviar" (click)="displayNewModal = false" />
-                <p-button label="Cerrar" (click)="displayNewModal = false" />
-            </div>
-        </p-dialog>
+                <!-- Header personalizado -->
+                <!-- <ng-template pTemplate="header"> -->
+                    <span class="p-text-secondary text-center block mb-10">
+                        <img src="assets/DICIHT_Izquierdo.png" alt="Logo DICIHT"
+                            style="width: 400px; height: auto; margin: 0 auto 8px; display: block;" />
 
-        <!-- Modal que muestra la informacion de las becas -->
-        <p-dialog
-            header="Información sobre los tipos de becas"
-            [modal]="true"
-            [(visible)]="displayModal"
-            [style]="{ width: '50rem' }">
-            <div class="card flex flex-col gap-4">
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Beca</strong> {{ selectedTask.becas }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Postulante</strong> {{ selectedTask.postulantes }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-6">
-                    <div class="flex flex-col grow basis-0 gap-2">
-                        <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                        <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                    </div>
-                </div>
-            </div>
+                            <div class="block font-semibold" style="font-size: 1.5rem;">
+                                <strong>UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>VICERRECTORÍA ACADÉMICA</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>DIRECCIÓN DE INVESTIGACIÓN CIENTÍFICA, HUMANÍSTICA Y TECNOLÓGICA</strong>
+                            </div>
+                    </span>
+                <!-- </ng-template> -->
+                     <!-- imagen del sol -->
+                <div class="relative" style="position: relative;">
+                <img src="assets/Sol_Izquierdo.png" alt="Sol Izquierdo"
+                style="width: 80%; height: 100%; object-fit: cover; position: absolute; top: 0; right: 0; z-index: -1;" />
 
-            <div class="flex justify-end gap-2">
-                <p-button label="Regresar" (click)="displayModal = false" />
+                <span class="p-text-secondary text-center block mb-8"><strong>DICTAMEN INFORME TECNICO-METODOLOGICO A BECAS DE INVESTIGACION Y FONDOS CONCURSABLES</strong></span>
+                <!-- <strong>I. DATOS GENERALES:</strong> -->
+                <span class="p-text-secondary block mb-8"><strong>I. DATOS GENERALES:</strong></span>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Numero de dictamen</p> {{ selectedTask.fechaEntrega }}
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Beca de Investigacion/Fondos Concursables</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Nombre de Beneficiario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Facultad o Campus Universitario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Año de Convocatoria y codigo de proyecto DICIHT</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Titulo del Proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Titulo del Proyecto</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Enfoque de la investigacion</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Enfoque de la investigacion</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Periodo de Adjudicacion el proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Periodo de Adjudicacion el proyecto</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Fecha Finalizacion Metodologica de la beca</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Fecha Finalizacion Metodologica de la beca</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                </div>
+                <p-divider />
+                <P><strong>II. CUMPLIMIENTO DE ACTIVIDADES PLANIFICADAS:</strong></P>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>1.Cumplimiento de objetivos: [Descripción breve sobre si se lograron los objetivos propuestos.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Numero de dictamen</label> -->
+                        <!-- <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>2.Metodología: [Evaluación de la claridad, pertinencia y rigor metodológico empleado en la investigación.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>3.Resultados y Contribuciones: [Resumen de los hallazgos relevantes y su impacto, conforme al informe entregado]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>4.Calidad del Informe: [Valoración de la redacción, claridad y cumplimiento con los lineamientos establecidos.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>5.Pertinencia del Impacto: [Resumen del impacto del proyecto, conforme a los medios de verificación
+                            y las líneas de acción para el desarrollo de la investigación]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>III. DOCUMENTOS ENTREGADOS:</strong></P>
+                    <P>[Listado de los documentos presentados, conforme el informe entregado]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>IV. RECOMENDACIONES:</strong></P>
+                    <P>[En esta sección, se pueden incluir observaciones, áreas de mejora por el trabajo realizado.
+                         Si es necesario, puede recomendarse ajustes o un plazo para realizar correcciones.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>V. CONCLUSIONES:</strong></P>
+                    <P>En virtud de lo anterior, este analista dictamina [favorable o no favorable] el [informe final] presentado por el/la becario/a
+                    [nombre completo] en el marco del programa [nombre del programa de becas], considerando que [razones principales.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    <div class="flex justify-end gap-2">
+                        <p-button label="Cancelar" severity="secondary" (click)="DicatminarMostrar = false" />
+                        <p-button label="Guardar" (click)="DicatminarMostrar = false" />
+                    </div>
+                </div>
+
             </div>
-        </p-dialog>
+            </p-dialog>
+        </div>
     </div>
 
     <!-- beca grado -->
@@ -599,7 +820,7 @@
         <!-- Tabla PrimeNG -->
         <p-table
         #dt1
-        [value]="tasks"
+        [value]="tasks2"
         [rows]="5"
         [paginator]="true"
         responsiveLayout="scroll"
@@ -689,104 +910,259 @@
         }
         </style>
 
-        <!-- Modal que muestra una imagen del formulario -->
         <p-dialog
-        header="Información general de la beca"
+        header="INFORMACION PERSONAL (BECARIO)"
         [modal]="true"
-        [(visible)]="imagen"
-        [style]="{ width: '80rem' }">
-
-        <div class="flex flex-col items-center">
-            <img src="assets/imagenes/monto default por beca.png" alt="Imagen de las becas" class="rounded-lg shadow-lg">
-        </div>
-
-        </p-dialog>
-
-
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-        header="Información sobre las becas"
-        [modal]="true"
-        [(visible)]="displayNewModal"
-        [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-                <strong>Número de Solicitud</strong>
-                <p-dropdown
-                [options]="soli"
-                placeholder="Seleccione una Solicitud"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Beca</strong>
-                <p-dropdown
-                [options]="beca"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Postulante</strong>
-                <p-dropdown
-                [options]="postulante"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-end gap-2">
-            <p-button label="Enviar" (click)="displayNewModal = false" />
-            <p-button label="Cerrar" (click)="displayNewModal = false" />
-        </div>
-        </p-dialog>
-
-        <!-- Modal que muestra la informacion de las becas -->
-        <p-dialog
-        header="Información sobre los tipos de becas"
-        [modal]="true"
+        [maximizable]="true"
         [(visible)]="displayModal"
         [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Beca</strong> {{ selectedTask.becas }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Postulante</strong> {{ selectedTask.postulantes }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                </div>
-            </div>
-        </div>
 
-        <div class="flex justify-end gap-2">
-            <p-button label="Regresar" (click)="displayModal = false" />
+        <div class="card flex justify-center">
+        <p-stepper [value]="1" class="basis-[200m]">
+            <p-step-panels >
+                <p-step-panel [value]="1"class="basis-[200m]">
+                    <ng-template #content let-activateCallback="activateCallback">
+                        <div class="flex flex-col h-100">
+                            <!-- <div
+                                class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                            > -->
+                            <!-- <div class="card flex flex-col gap-4"></div> -->
+                                <div class="card flex justify-center">
+                                    <p-stepper [value]="1" class="basis-[200rem]" [linear]="true">
+                                        <p-step-list>
+                                            <p-step [value]="1">Seguimiento Beca</p-step>
+                                            <!-- <p-step [value]="2">Seguimiento Segundo Desembolso</p-step> -->
+                                            <!-- <p-step [value]="3">Header II</p-step> -->
+                                        </p-step-list>
+                                        <p-step-panels>
+                                            <p-step-panel [value]="1">
+                                                <ng-template #content let-activateCallback="activateCallback">
+                                                    <div class="flex flex-col h-400">
+                                                        <div class="card flex flex-col gap-4">
+                                                            <div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div>
+                                                            <div class="flex flex-wrap gap-6">
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Nombre Completo</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Número de identida</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                                            <div class="flex flex-wrap gap-6">
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Beca</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Monto Total de la Beca</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="font-semibold text-xl"><strong>ENTREGABLES</strong></div>
+                                                            <div class="flex flex-wrap gap-6">
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Tipo Avance</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="TipoAvance" class="flex-auto" autocomplete="off" [value]="selectedTask.TipoAvance"/>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Estado Avance</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="events" class="flex-auto" autocomplete="off" [value]="selectedTask.events"/>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis- gap-2">
+                                                                    <strong>Fecha Entrega</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="flex flex-wrap gap-6">
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Informe de Avance </strong> {{ selectedTask.formpostulacion }}
+                                                                    <p>Conteniendo el informe de avances del proyecto de investigación global en el cual se involucra.</p>
+                                                                    <p-fileupload name="archivo"
+                                                                                url="https://www.primefaces.org/cdn/api/upload.php"
+                                                                                (onUpload)="onUpload($event)"
+                                                                                [multiple]="false"
+                                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx"
+                                                                                maxFileSize="100000000000000"
+                                                                                mode="advanced"
+                                                                                [showUploadButton]="false"
+                                                                                [showCancelButton]="false">
+                                                                    </p-fileupload>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis- gap-2">
+                                                                    <strong>Observaciones</strong>
+                                                                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                                                                </div>
+                                                                <!-- <div class="flex pt-6 justify-end">
+                                                                    <p-button label="Dictaminar" icon="pi pi-arrow-right" iconPos="right" (click)="ModalDictaminar()" />
+                                                                </div> -->
+                                                            </div>
+                                                            <div class="flex pt-6 justify-end">
+                                                                <p-button label="Dictaminar" icon="pi pi-file-o" iconPos="right" (click)="ModalDictaminar()" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="flex pt-6 justify-end">
+                                                            <p-button label="Regresar" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                                                        </div> -->
+                                                    </div>
+                                                </ng-template>
+                                            </p-step-panel>
+
+                                        </p-step-panels>
+                                    </p-stepper>
+                                </div>
+                        </div>
+                        <!-- </div> -->
+                    </ng-template>
+                </p-step-panel>
+
+            </p-step-panels>
+        </p-stepper>
         </div>
         </p-dialog>
+
+        <!-- modal para dicaminar -->
+        <div class="card flex justify-center">
+            <!-- <p-button (click)="ModalDictaminar()" label="Dictaminar" /> -->
+            <p-dialog [(visible)]="DicatminarMostrar" [modal]="true" [style]="{ width: '50rem', padding: '4rem' }"
+            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
+
+                <!-- Header personalizado -->
+                <!-- <ng-template pTemplate="header"> -->
+                    <span class="p-text-secondary text-center block mb-10">
+                        <img src="assets/DICIHT_Izquierdo.png" alt="Logo DICIHT"
+                            style="width: 400px; height: auto; margin: 0 auto 8px; display: block;" />
+
+                            <div class="block font-semibold" style="font-size: 1.5rem;">
+                                <strong>UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>VICERRECTORÍA ACADÉMICA</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>DIRECCIÓN DE INVESTIGACIÓN CIENTÍFICA, HUMANÍSTICA Y TECNOLÓGICA</strong>
+                            </div>
+                    </span>
+                <!-- </ng-template> -->
+                     <!-- imagen del sol -->
+                <div class="relative" style="position: relative;">
+                <img src="assets/Sol_Izquierdo.png" alt="Sol Izquierdo"
+                style="width: 80%; height: 100%; object-fit: cover; position: absolute; top: 0; right: 0; z-index: -1;" />
+
+                <span class="p-text-secondary text-center block mb-8"><strong>DICTAMEN INFORME TECNICO-METODOLOGICO A BECAS DE INVESTIGACION Y FONDOS CONCURSABLES</strong></span>
+                <!-- <strong>I. DATOS GENERALES:</strong> -->
+                <span class="p-text-secondary block mb-8"><strong>I. DATOS GENERALES:</strong></span>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Numero de dictamen</p> {{ selectedTask.fechaEntrega }}
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Beca de Investigacion/Fondos Concursables</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Nombre de Beneficiario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Facultad o Campus Universitario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Año de Convocatoria y codigo de proyecto DICIHT</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Titulo del Proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Titulo del Proyecto</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Enfoque de la investigacion</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Enfoque de la investigacion</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Periodo de Adjudicacion el proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Periodo de Adjudicacion el proyecto</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Fecha Finalizacion Metodologica de la beca</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Fecha Finalizacion Metodologica de la beca</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                </div>
+                <p-divider />
+                <P><strong>II. CUMPLIMIENTO DE ACTIVIDADES PLANIFICADAS:</strong></P>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>1.Cumplimiento de objetivos: [Descripción breve sobre si se lograron los objetivos propuestos.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Numero de dictamen</label> -->
+                        <!-- <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>2.Metodología: [Evaluación de la claridad, pertinencia y rigor metodológico empleado en la investigación.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>3.Resultados y Contribuciones: [Resumen de los hallazgos relevantes y su impacto, conforme al informe entregado]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>4.Calidad del Informe: [Valoración de la redacción, claridad y cumplimiento con los lineamientos establecidos.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>5.Pertinencia del Impacto: [Resumen del impacto del proyecto, conforme a los medios de verificación
+                            y las líneas de acción para el desarrollo de la investigación]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>III. DOCUMENTOS ENTREGADOS:</strong></P>
+                    <P>[Listado de los documentos presentados, conforme el informe entregado]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>IV. RECOMENDACIONES:</strong></P>
+                    <P>[En esta sección, se pueden incluir observaciones, áreas de mejora por el trabajo realizado.
+                         Si es necesario, puede recomendarse ajustes o un plazo para realizar correcciones.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>V. CONCLUSIONES:</strong></P>
+                    <P>En virtud de lo anterior, este analista dictamina [favorable o no favorable] el [informe final] presentado por el/la becario/a
+                    [nombre completo] en el marco del programa [nombre del programa de becas], considerando que [razones principales.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    <div class="flex justify-end gap-2">
+                        <p-button label="Cancelar" severity="secondary" (click)="DicatminarMostrar = false" />
+                        <p-button label="Guardar" (click)="DicatminarMostrar = false" />
+                    </div>
+                </div>
+
+            </div>
+            </p-dialog>
+        </div>
     </div>
 
     <!-- Beca Básica de Grado como Espacios de Aprendizaje del Método Científico (PROFESOR UNAH) -->
@@ -795,7 +1171,7 @@
         <!-- Tabla PrimeNG -->
         <p-table
         #dt1
-        [value]="tasks"
+        [value]="tasks3"
         [rows]="5"
         [paginator]="true"
         responsiveLayout="scroll"
@@ -868,7 +1244,7 @@
                         pButton
                         label="Detalles"
                         icon="pi pi-eye"
-                        (click)="openModal(task)">
+                        (click)="openModal3(task)">
                     </button>
                 </td>
             </tr>
@@ -885,106 +1261,261 @@
         }
         </style>
 
-        <!-- Modal que muestra una imagen del formulario -->
+        <!-- Modal que muestra la informacion de la beca que se selecciona en detalle-->
         <p-dialog
-        header="Información general de la beca"
-        [modal]="true"
-        [(visible)]="imagen"
-        [style]="{ width: '80rem' }">
+                header="INFORMACION PERSONAL (BECARIO)"
+                [modal]="true"
+                [maximizable]="true"
+                [(visible)]="displayModal"
+                [style]="{ width: '50rem' }">
 
-        <div class="flex flex-col items-center">
-            <img src="assets/imagenes/monto default por beca.png" alt="Imagen de las becas" class="rounded-lg shadow-lg">
-        </div>
+            <div class="card flex justify-center">
+                <p-stepper [value]="1" class="basis-[200m]">
+                    <p-step-panels >
+                        <p-step-panel [value]="1"class="basis-[200m]">
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <div class="flex flex-col h-100">
+                                    <!-- <div
+                                        class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                                    > -->
+                                    <!-- <div class="card flex flex-col gap-4"></div> -->
+                                        <div class="card flex justify-center">
+                                            <p-stepper [value]="1" class="basis-[200rem]" [linear]="true">
+                                                <p-step-list>
+                                                    <p-step [value]="1">Seguimiento Beca</p-step>
+                                                    <!-- <p-step [value]="2">Seguimiento Segundo Desembolso</p-step> -->
+                                                    <!-- <p-step [value]="3">Header II</p-step> -->
+                                                </p-step-list>
+                                                <p-step-panels>
+                                                    <p-step-panel [value]="1">
+                                                        <ng-template #content let-activateCallback="activateCallback">
+                                                            <div class="flex flex-col h-400">
+                                                                <div class="card flex flex-col gap-4">
+                                                                    <div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Nombre Completo</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Número de identida</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Beca</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Monto Total de la Beca</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="font-semibold text-xl"><strong>ENTREGABLES</strong></div>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Tipo Avance</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="TipoAvance" class="flex-auto" autocomplete="off" [value]="selectedTask.TipoAvance"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Estado Avance</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="events" class="flex-auto" autocomplete="off" [value]="selectedTask.events"/>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis- gap-2">
+                                                                            <strong>Fecha Entrega</strong>
+                                                                            <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="flex flex-wrap gap-6">
+                                                                        <div class="flex flex-col grow basis-0 gap-2">
+                                                                            <strong>Informe de Avance </strong> {{ selectedTask.formpostulacion }}
+                                                                            <p>Conteniendo el informe de avances del proyecto de investigación global en el cual se involucra.</p>
+                                                                            <p-fileupload name="archivo"
+                                                                                        url="https://www.primefaces.org/cdn/api/upload.php"
+                                                                                        (onUpload)="onUpload($event)"
+                                                                                        [multiple]="false"
+                                                                                        accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx"
+                                                                                        maxFileSize="100000000000000"
+                                                                                        mode="advanced"
+                                                                                        [showUploadButton]="false"
+                                                                                        [showCancelButton]="false">
+                                                                            </p-fileupload>
+                                                                        </div>
+                                                                        <div class="flex flex-col grow basis- gap-2">
+                                                                            <strong>Observaciones</strong>
+                                                                            <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                                                                        </div>
+                                                                        <!-- <div class="flex pt-6 justify-end">
+                                                                            <p-button label="Dictaminar" icon="pi pi-arrow-right" iconPos="right" (click)="ModalDictaminar()" />
+                                                                        </div> -->
+                                                                    </div>
+                                                                    <div class="flex pt-6 justify-end">
+                                                                        <p-button label="Dictaminar" icon="pi pi-file-o" iconPos="right" (click)="ModalDictaminar()" />
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <div class="flex pt-6 justify-end">
+                                                                    <p-button label="Regresar" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                                                                </div> -->
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-step-panel>
 
+                                                </p-step-panels>
+                                            </p-stepper>
+                                        </div>
+                                </div>
+                                <!-- </div> -->
+                            </ng-template>
+                        </p-step-panel>
+
+                    </p-step-panels>
+                </p-stepper>
+            </div>
         </p-dialog>
 
+        <!-- modal para dicaminar -->
+        <div class="card flex justify-center">
+            <!-- <p-button (click)="ModalDictaminar()" label="Dictaminar" /> -->
+            <p-dialog [(visible)]="DicatminarMostrar" [modal]="true" [style]="{ width: '50rem', padding: '4rem' }"
+            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
 
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-        header="Información sobre las becas"
-        [modal]="true"
-        [(visible)]="displayNewModal"
-        [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-                <strong>Número de Solicitud</strong>
-                <p-dropdown
-                [options]="soli"
-                placeholder="Seleccione una Solicitud"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Beca</strong>
-                <p-dropdown
-                [options]="beca"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Postulante</strong>
-                <p-dropdown
-                [options]="postulante"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-end gap-2">
-            <p-button label="Enviar" (click)="displayNewModal = false" />
-            <p-button label="Cerrar" (click)="displayNewModal = false" />
-        </div>
-        </p-dialog>
+                <!-- Header personalizado -->
+                <!-- <ng-template pTemplate="header"> -->
+                    <span class="p-text-secondary text-center block mb-10">
+                        <img src="assets/DICIHT_Izquierdo.png" alt="Logo DICIHT"
+                            style="width: 400px; height: auto; margin: 0 auto 8px; display: block;" />
 
-        <!-- Modal que muestra la informacion de las becas -->
-        <p-dialog
-        header="Información sobre los tipos de becas"
-        [modal]="true"
-        [(visible)]="displayModal"
-        [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Beca</strong> {{ selectedTask.becas }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Postulante</strong> {{ selectedTask.postulantes }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                </div>
-            </div>
-        </div>
+                            <div class="block font-semibold" style="font-size: 1.5rem;">
+                                <strong>UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>VICERRECTORÍA ACADÉMICA</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>DIRECCIÓN DE INVESTIGACIÓN CIENTÍFICA, HUMANÍSTICA Y TECNOLÓGICA</strong>
+                            </div>
+                    </span>
+                <!-- </ng-template> -->
+                     <!-- imagen del sol -->
+                <div class="relative" style="position: relative;">
+                <img src="assets/Sol_Izquierdo.png" alt="Sol Izquierdo"
+                style="width: 80%; height: 100%; object-fit: cover; position: absolute; top: 0; right: 0; z-index: -1;" />
 
-        <div class="flex justify-end gap-2">
-            <p-button label="Regresar" (click)="displayModal = false" />
+                <span class="p-text-secondary text-center block mb-8"><strong>DICTAMEN INFORME TECNICO-METODOLOGICO A BECAS DE INVESTIGACION Y FONDOS CONCURSABLES</strong></span>
+                <!-- <strong>I. DATOS GENERALES:</strong> -->
+                <span class="p-text-secondary block mb-8"><strong>I. DATOS GENERALES:</strong></span>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Numero de dictamen</p> {{ selectedTask.fechaEntrega }}
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Beca de Investigacion/Fondos Concursables</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Nombre de Beneficiario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Facultad o Campus Universitario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Año de Convocatoria y codigo de proyecto DICIHT</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Titulo del Proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Titulo del Proyecto</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Enfoque de la investigacion</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Enfoque de la investigacion</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Periodo de Adjudicacion el proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Periodo de Adjudicacion el proyecto</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Fecha Finalizacion Metodologica de la beca</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Fecha Finalizacion Metodologica de la beca</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                </div>
+                <p-divider />
+                <P><strong>II. CUMPLIMIENTO DE ACTIVIDADES PLANIFICADAS:</strong></P>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>1.Cumplimiento de objetivos: [Descripción breve sobre si se lograron los objetivos propuestos.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Numero de dictamen</label> -->
+                        <!-- <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>2.Metodología: [Evaluación de la claridad, pertinencia y rigor metodológico empleado en la investigación.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>3.Resultados y Contribuciones: [Resumen de los hallazgos relevantes y su impacto, conforme al informe entregado]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>4.Calidad del Informe: [Valoración de la redacción, claridad y cumplimiento con los lineamientos establecidos.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>5.Pertinencia del Impacto: [Resumen del impacto del proyecto, conforme a los medios de verificación
+                            y las líneas de acción para el desarrollo de la investigación]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>III. DOCUMENTOS ENTREGADOS:</strong></P>
+                    <P>[Listado de los documentos presentados, conforme el informe entregado]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>IV. RECOMENDACIONES:</strong></P>
+                    <P>[En esta sección, se pueden incluir observaciones, áreas de mejora por el trabajo realizado.
+                         Si es necesario, puede recomendarse ajustes o un plazo para realizar correcciones.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>V. CONCLUSIONES:</strong></P>
+                    <P>En virtud de lo anterior, este analista dictamina [favorable o no favorable] el [informe final] presentado por el/la becario/a
+                    [nombre completo] en el marco del programa [nombre del programa de becas], considerando que [razones principales.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    <div class="flex justify-end gap-2">
+                        <p-button label="Cancelar" severity="secondary" (click)="DicatminarMostrar = false" />
+                        <p-button label="Guardar" (click)="DicatminarMostrar = false" />
+                    </div>
+                </div>
+
+            </div>
+            </p-dialog>
         </div>
-        </p-dialog>
     </div>
-
 
     <!-- Beca Básica de Grado como Espacios de Aprendizaje del Método Científico (ESTUDIANTE) -->
     <div *ngIf="selectTiposBeca  === '5'">
@@ -992,7 +1523,7 @@
         <!-- Tabla PrimeNG -->
         <p-table
         #dt1
-        [value]="tasks"
+        [value]="tasks4"
         [rows]="5"
         [paginator]="true"
         responsiveLayout="scroll"
@@ -1082,104 +1613,259 @@
         }
         </style>
 
-        <!-- Modal que muestra una imagen del formulario -->
         <p-dialog
-        header="Información general de la beca"
+        header="INFORMACION PERSONAL (BECARIO)"
         [modal]="true"
-        [(visible)]="imagen"
-        [style]="{ width: '80rem' }">
-
-        <div class="flex flex-col items-center">
-            <img src="assets/imagenes/monto default por beca.png" alt="Imagen de las becas" class="rounded-lg shadow-lg">
-        </div>
-
-        </p-dialog>
-
-
-        <!-- Modal que agrega la informacion de las becas -->
-        <p-dialog
-        header="Información sobre las becas"
-        [modal]="true"
-        [(visible)]="displayNewModal"
-        [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-                <strong>Número de Solicitud</strong>
-                <p-dropdown
-                [options]="soli"
-                placeholder="Seleccione una Solicitud"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Beca</strong>
-                <p-dropdown
-                [options]="beca"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-col gap-2">
-                <strong>Postulante</strong>
-                <p-dropdown
-                [options]="postulante"
-                placeholder="Seleccione una Beca"
-                [editable]="true"
-                optionLabel="name">
-                </p-dropdown>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-end gap-2">
-            <p-button label="Enviar" (click)="displayNewModal = false" />
-            <p-button label="Cerrar" (click)="displayNewModal = false" />
-        </div>
-        </p-dialog>
-
-        <!-- Modal que muestra la informacion de las becas -->
-        <p-dialog
-        header="Información sobre los tipos de becas"
-        [modal]="true"
+        [maximizable]="true"
         [(visible)]="displayModal"
         [style]="{ width: '50rem' }">
-        <div class="card flex flex-col gap-4">
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Número de Solicitud</strong> {{ selectedTask.solis }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="id_solicitud" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Beca</strong> {{ selectedTask.becas }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Postulante</strong> {{ selectedTask.postulantes }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-6">
-                <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
-                </div>
-            </div>
-        </div>
 
-        <div class="flex justify-end gap-2">
-            <p-button label="Regresar" (click)="displayModal = false" />
+        <div class="card flex justify-center">
+        <p-stepper [value]="1" class="basis-[200m]">
+            <p-step-panels >
+                <p-step-panel [value]="1"class="basis-[200m]">
+                    <ng-template #content let-activateCallback="activateCallback">
+                        <div class="flex flex-col h-100">
+                            <!-- <div
+                                class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                            > -->
+                            <!-- <div class="card flex flex-col gap-4"></div> -->
+                                <div class="card flex justify-center">
+                                    <p-stepper [value]="1" class="basis-[200rem]" [linear]="true">
+                                        <p-step-list>
+                                            <p-step [value]="1">Seguimiento Beca</p-step>
+                                            <!-- <p-step [value]="2">Seguimiento Segundo Desembolso</p-step> -->
+                                            <!-- <p-step [value]="3">Header II</p-step> -->
+                                        </p-step-list>
+                                        <p-step-panels>
+                                            <p-step-panel [value]="1">
+                                                <ng-template #content let-activateCallback="activateCallback">
+                                                    <div class="flex flex-col h-400">
+                                                        <div class="card flex flex-col gap-4">
+                                                            <div class="font-semibold text-xl"><strong>INFORMACION PERSONAL (BECARIO)</strong></div>
+                                                            <div class="flex flex-wrap gap-6">
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Nombre Completo</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="postulante" class="flex-auto" autocomplete="off" [value]="selectedTask.postulante"/>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Número de identida</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="soli" class="flex-auto" autocomplete="off" [value]="selectedTask.soli"/>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="font-semibold text-xl"><strong>INFORMACION DE LA BECA</strong></div>
+                                                            <div class="flex flex-wrap gap-6">
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Beca</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Monto Total de la Beca</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="montobeca" class="flex-auto" autocomplete="off" [value]="selectedTask.montobeca"/>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="font-semibold text-xl"><strong>ENTREGABLES</strong></div>
+                                                            <div class="flex flex-wrap gap-6">
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Tipo Avance</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="TipoAvance" class="flex-auto" autocomplete="off" [value]="selectedTask.TipoAvance"/>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Estado Avance</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="events" class="flex-auto" autocomplete="off" [value]="selectedTask.events"/>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis- gap-2">
+                                                                    <strong>Fecha Entrega</strong>
+                                                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="FechaOficialDesembolso" class="flex-auto" autocomplete="off" [value]="selectedTask.FechaOficialDesembolso"/>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <div class="flex flex-wrap gap-6">
+                                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                                    <strong>Informe de Avance </strong> {{ selectedTask.formpostulacion }}
+                                                                    <p>Conteniendo el informe de avances del proyecto de investigación global en el cual se involucra.</p>
+                                                                    <p-fileupload name="archivo"
+                                                                                url="https://www.primefaces.org/cdn/api/upload.php"
+                                                                                (onUpload)="onUpload($event)"
+                                                                                [multiple]="false"
+                                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx"
+                                                                                maxFileSize="100000000000000"
+                                                                                mode="advanced"
+                                                                                [showUploadButton]="false"
+                                                                                [showCancelButton]="false">
+                                                                    </p-fileupload>
+                                                                </div>
+                                                                <div class="flex flex-col grow basis- gap-2">
+                                                                    <strong>Observaciones</strong>
+                                                                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                                                                </div>
+                                                                <!-- <div class="flex pt-6 justify-end">
+                                                                    <p-button label="Dictaminar" icon="pi pi-arrow-right" iconPos="right" (click)="ModalDictaminar()" />
+                                                                </div> -->
+                                                            </div>
+                                                            <div class="flex pt-6 justify-end">
+                                                                <p-button label="Dictaminar" icon="pi pi-file-o" iconPos="right" (click)="ModalDictaminar()" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="flex pt-6 justify-end">
+                                                            <p-button label="Regresar" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                                                        </div> -->
+                                                    </div>
+                                                </ng-template>
+                                            </p-step-panel>
+
+                                        </p-step-panels>
+                                    </p-stepper>
+                                </div>
+                        </div>
+                        <!-- </div> -->
+                    </ng-template>
+                </p-step-panel>
+
+            </p-step-panels>
+        </p-stepper>
         </div>
         </p-dialog>
+
+        <!-- modal para dicaminar -->
+        <div class="card flex justify-center">
+            <!-- <p-button (click)="ModalDictaminar()" label="Dictaminar" /> -->
+            <p-dialog [(visible)]="DicatminarMostrar" [modal]="true" [style]="{ width: '50rem', padding: '4rem' }"
+            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
+
+                <!-- Header personalizado -->
+                <!-- <ng-template pTemplate="header"> -->
+                    <span class="p-text-secondary text-center block mb-10">
+                        <img src="assets/DICIHT_Izquierdo.png" alt="Logo DICIHT"
+                            style="width: 400px; height: auto; margin: 0 auto 8px; display: block;" />
+
+                            <div class="block font-semibold" style="font-size: 1.5rem;">
+                                <strong>UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>VICERRECTORÍA ACADÉMICA</strong>
+                            </div>
+                            <div class="block" style="font-size: 1.3rem;">
+                                <strong>DIRECCIÓN DE INVESTIGACIÓN CIENTÍFICA, HUMANÍSTICA Y TECNOLÓGICA</strong>
+                            </div>
+                    </span>
+                <!-- </ng-template> -->
+                     <!-- imagen del sol -->
+                <div class="relative" style="position: relative;">
+                <img src="assets/Sol_Izquierdo.png" alt="Sol Izquierdo"
+                style="width: 80%; height: 100%; object-fit: cover; position: absolute; top: 0; right: 0; z-index: -1;" />
+
+                <span class="p-text-secondary text-center block mb-8"><strong>DICTAMEN INFORME TECNICO-METODOLOGICO A BECAS DE INVESTIGACION Y FONDOS CONCURSABLES</strong></span>
+                <!-- <strong>I. DATOS GENERALES:</strong> -->
+                <span class="p-text-secondary block mb-8"><strong>I. DATOS GENERALES:</strong></span>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Numero de dictamen</p> {{ selectedTask.fechaEntrega }}
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Beca de Investigacion/Fondos Concursables</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Nombre de Beneficiario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Facultad o Campus Universitario</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Año de Convocatoria y codigo de proyecto DICIHT</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Titulo del Proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Titulo del Proyecto</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Enfoque de la investigacion</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Enfoque de la investigacion</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Periodo de Adjudicacion el proyecto</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Periodo de Adjudicacion el proyecto</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>Fecha Finalizacion Metodologica de la beca</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Fecha Finalizacion Metodologica de la beca</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                </div>
+                <p-divider />
+                <P><strong>II. CUMPLIMIENTO DE ACTIVIDADES PLANIFICADAS:</strong></P>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>1.Cumplimiento de objetivos: [Descripción breve sobre si se lograron los objetivos propuestos.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Numero de dictamen</label> -->
+                        <!-- <input pInputText pKeyFilter="alpha" [disabled]="true" id="beca" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>2.Metodología: [Evaluación de la claridad, pertinencia y rigor metodológico empleado en la investigación.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Beca de Investigacion/Fondos Concursables</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>3.Resultados y Contribuciones: [Resumen de los hallazgos relevantes y su impacto, conforme al informe entregado]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Nombre de Beneficiario</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>4.Calidad del Informe: [Valoración de la redacción, claridad y cumplimiento con los lineamientos establecidos.]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="email" class="font-semibold w-24">Facultad o Campus Universitario</label> -->
+                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+                    </div>
+                    <div class="flex flex-col gap-0 mb-4">
+                        <p>5.Pertinencia del Impacto: [Resumen del impacto del proyecto, conforme a los medios de verificación
+                            y las líneas de acción para el desarrollo de la investigación]</p> {{ selectedTask.fechaEntrega }}
+                        <!-- <label for="username" class="font-semibold w-24">Ano de Convocatoria y codigo de proyecto DICIHT</label> -->
+                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    </div>
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>III. DOCUMENTOS ENTREGADOS:</strong></P>
+                    <P>[Listado de los documentos presentados, conforme el informe entregado]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>IV. RECOMENDACIONES:</strong></P>
+                    <P>[En esta sección, se pueden incluir observaciones, áreas de mejora por el trabajo realizado.
+                         Si es necesario, puede recomendarse ajustes o un plazo para realizar correcciones.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+
+                </div>
+                <p-divider />
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <P><strong>V. CONCLUSIONES:</strong></P>
+                    <P>En virtud de lo anterior, este analista dictamina [favorable o no favorable] el [informe final] presentado por el/la becario/a
+                    [nombre completo] en el marco del programa [nombre del programa de becas], considerando que [razones principales.]</P>
+                    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+                    <div class="flex justify-end gap-2">
+                        <p-button label="Cancelar" severity="secondary" (click)="DicatminarMostrar = false" />
+                        <p-button label="Guardar" (click)="DicatminarMostrar = false" />
+                    </div>
+                </div>
+
+            </div>
+            </p-dialog>
+        </div>
     </div>
 
 </div>

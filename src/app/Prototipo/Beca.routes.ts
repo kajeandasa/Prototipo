@@ -20,10 +20,6 @@ import { DesembolsoComponent } from './desembolso/desembolso.component';
 // import { Seguimiento } from './desembolso/seguimiento';
 import { Cierre } from './desembolso/cierre/cierre.component';
 
-
-
-
-
 import { FormularioComponent } from './Formularios/formulario/formulario.component'
 import { ItemFormularioComponent } from './Formularios/item-formulario/item-formulario.component'
 import { FormularioUsuarioComponent } from './Formularios/formulario-usuario/formulario-usuario.component';
@@ -33,6 +29,7 @@ import { ItemDocumentoComponent } from './Documento/item-documento/item-document
 import { CheckDocumentoComponent } from './Documento/check-documento/check-documento.component';
 
 import { interesesComponent } from './modulo desembolso/intereses/intereses.component';
+
 
 // import { Gestiondesembolso } from './desembolso/gestionDesembolsos';
 

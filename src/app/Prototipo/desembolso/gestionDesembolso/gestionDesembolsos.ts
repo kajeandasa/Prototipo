@@ -33,8 +33,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { CommonModule } from '@angular/common';
 
+import { DividerModule } from 'primeng/divider';
 // Importar el módulo de Timeline
 import { TimelineModule } from 'primeng/timeline';
+
+import { StepperModule } from 'primeng/stepper';
 @Component({
     standalone: true,
     selector: 'app-gestiondesembolso',
@@ -69,7 +72,10 @@ import { TimelineModule } from 'primeng/timeline';
             TimelineModule,
             SelectButtonModule,
             CommonModule,
-            FormsModule
+            FormsModule,
+
+            DividerModule,
+            StepperModule
     ],
 })
 
@@ -93,51 +99,407 @@ export class Gestiondesembolso {
         { status: 'Para Entrega', date: '2024-01-15' }
     ];
 
-  // Array con los datos de la tabla becas
-  tasks = [
-    {
-        id: 1,
-        soli: 'BCHI-1',
-        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
-        montobeca: '500,000.00',
-        postulante: 'María Fernanda López Hernández',
-        montoasignado: '400,000.00',
-    },
-    {
-        id: 2,
-        soli: 'BCHI-2',
-        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
-        montobeca: '500,000.00',
-        postulante: 'Juan Carlos Rodríguez Martínez',
-        montoasignado: '70,000.00',
-    },
-    {
-        id: 3,
-        soli: 'BCHI-3',
-        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
-        montobeca: '500,000.00',
-        postulante: 'Sofía Isabel Torres Ramírez',
-        montoasignado: '20,000.00',
-    },
-    {
-        id: 4,
-        soli: 'BCHI-4',
-        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
-        montobeca: '500,000.00',
-        postulante: 'Pedro Antonio García Fernández',
-        montoasignado: '30,000.00',
-    },
-    {
-        id: 5,
-        soli: 'BCHI-5',
-        beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
-        montobeca: '500,000.00',
-        postulante: 'Ana Lucía Martínez Vega',
-        montoasignado: '75,000.00',
-    },
+    // Array con los datos de la tabla becas sustantivas
+    tasks = [
+        {
+            id: 1,
+            soli: '0801-1995-09864',
+            beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+            montobeca: '500,000.00',
+            postulante: 'María Fernanda López Hernández',
+            montoasignado: '08011995098641',
+            telefono: '3456-5678',
+            correo: 'MaríaFernanda@gmail.com',
+            Desembolso:'300,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+            Desembolso2:'200,000',
+            SolicitudPago2:'4665',
+            OrdenPago2:'2224',
+            FechaOficialDesembolso2:'20/12/2014',
+            FechaRealDesembolso2:'20/08/2015',
+        },
+        {
+            id: 2,
+            soli: 'BCHI-2',
+            beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+            montobeca: '500,000.00',
+            postulante: 'Juan Carlos Rodríguez Martínez',
+            montoasignado: '08011995098641',
+            telefono: '3456-5678',
+            correo: 'CarlosRodríguez@gmail.com',
+            Desembolso:'300,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+            Desembolso2:'200,000',
+            SolicitudPago2:'4665',
+            OrdenPago2:'2224',
+            FechaOficialDesembolso2:'20/12/2014',
+            FechaRealDesembolso2:'20/08/2015',
+        },
+        {
+            id: 3,
+            soli: 'BCHI-3',
+            beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+            montobeca: '500,000.00',
+            postulante: 'Sofía Isabel Torres Ramírez',
+            montoasignado: '08011995098641',
+            telefono: '3456-5678',
+            correo: 'IsabelTorres@gmail.com',
+            Desembolso:'300,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+            Desembolso2:'200,000',
+            SolicitudPago2:'4665',
+            OrdenPago2:'2224',
+            FechaOficialDesembolso2:'20/12/2014',
+            FechaRealDesembolso2:'20/08/2015',
+        },
+        {
+            id: 4,
+            soli: 'BCHI-4',
+            beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+            montobeca: '500,000.00',
+            postulante: 'Pedro Antonio García Fernández',
+            montoasignado: '08011995098641',
+            telefono: '3456-5678',
+            correo: 'PedroGarcía@gmail.com',
+            Desembolso:'300,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+            Desembolso2:'200,000',
+            SolicitudPago2:'4665',
+            OrdenPago2:'2224',
+            FechaOficialDesembolso2:'20/12/2014',
+            FechaRealDesembolso2:'20/08/2015',
+        },
+        {
+            id: 5,
+            soli: 'BCHI-5',
+            beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
+            montobeca: '500,000.00',
+            postulante: 'Ana Lucía Martínez Vega',
+            montoasignado: '08011995098641',
+            telefono: '3456-5678',
+            correo: 'MartínezVega@gmail.com',
+            Desembolso:'300,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+            Desembolso2:'200,000',
+            SolicitudPago2:'4665',
+            OrdenPago2:'2224',
+            FechaOficialDesembolso2:'20/12/2014',
+            FechaRealDesembolso2:'20/08/2015',
+        },
 
-  ];
+    ];
+    // Array con los datos de la tabla becas grupos
+    tasks1 = [
+        {
+            id: 1,
+            soli: '0801-1995-09864',
+            beca: 'Beca Básica Institucional para el Fortalecimiento de Grupos de Investigación',
+            montobeca: '75,000.00',
+            postulante: 'Fernanda López Hernández',
+            montoasignado: '08011995098641',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'75,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+            Desembolso2:'',
 
+        },
+        {
+            id: 2,
+            soli: '0801-1965-56789',
+            beca: 'Beca Básica Institucional para el Fortalecimiento de Grupos de Investigación',
+            montobeca: '75,000.00',
+            postulante: 'Mario Rodríguez Martínez',
+            montoasignado: '08011965567895',
+        },
+        {
+            id: 3,
+            soli: '0801-1968-45322',
+            beca: 'Beca Básica Institucional para el Fortalecimiento de Grupos de Investigación',
+            montobeca: '75,000.00',
+            postulante: 'Cecilia Torres Ramírez',
+            montoasignado: '20,000.00',
+        },
+        {
+            id: 4,
+            soli: '0181-3465-09864',
+            beca: 'Beca Básica Institucional para el Fortalecimiento de Grupos de Investigación',
+            montobeca: '75,000.00',
+            postulante: 'Jorge Josue García Fernández',
+            montoasignado: '30,000.00',
+        },
+        {
+            id: 5,
+            soli: '0801-1998-08865',
+            beca: 'Beca Básica Institucional para el Fortalecimiento de Grupos de Investigación',
+            montobeca: '75,000.00',
+            postulante: 'Claudia Karolina Martínez Vega',
+            montoasignado: '75,000.00',
+        },
+
+    ];
+
+    // Array con los datos de la tabla becas grupos
+    tasks2 = [
+        {
+            id: 1,
+            soli: '0801-1995-09864',
+            beca: 'Beca básica de grado como espacios de aprendizaje del método científico',
+            montobeca: '25,000.00',
+            postulante: 'Fernanda López Hernández',
+            montoasignado: '08011995098641',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'25,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+
+        },
+        {
+            id: 2,
+            soli: '0801-1965-56789',
+            beca: 'Beca básica de grado como espacios de aprendizaje del método científico',
+            montobeca: '25,000.00',
+            postulante: 'Mario Rodríguez Martínez',
+            montoasignado: '08011965567895',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'25,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+        {
+            id: 3,
+            soli: '0801-1968-45322',
+            beca: 'Beca básica de grado como espacios de aprendizaje del método científico',
+            montobeca: '25,000.00',
+            postulante: 'Cecilia Torres Ramírez',
+            montoasignado: '20,000.00',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'25,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+        {
+            id: 4,
+            soli: '0181-3465-09864',
+            beca: 'Beca básica de grado como espacios de aprendizaje del método científico',
+            montobeca: '25,000.00',
+            postulante: 'Jorge Josue García Fernández',
+            montoasignado: '30,000.00',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'25,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+        {
+            id: 5,
+            soli: '0801-1998-08865',
+            beca: 'Beca básica de grado como espacios de aprendizaje del método científico',
+            montobeca: '25,000.00',
+            postulante: 'Claudia Karolina Martínez Vega',
+            montoasignado: '25,000.00',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'25,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+
+    ];
+
+    // Array con los datos de la tabla becas grupos
+    tasks3 = [
+        {
+            id: 1,
+            soli: '0801-1995-09864',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '40,000.00',
+            postulante: 'Fernanda López Hernández',
+            montoasignado: '08011995098641',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'40,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+
+        },
+        {
+            id: 2,
+            soli: '0801-1965-56789',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '40,000.00',
+            postulante: 'Mario Rodríguez Martínez',
+            montoasignado: '08011965567895',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'40,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+        {
+            id: 3,
+            soli: '0801-1968-45322',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '40,000.00',
+            postulante: 'Cecilia Torres Ramírez',
+            montoasignado: '20,000.00',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'40,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+        {
+            id: 4,
+            soli: '0181-3465-09864',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '40,000.00',
+            postulante: 'Jorge Josue García Fernández',
+            montoasignado: '30,000.00',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'40,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+        {
+            id: 5,
+            soli: '0801-1998-08865',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '40,000.00',
+            postulante: 'Claudia Karolina Martínez Vega',
+            montoasignado: '25,000.00',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'40,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+
+    ];
+
+
+    // Array con los datos de la tabla becas grupos
+    tasks4 = [
+        {
+            id: 1,
+            soli: '0801-1995-09864',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '80,000.00',
+            postulante: 'Fernanda López Hernández',
+            montoasignado: '08011995098641',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'80,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+
+        },
+        {
+            id: 2,
+            soli: '0801-1965-56789',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '80,000.00',
+            postulante: 'Mario Rodríguez Martínez',
+            montoasignado: '08011965567895',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'80,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+        {
+            id: 3,
+            soli: '0801-1968-45322',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '80,000.00',
+            postulante: 'Cecilia Torres Ramírez',
+            montoasignado: '20,000.00',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'80,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+        {
+            id: 4,
+            soli: '0181-3465-09864',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '80,000.00',
+            postulante: 'Jorge Josue García Fernández',
+            montoasignado: '30,000.00',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'80,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+        {
+            id: 5,
+            soli: '0801-1998-08865',
+            beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
+            montobeca: '80,000.00',
+            postulante: 'Claudia Karolina Martínez Vega',
+            montoasignado: '80,000.00',
+            telefono: '3456-5678',
+            correo: 'FernandaLópez@gmail.com',
+            Desembolso:'80,000',
+            SolicitudPago:'4645',
+            OrdenPago:'2324',
+            FechaOficialDesembolso:'20/03/2014',
+            FechaRealDesembolso:'20/03/2014',
+        },
+
+    ];
 // ----------------------------------------------------------------
 
   // Array para almacenar las solicitudes para el select
@@ -158,7 +520,7 @@ export class Gestiondesembolso {
   beca = [
         { name: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional/500,000.00', code: 'BS' },
         { name: 'Beca básica institucional para el fortalecimiento de grupos de investigación/75,000.00', code: 'BGI' },
-        { name: 'Beca básica de grado como espacios de aprendizaje del método científico25,000.00', code: 'BG' },
+        { name: 'Beca básica de grado como espacios de aprendizaje del método científico/25,000.00', code: 'BG' },
         { name: 'Beca básica de postgrado para la eficiencia terminal de tesis/40,000.00', code: 'BP' },
         { name: 'Beca básica de postgrado para la eficiencia terminal de tesis/80,000.00', code: 'BP' },
   ];
@@ -223,12 +585,16 @@ export class Gestiondesembolso {
   Date_final: Date | null = null; // Almacena la fecha seleccionada
   Date_hoy: Date = new Date();  // Fecha actual
   selectedTask: any = {};  // Almacena la tarea seleccionada
+  selectedTask1: any = {};  // Almacena la tarea seleccionada
+  selectedTask2: any = {};  // Almacena la tarea seleccionada
+  selectedTask3: any = {};  // Almacena la tarea seleccionada
+  selectedTask4: any = {};  // Almacena la tarea seleccionada
   isNewModal: boolean = false;  // Determina si es un modal nuevo o de edición
   imagen: boolean = false;  // Controla la visibilidad del modal
   imagenUrl: string = '';   // Guarda la URL de la imagen a mostrar
 
 
-  // Método para abrir los diferentes tipos de modal según el tipo
+  // Método para abrir los diferentes tipos de modal según el beca sustantiva
   openModal(task?: any) {
     if (task) {
       this.selectedTask = { ...task };  // Copia la tarea seleccionada
@@ -240,7 +606,52 @@ export class Gestiondesembolso {
       this.displayNewModal = true;  // Abre el modal de nueva solicitud
     }
   }
-
+    // Método para abrir los diferentes tipos de modal según beca grupos
+    openModal1(tasks1?: any) {
+        if (tasks1) {
+          this.selectedTask1 = { ...tasks1 };  // Copia la tarea seleccionada
+          this.isNewModal = false;  // Es un modal de detalles
+          this.displayModal = true;  // Abre el modal de detalles
+        } else {
+          this.selectedTask1 = {};  // Inicializa la tarea vacía para nueva solicitud
+          this.isNewModal = true;  // Es un modal de nueva solicitud
+          this.displayNewModal = true;  // Abre el modal de nueva solicitud
+        }
+    }
+    // Método para abrir los diferentes tipos de modal según beca grado
+    openModal2(tasks2?: any) {
+        if (tasks2) {
+            this.selectedTask1 = { ...tasks2};  // Copia la tarea seleccionada
+            this.isNewModal = false;  // Es un modal de detalles
+            this.displayModal = true;  // Abre el modal de detalles
+        } else {
+            this.selectedTask1 = {};  // Inicializa la tarea vacía para nueva solicitud
+            this.isNewModal = true;  // Es un modal de nueva solicitud
+            this.displayNewModal = true;  // Abre el modal de nueva solicitud
+        }
+    }
+    openModal3(tasks3?: any) {
+        if (tasks3) {
+          this.selectedTask = { ...tasks3 };  // Copia la tarea seleccionada
+          this.isNewModal = false;  // Es un modal de detalles
+          this.displayModal = true;  // Abre el modal de detalles
+        } else {
+          this.selectedTask = {};  // Inicializa la tarea vacía para nueva solicitud
+          this.isNewModal = true;  // Es un modal de nueva solicitud
+          this.displayNewModal = true;  // Abre el modal de nueva solicitud
+        }
+    }
+    openModal4(tasks4?: any) {
+        if (tasks4) {
+          this.selectedTask = { ...tasks4 };  // Copia la tarea seleccionada
+          this.isNewModal = false;  // Es un modal de detalles
+          this.displayModal = true;  // Abre el modal de detalles
+        } else {
+          this.selectedTask = {};  // Inicializa la tarea vacía para nueva solicitud
+          this.isNewModal = true;  // Es un modal de nueva solicitud
+          this.displayNewModal = true;  // Abre el modal de nueva solicitud
+        }
+      }
   imagenClase: string = 'imagen-becario';
 
   openImageModal(imageType: string) {
@@ -250,7 +661,5 @@ export class Gestiondesembolso {
 
   //Declara que el boton de switch esta en no o cancelar
   checked: boolean = false;
-
-
 
 }
