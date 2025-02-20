@@ -107,7 +107,7 @@ export class ItemFormularioComponent implements OnInit {
     ngOnInit() {
         setTimeout(() => {
             this.loading = false;  // Cambia el estado de carga cuando los datos estén listos
-        }, 2000);
+        }, 4000);
 
         this.route.paramMap.subscribe(params => {
             this.id = Number(params.get('id')); // Convierte el ID a número

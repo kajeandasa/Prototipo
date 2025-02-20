@@ -80,7 +80,7 @@ export class SolicitudComponent  {
         { id: 6, Tipo_id: 3, estado_id: 1, persona_id: 3, nombre: "Fondo para compra de material educativo", descripcion: "Solicitud de apoyo financiero para libros y equipo de estudio", observacion: "Aprobado, se procederá con el depósito" },
         { id: 7, Tipo_id: 2, estado_id: 4, persona_id: 1, nombre: "Beca deportiva", descripcion: "Solicita una beca por su desempeño en el equipo universitario", observacion: "En proceso de validación de logros deportivos" },
         { id: 8, Tipo_id: 2, estado_id: 1, persona_id: 2, nombre: "Prórroga de entrega de prácticas profesionales", descripcion: "Solicita una extensión en la entrega de reportes de prácticas", observacion: "Aprobado con nueva fecha de entrega" },
-        { id: 9, Tipo_id: 3, estado_id: 2, persona_id: 3, nombre: "Fondo de emergencia para estudiantes", descripcion: "Solicita apoyo financiero temporal por situación económica", observacion: "Pendiente de evaluación socioeconómica" },
+        { id: 9, Tipo_id: 3, estado_id: 3, persona_id: 2, nombre: "Fondo de emergencia para estudiantes", descripcion: "Solicita apoyo financiero temporal por situación económica", observacion: "Pendiente de evaluación socioeconómica" },
         { id: 10, Tipo_id: 2, estado_id: 3, persona_id: 1, nombre: "Prórroga de presentación de exámenes finales", descripcion: "Solicita permiso para rendir exámenes en una fecha posterior", observacion: "Cancelado por falta de justificación médica" }
     ];
 
@@ -93,7 +93,7 @@ export class SolicitudComponent  {
 
     Solicitud_estado = [
         { id: 1, Nombre_estado: "Aprobado", descripcion: "La solicitud ha sido aprobada" },
-        { id: 2, Nombre_estado: "Pendiente", descripcion: "La solicitud está en espera de aprobación" },
+        { id: 2, Nombre_estado: "Pendiente Revision", descripcion: "La solicitud está en espera de aprobación" },
         { id: 3, Nombre_estado: "Rechazado", descripcion: "La solicitud ha sido cancelada" },
         { id: 4, Nombre_estado: "Revisión", descripcion: "La solicitud está en proceso de evaluación" }
     ];
