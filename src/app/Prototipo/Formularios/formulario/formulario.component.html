@@ -1,12 +1,13 @@
 <div class="card">
-    <div class="font-semibold text-xl mb-4"><h2>Formulario</h2></div> <!-- Titulo -->
+    <div class="font-semibold text-xl mb-4 text-center"><h2>Formulario</h2></div> <!-- Titulo -->
 
     <!-- Botones -->
     <div class="flex gap-4 justify-end">
         <button
             pButton
-            label="Ver Items"
+            label="Vista Usuario"
             icon="pi pi-eye"
+            severity="secondary"
             (click)="iraVerRespuesta()">
         </button>
         <button
@@ -38,7 +39,7 @@
                 <!-- Botón para limpiar filtros -->
                 <button
                     pButton
-                    label="Clear"
+                    label="Limpiar"
                     class="p-button-outlined mb-2"
                     icon="pi pi-filter-slash"
                     (click)="clear(dt1)">
@@ -78,19 +79,20 @@
                 <td>{{ task.Descripcion }}</td>
                 <td>{{ task.fechaCreacion | date: 'MM/dd/yyyy' }}</td>
                 <td>
-                    <button
-                        pButton
-                        label="Detalles"
-                        icon="pi pi-eye"
-                        (click)="modalabrir_editar(task)">
-                    </button>
-                    <button
-                        pButton
-                        label="Ver Items"
-                        icon="pi pi-eye"
-                        (click)="irADetallesConId(task.id)">
-                    </button>
 
+                        <button
+                            pButton
+                            label="Editar"
+                            icon="pi pi-pencil"
+                            (click)="modalabrir_editar(task)">
+                        </button>
+                        <button
+                            pButton
+                            label="Ver Items"
+                            icon="pi pi-eye"
+                            severity="info"
+                            (click)="irADetallesConId(task.id)">
+                        </button>
                 </td>
             </tr>
         </ng-template>
@@ -148,7 +150,7 @@
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Descripcion</strong>
-                    <textarea pTextarea id="id_descipcion" [rows]="5"> {{ selectedTask.Descripcion }} </textarea>
+                    <textarea pTextarea id="id_descipcion" [rows]="5" [autoResize]="true"> {{ selectedTask.Descripcion }} </textarea>
                 </div>
             </div>
         </div>

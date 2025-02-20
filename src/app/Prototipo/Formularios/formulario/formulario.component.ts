@@ -25,6 +25,7 @@ import { TextareaModule } from 'primeng/textarea';
 import { DatePickerModule } from 'primeng/datepicker';
 import { CalendarModule } from 'primeng/calendar';
 import { ListboxModule } from 'primeng/listbox';
+
 // Importación de las validaciones de los inputs con KeyFilter
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
