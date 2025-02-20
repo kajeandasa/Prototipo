@@ -96,7 +96,11 @@ export class aprobacionavalComponent {
 
   // Array para almacenar los licenciados seleccionados
   selectedLicenciados: any[] = [];
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> Desembolso
   // Variable para controlar el estado de carga
   loading: boolean = true;
 
@@ -145,7 +149,11 @@ export class aprobacionavalComponent {
   openImageModal() {
     this.imagen = true;  // Abre el modal de la imagen
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> Desembolso
   // Lista de posibles estados de las solicitudes
   Estatus = [
     { name: 'Abierta', code: 'TRUE' },
@@ -154,10 +162,18 @@ export class aprobacionavalComponent {
   ];
 
   // Variable para almacenar la ciudad seleccionada (aunque no está en uso en el código actual)
+<<<<<<< HEAD
   selectedCity: any = null; 
+=======
+  selectedCity: any = null;
+>>>>>>> Desembolso
 
   // Ruta de la imagen que se mostrará en el modal de imagen
   imagenUrl: string = 'assets/imagenes/informacionaval.png';
 
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> Desembolso
 }

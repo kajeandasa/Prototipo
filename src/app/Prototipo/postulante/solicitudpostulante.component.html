@@ -1,7 +1,11 @@
 <div class="card">
     <div class="font-semibold text-xl mb-4">Solicitud de Postulante</div> <!-- Titulo -->
 
+<<<<<<< HEAD
     <h2>Realiza la Solicitud de la beca</h2>
+=======
+    <h2>Realiza la Solicitud de la beca</h2> 
+>>>>>>> Desembolso
     <h6>Empezando por el formulario de aplicacion de aceptación por el aval.</h6>
 
     <!-- Botones -->
@@ -70,7 +74,11 @@
             <tr>
                 <td>{{ task.id }}</td>
                 <td>{{ task.estado }}</td>
+<<<<<<< HEAD
                 <td>{{ task.fechaCreacion | date: 'MM/dd/yyyy' }}</td>
+=======
+                <td>{{ task.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
+>>>>>>> Desembolso
                 <td>
                     <button 
                         pButton 
@@ -184,7 +192,10 @@
               <!-- Botones que cambian el índice del acordeón -->
               <p-button (click)="activeIndex = 0" [rounded]="true" label="1" class="w-8 h-8 p-0" [outlined]="activeIndex !== 0"></p-button>
               <p-button (click)="activeIndex = 1" [rounded]="true" label="2" class="w-8 h-8 p-0" [outlined]="activeIndex !== 1"></p-button>
+<<<<<<< HEAD
               <p-button (click)="activeIndex = 2" [rounded]="true" label="3" class="w-8 h-8 p-0" [outlined]="activeIndex !== 2"></p-button>
+=======
+>>>>>>> Desembolso
             </div>
           
             <!-- Acordeón controlado -->
@@ -264,10 +275,20 @@
                                 <input pInputText id="id_titulo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fechaCreacion"/>
                             </div>
                         </div>
+                        <br>
+                        <div class="font-semibold text-xl">Seleccione la Beca o el Fondo Concursable a postularse:</div>
+                        <div class="flex flex-col grow basis-0 gap-2">
+                            <strong>Seleccione la opción a optar:</strong> {{ selectedTask.Becas }}
+                            <p-select [options]="financiacion" [(ngModel)]="selectedfinanciacion" placeholder="Seleccione la opción a optar" optionLabel="name" [virtualScroll]="true" [virtualScrollItemSize]="60" class="w-full md:w-100" />
+                        </div>
                         <div class="flex flex-wrap gap-6">
                             <div class="flex flex-col grow basis-0 gap-2">
                                 <strong>Seleccione La Beca:</strong> {{ selectedTask.Becas }}
-                                <p-select [options]="beca" [(ngModel)]="selectedCity" [checkmark]="true" optionLabel="name" [showClear]="true"  placeholder="Seleccione La Beca" />
+                                <p-select [options]="beca" [(ngModel)]="selectedBeca" placeholder="Seleccione una Beca" optionLabel="name" [virtualScroll]="true" [virtualScrollItemSize]="60" class="w-full md:w-100" />
+                            </div>
+                            <div class="flex flex-col grow basis-0 gap-2">
+                                <strong>Seleccione El fondo:</strong> {{ selectedTask.Fondos }}
+                                <p-select [options]="fondo" [(ngModel)]="selectedFondo" placeholder="Seleccione un Fondo" optionLabel="name" [virtualScroll]="true" [virtualScrollItemSize]="60" class="w-full md:w-100" />
                             </div>
                         </div>
                     </div>
@@ -277,21 +298,1172 @@
                 </p-accordion-content>
               </p-accordion-panel>
               <p-accordion-panel [value]="1">
-                <p-accordion-header>Header II</p-accordion-header>
-                <p-accordion-content>
-                  Contenido del panel 2
-                </p-accordion-content>
-              </p-accordion-panel>
-              <p-accordion-panel [value]="2">
-                <p-accordion-header>Header III</p-accordion-header>
-                <p-accordion-content>
-                  Contenido del panel 3
+                <p-accordion-header>Becas y Fondos Concursables</p-accordion-header>  
+                <p-accordion-content>   
+                    <br> 
+                    <h3>Becas</h3>            
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div>
+                            <div class="card" style="width: 1300px;">
+                                <p-accordion>
+                                    <p-accordion-panel value="0">
+                                        <p-accordion-header>
+                                            <h5>Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional</h5>
+                                        </p-accordion-header>
+                                        <p-accordion-content>
+                                            <p class="m-0">
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Formulario de postulación</strong> {{ selectedTask.formpostulacion }}
+                                                    <p>Conteniendo el proyecto de investigación global en el cual se involucra.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Propuesta de proyecto de investigación  </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p>Según formato suministrado en versión impresa y digital.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia Laboral</strong> {{ selectedTask.constancialaboral }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Curriculum </strong> {{ selectedTask.Curriculum }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Cronograma</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Copia del ultimo titulo académico obtenido </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Fotocopia de identidad</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>RTN</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Recibo de servicio público</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de que los postulantes no están en proceso de jubilación</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de antecedentes de no haber iniciado acciones legales en contra de la universidad.</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                                
+                                        </p-accordion-content>
+                                    </p-accordion-panel>
+                    
+                                    <p-accordion-panel value="1">
+                                        <p-accordion-header>
+                                            <h5>Beca básica institucional para el fortalecimiento de grupos de investigación</h5>
+                                        </p-accordion-header>
+                                        <p-accordion-content>
+                                            <p class="m-0">
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia Laboral</strong> {{ selectedTask.constancialaboral }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Curriculum </strong> {{ selectedTask.Curriculum }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Propuesta de proyecto de investigación  </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p>Según formato suministrado en versión impresa y digital.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                                
+                                        </p-accordion-content>
+                                    </p-accordion-panel>
+                    
+                                    <p-accordion-panel value="2">
+                                        <p-accordion-header>
+                                            <h5>Beca básica de grado como espacios de aprendizaje del método científico</h5>
+                                        </p-accordion-header>
+                                        <p-accordion-content>
+                                            <p class="m-0">
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Formulario de postulación</strong> {{ selectedTask.formpostulacion }}
+                                                    <p>Conteniendo el proyecto de investigación global en el cual se involucra.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Propuesta de proyecto de investigación  </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p>Según formato suministrado en versión impresa y digital.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Fotocopia de identidad </strong> {{ selectedTask.constancialaboral }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Curriculum </strong> {{ selectedTask.Curriculum }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Comprobante de estudiante </strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Carta de aval de autoridad o instancia de investigación</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Plan de acción</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Presupuesto incluyendo hojas de tiempo</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Recibo de servicio público</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>RTN</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Recibo de servicio público</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Croquis del lugar de residencia </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de trabajo (SEDP) de aval</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                                
+                                        </p-accordion-content>
+                                    </p-accordion-panel>
+
+                                    <p-accordion-panel value="3">
+                                        <p-accordion-header>
+                                            <h5>Beca básica de postgrado para la eficiencia terminal de tesis</h5>
+                                        </p-accordion-header>
+                                        <p-accordion-content>
+                                            <p class="m-0">
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Formulario de postulación</strong> {{ selectedTask.formpostulacion }}
+                                                    <p>Conteniendo el proyecto de investigación global en el cual se involucra.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Propuesta de proyecto de investigación  </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p>Según formato suministrado en versión impresa y digital.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Fotocopia de identidad </strong> {{ selectedTask.constancialaboral }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Curriculum </strong> {{ selectedTask.Curriculum }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Comprobante de estudiante </strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Carta de aval de autoridad o instancia de investigación</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Plan de acción</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Presupuesto incluyendo hojas de tiempo</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Recibo de servicio público</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>RTN</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Croquis del lugar de residencia </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de trabajo (SEDP) de aval</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de trabajo si es empleado de la UNAH</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Copia del ultimo titulo académico obtenido por cada uno de los postulantes</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de que los postulantes no están en proceso de jubilación</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de antecedentes de no haber iniciado acciones legales en contra de la universidad.</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                                
+                                        </p-accordion-content>
+                                    </p-accordion-panel>
+                                </p-accordion>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Fondos</h3>            
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div>
+                            <div class="card" style="width: 1300px;">
+                                <p-accordion>
+                                    <p-accordion-panel value="0">
+                                        <p-accordion-header>
+                                            <h5>Fondos concursables para Proyectos de investigación científica</h5>
+                                        </p-accordion-header>
+                                        <p-accordion-content>
+                                            <p class="m-0">
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Formulario de postulación</strong> {{ selectedTask.formpostulacion }}
+                                                    <p>Conteniendo el proyecto de investigación global en el cual se involucra.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Propuesta de proyecto de investigación  </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p>Según formato suministrado en versión impresa y digital.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia Laboral</strong> {{ selectedTask.constancialaboral }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Curriculum </strong> {{ selectedTask.Curriculum }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Cronograma</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Copia del ultimo titulo académico obtenido </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Fotocopia de identidad</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>RTN</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Recibo de servicio público</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de que los postulantes no están en proceso de jubilación</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de antecedentes de no haber iniciado acciones legales en contra de la universidad.</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                                
+                                        </p-accordion-content>
+                                    </p-accordion-panel>
+                    
+                                    <p-accordion-panel value="1">
+                                        <p-accordion-header>
+                                            <h5>Fondos concursables para Proyectos de investigación, desarrollo e innovación (I+D+I)</h5>
+                                        </p-accordion-header>
+                                        <p-accordion-content>
+                                            <p class="m-0">
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia Laboral</strong> {{ selectedTask.constancialaboral }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Curriculum </strong> {{ selectedTask.Curriculum }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Propuesta de proyecto de investigación  </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p>Según formato suministrado en versión impresa y digital.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                                
+                                        </p-accordion-content>
+                                    </p-accordion-panel>
+                    
+                                    <p-accordion-panel value="2">
+                                        <p-accordion-header>
+                                            <h5>Beca básica de grado como espacios de aprendizaje del método científico</h5>
+                                        </p-accordion-header>
+                                        <p-accordion-content>
+                                            <p class="m-0">
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Formulario de postulación</strong> {{ selectedTask.formpostulacion }}
+                                                    <p>Conteniendo el proyecto de investigación global en el cual se involucra.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Propuesta de proyecto de investigación  </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p>Según formato suministrado en versión impresa y digital.</p>
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Fotocopia de identidad </strong> {{ selectedTask.constancialaboral }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Curriculum </strong> {{ selectedTask.Curriculum }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Comprobante de estudiante </strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Carta de aval de autoridad o instancia de investigación</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Plan de acción</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Presupuesto incluyendo hojas de tiempo</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Recibo de servicio público</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>RTN</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Recibo de servicio público</strong> {{ selectedTask.formpostulacion }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                                <br>
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Croquis del lugar de residencia </strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="flex flex-wrap gap-6">
+                                                <div class="flex flex-col grow basis-0 gap-2">
+                                                    <strong>Constancia de trabajo (SEDP) de aval</strong> {{ selectedTask.propuestaproyecto }}
+                                                    <p-fileupload name="archivo" 
+                                                                url="https://www.primefaces.org/cdn/api/upload.php" 
+                                                                (onUpload)="onUpload($event)" 
+                                                                [multiple]="false" 
+                                                                accept=".jpg, .png, .gif, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx" 
+                                                                maxFileSize="100000000000000" 
+                                                                mode="advanced"
+                                                                [showUploadButton]="false"
+                                                                [showCancelButton]="false">
+                                                    </p-fileupload>
+                                                </div>
+                                            </div>
+                                            <br>
+                                                
+                                        </p-accordion-content>
+                                    </p-accordion-panel>
+                                </p-accordion>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="flex justify-end gap-2">
+                        <p-button label="Anterior" (click)="activeIndex = 0" />
+                        <p-button label="Guardar" (click)="displayModal = false" />
+                    </div>
                 </p-accordion-content>
               </p-accordion-panel>
             </p-accordion>
-          </div>
-          
-        
+          </div>        
         <div class="flex justify-end gap-2">
             <p-button label="Cerrar" (click)="displayModal = false" />
         </div>

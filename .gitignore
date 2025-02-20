@@ -4,3 +4,5 @@ node_modules
 .angular/cache/19.1.4/sakai-ng/.tsbuildinfo
 .angular/cache/19.1.4/sakai-ng/.tsbuildinfo
 .angular/cache/19.1.4/sakai-ng/.tsbuildinfo
+.tsbuildinfo
+.angular/cache/

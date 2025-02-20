@@ -1,0 +1,135 @@
+<div class="card">
+    <!-- Título principal -->
+    <div class="font-semibold text-xl mb-4 text-center">
+        <h2>Gestión de Tipos de Cierre</h2>
+    </div>
+
+    <!-- Botones -->
+    <div class="flex gap-4 justify-end">
+        <button 
+            pButton 
+            label="Nuevo Tipo" 
+            icon="pi pi-plus" 
+            (click)="openModal()">
+        </button>
+    </div>
+    
+    <!-- Tabla que muestra los tipos de cierre -->
+    <p-table
+        #dt1
+        [value]="tasks"
+        [rows]="5"
+        [paginator]="true"
+        responsiveLayout="scroll"
+        [globalFilterFields]="['Número de Tipo', 'Nombre del tipo de cierre']"
+        sortMode="multiple"
+        class="custom-table"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        stripedRows>
+
+        <!-- Caption: Buscador global -->
+        <ng-template pTemplate="caption">
+            <div class="flex justify-end items-center flex-column sm:flex-row">
+                <div class="flex align-items-center mt-2 sm:mt-0">
+                    <!-- Botón Clear -->
+                    <button
+                        pButton
+                        label="Clear"
+                        class="p-button-outlined mr-2"
+                        icon="pi pi-filter-slash"
+                        (click)="clear(dt1, searchInput)">
+                    </button>
+                    <!-- Input de búsqueda -->
+                    <p-iconfield iconPosition="left">
+                        <p-inputicon>
+                            <i class="pi pi-search"></i>
+                        </p-inputicon>
+                        <input
+                            #searchInput  
+                            pInputText
+                            type="text"
+                            (input)="onGlobalFilter(dt1, $event)"
+                            placeholder="Buscar..." />
+                    </p-iconfield>
+                </div>
+            </div>
+        </ng-template>
+
+        <!-- Encabezados de la tabla -->
+        <ng-template #header>
+            <tr>
+                <th pSortableColumn="id">Número de Tipo <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="tipo">Descripción del tipo de cierre <p-sortIcon field="tipo"></p-sortIcon></th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+
+        <ng-template #body let-task>
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.tipo }}</td>
+                <td>
+                    <button 
+                        pButton 
+                        label="Detalles" 
+                        icon="pi pi-eye" 
+                        (click)="openModal(task)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+        
+    </p-table>
+
+    <!-- CSS para corregir encabezados -->
+    <style>
+        .header-nowrap {
+        white-space: nowrap; /* Evita el salto de línea */
+        text-align: center; /* Centra el texto */
+        padding: 10px; /* Espaciado */
+        }
+    </style>
+
+    <!-- Modal que agrega la informacion de los tipos de cierre -->
+    <p-dialog 
+        header="Información sobre los tipos de cierre" 
+        [modal]="true" 
+        [maximizable]="true"
+        [(visible)]="displayNewModal" 
+        [style]="{ width: '40rem' }">
+        <div class="card flex flex-col gap-4">
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Nombre del tipo de cierre</strong> {{ selectedTask.tipocierres }}
+                    <input pInputText pKeyFilter="alphanum" id="tipocierre" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-end gap-2">
+            <p-button label="Enviar" (click)="displayNewModal = false" />
+            <p-button label="Cerrar" (click)="displayNewModal = false" />
+        </div>
+    </p-dialog>
+
+    <!-- Modal que muestra la informacion de los tipos de cierre -->
+    <p-dialog 
+        header="Información sobre los tipos de cierre" 
+        [modal]="true" 
+        [maximizable]="true"
+        [(visible)]="displayModal" 
+        [style]="{ width: '40rem' }">
+        <div class="card flex flex-col gap-4">
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Nombre del tipo de cierre</strong> {{ selectedTask.tipocierres }}
+                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="tipocierre" class="flex-auto" autocomplete="off" [value]="selectedTask.tipo"/>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex justify-end gap-2">
+            <p-button label="Regresar" (click)="displayModal = false" />
+        </div>
+    </p-dialog>
+</div>
