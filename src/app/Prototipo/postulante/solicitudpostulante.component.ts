@@ -26,11 +26,8 @@ import { ListboxModule } from 'primeng/listbox';
 // Importación de las validaciones de los inputs con KeyFilter
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { AccordionModule } from 'primeng/accordion';
-<<<<<<< HEAD
-=======
 import { TabsModule } from 'primeng/tabs';
 import { FileUpload } from 'primeng/fileupload';
->>>>>>> Desembolso
 
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
