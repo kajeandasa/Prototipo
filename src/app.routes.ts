@@ -17,7 +17,8 @@ export const appRoutes: Routes = [
             { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') },
             { path: 'Prueba', loadChildren: () => import('./app/Prueba/Prueba.routes') },
             { path: 'beca', loadChildren: () => import('./app/Prototipo/Beca.routes') },
-            { path: 'desembolso', loadChildren: () => import('./app/Prototipo/desembolso.routes/desembolso.routes') }
+            { path: 'desembolso', loadChildren: () => import('./app/Prototipo/desembolso.routes/desembolso.routes') },
+            { path: 'mantenimiento', loadChildren: () => import('./app/Prototipo/Manenimiento.routes') }
             // { path: 'desembolso', loadChildren: () => import('./app/Prototipo/desembolso.routes') }
         ]
     },

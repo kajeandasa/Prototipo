@@ -46,21 +46,9 @@ import { LayoutService } from '../service/layout.service';
 
         <div class="layout-topbar-actions">
             <div class="layout-config-menu">
-                <button type="button" class="layout-topbar-action" (click)="toggleDarkMode()">
-                    <i [ngClass]="{ 'pi ': true, 'pi-moon': layoutService.isDarkTheme(), 'pi-sun': !layoutService.isDarkTheme() }"></i>
-                </button>
+
                 <div class="relative">
-                    <button
-                        class="layout-topbar-action layout-topbar-action-highlight"
-                        pStyleClass="@next"
-                        enterFromClass="hidden"
-                        enterActiveClass="animate-scalein"
-                        leaveToClass="hidden"
-                        leaveActiveClass="animate-fadeout"
-                        [hideOnOutsideClick]="true"
-                    >
-                        <i class="pi pi-palette"></i>
-                    </button>
+
                     <app-configurator />
                 </div>
             </div>
@@ -98,7 +86,7 @@ import { LayoutService } from '../service/layout.service';
 
 
 
-            <div class="layout-topbar-menu hidden lg:block">
+            <!-- <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
                     <button type="button" class="layout-topbar-action">
                         <i class="pi pi-calendar"></i>
@@ -113,7 +101,7 @@ import { LayoutService } from '../service/layout.service';
                         <span>Profile</span>
                     </button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>`
 })

@@ -203,6 +203,19 @@ export class estadoProrrogaComponent {
       }
   }
 
+  // Función para obtener el icono basado en la categoría
+  getIcon(tipo: string): string {
+    switch (tipo) {
+      case 'PERMITIDO':
+        return 'pi pi-check';
+      case 'ADVERTENCIA':
+        return 'pi pi-exclamation-triangle';
+      case 'NO PERMITIDO':
+        return 'pi pi-times';
+      default:
+        return '';
+    }
+  }
 
     
 }

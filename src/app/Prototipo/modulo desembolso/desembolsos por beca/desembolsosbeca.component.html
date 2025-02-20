@@ -124,24 +124,26 @@
             <div class="flex flex-col gap-2">
                 <strong>Seleccione La Beca:</strong>
                 
-                  <p-dropdown 
+                  <p-select 
                   [options]="beca" 
                   placeholder="Seleccione una Beca" 
                   [editable]="true" 
                   optionLabel="name" 
                   appendTo="body"
-                  [filter]="true"/>
+                  [filter]="true"
+                  class="w-full">
+                </p-select>
             </div>
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Cantidad de desembolsos</strong> {{ selectedTask.cantidads }}
-                    <input pInputText id="cantidad" class="flex-auto" autocomplete="off"/>
+                    <input pInputText pKeyFilter="int" id="cantidad" class="flex-auto" autocomplete="off"/>
                 </div>
             </div>
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Monto Desembolsos</strong> {{ selectedTask.montos }}
-                    <input pInputText id="monto" class="flex-auto" autocomplete="off"/>
+                    <input pInputText pKeyFilter="money" id="monto" class="flex-auto" autocomplete="off"/>
                 </div>
             </div>
         </div>

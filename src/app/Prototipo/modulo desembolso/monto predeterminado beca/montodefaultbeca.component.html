@@ -125,25 +125,53 @@
         [style]="{ width: '40rem' }">
         <div class="card flex flex-col gap-4">
             <div class="flex flex-col gap-2">
-                <strong>Seleccione La Beca:</strong>
-                <p-dropdown 
+                <strong>Seleccione el Tipo de estado:</strong>
+                <p-select 
                   [options]="beca" 
-                  placeholder="Seleccione una Beca"
+                  placeholder="Seleccione el tipo de estado"
                   [editable]="true"
                   optionLabel="name"
-                  appendTo="body">
-                </p-dropdown>
+                  [filter]="true"
+                  appendTo="body"
+                  class="w-full">
+                </p-select>
             </div>
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Monto de la beca</strong> {{ selectedTask.montos }}
-                    <input pInputText id="monto" class="flex-auto" autocomplete="off"/>
+                    <input pInputText pKeyFilter="money" id="monto" class="flex-auto" autocomplete="off"/>
                 </div>
             </div>
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Duración de la beca</strong> {{ selectedTask.duracions }}
-                    <input pInputText id="duracion" class="flex-auto" autocomplete="off"/>
+                    <br>
+                    <div class="flex flex-wrap gap-6">
+                        <div class="flex flex-col grow gap-2">
+                            <strong>Seleccione la cantidad de la duración:</strong>
+                            <p-select 
+                            [options]="cantidad" 
+                            placeholder="Seleccione la cantidad de la duración:"
+                            [editable]="true"
+                            optionLabel="name"
+                            [filter]="true"
+                            appendTo="body"
+                            class="w-full">
+                            </p-select>
+                        </div>
+                        <div class="flex flex-col grow gap-2">
+                            <strong>Seleccione la unidad de tiempo:</strong>
+                            <p-select 
+                            [options]="unidadtiempo" 
+                            placeholder="Seleccione la unidad de tiempo:"
+                            [editable]="true"
+                            optionLabel="name"
+                            [filter]="true"
+                            appendTo="body"
+                            class="w-full">
+                            </p-select>
+                        </div>
+                    </div>
                 </div>
             </div>      
         </div>

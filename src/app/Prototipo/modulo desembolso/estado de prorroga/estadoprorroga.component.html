@@ -71,6 +71,7 @@
                 <td>{{ task.id }}</td>
                 <td>
                     <p-tag 
+                        [icon]="getIcon(task.tipo)"
                         [severity]="getSeverity(task.tipo)" 
                         [value]="task.tipo">
                     </p-tag>
@@ -109,18 +110,20 @@
         <div class="card flex flex-col gap-4">
             <div class="flex flex-col gap-2">
                 <strong>Seleccione el Tipo de estado:</strong>
-                <p-dropdown 
+                <p-select 
                   [options]="tipo" 
                   placeholder="Seleccione el tipo de estado"
                   [editable]="true"
                   optionLabel="name"
-                  [filter]="true">
-                </p-dropdown>
+                  [filter]="true"
+                  appendTo="body"
+                  class="w-full">
+                </p-select>
             </div>
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Nombre del estado</strong> {{ selectedTask.estados }}
-                    <input pInputText id="estado" class="flex-auto" autocomplete="off"/>
+                    <input pInputText pKeyFilter="alpha" id="estado" class="flex-auto" autocomplete="off"/>
                 </div>
             </div>
         </div>

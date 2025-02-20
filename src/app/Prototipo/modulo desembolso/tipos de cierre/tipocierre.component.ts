@@ -81,6 +81,10 @@ export class tipoCierreComponent {
         id: 2,
         tipo: 'Cancelación de la Beca',
     },
+    {
+        id: 3,
+        tipo: 'Finalización de la Beca',
+    },
 
   ];
 
