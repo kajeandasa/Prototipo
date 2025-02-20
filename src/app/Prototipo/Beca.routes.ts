@@ -1,13 +1,7 @@
+// import { Routes } from '@angular/router';
 import { Routes } from '@angular/router';
-import { ConvocatoriaComponent } from './Convocatorias/convocatoria/convocatoria.component';
+import { ConvocatoriaComponent } from './convocatoria/convocatoria.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
-import { FormularioComponent } from './Formularios/formulario/formulario.component'
-import { ItemFormularioComponent } from './Formularios/item-formulario/item-formulario.component'
-import { FormularioUsuarioComponent } from './Formularios/formulario-usuario/formulario-usuario.component';
-import { AlertaComponent } from './alertas/alerta/alerta.component'
-import { ItemDocumentoComponent } from './Documento/item-documento/item-documento.component';
-import { CheckDocumentoComponent } from './Documento/check-documento/check-documento.component';
-
 import { SolicitudPostulanteComponent } from './postulante/solicitudpostulante.component';
 import { aprobacionavalComponent } from './aval/aprobacionaval.component';
 import { TipoBecaComponent } from './modulo desembolso/tipo de becas/tipobeca.component';
@@ -19,22 +13,16 @@ import { becasComponent } from './modulo desembolso/informacion de la beca/infob
 import { prorrogabecaComponent } from './modulo desembolso/prorroga por beca/prorrogabeca.component';
 import { solicitudProrrogaComponent } from './modulo desembolso/solicitud prorroga/soliprorroga.component';
 import { desembolsoBecaComponent } from './modulo desembolso/desembolsos por beca/desembolsosbeca.component';
+
 import { DesembolsoComponent } from './desembolso/desembolso.component';
 // import { Seguimiento } from './desembolso/seguimiento';
 import { Cierre } from './desembolso/cierre/cierre.component';
+
 import { interesesComponent } from './modulo desembolso/intereses/intereses.component';
+
 // import { Gestiondesembolso } from './desembolso/gestionDesembolsos';
 
 export default [
-    { path: 'convocatoria',         data: { breadcrumb: 'convocatoria' },   component: ConvocatoriaComponent },
-    { path: 'solicitud',            data: { breadcrumb: 'solicitud' },      component: SolicitudComponent },
-    { path: 'formulario',           data: { breadcrumb: 'formulario' },     component: FormularioComponent },
-    { path: 'formulario-usuario',   data: { breadcrumb: 'Usuarioformulario'},component: FormularioUsuarioComponent },
-    { path: 'itemformulario/:id',   data: { breadcrumb: 'itemformulario' }, component: ItemFormularioComponent },
-    { path: 'alerta',   data: { breadcrumb: 'alerta' }, component: AlertaComponent },
-    { path: 'ItemDocumento',   data: { breadcrumb: 'Documento' }, component: ItemDocumentoComponent },
-    { path: 'CheckDocumento',   data: { breadcrumb: 'Documento' }, component: CheckDocumentoComponent },
-
     { path: 'tipobeca', data: { breadcrumb: 'tipobeca' }, component: TipoBecaComponent },
     { path: 'estadoprorroga', data: { breadcrumb: 'estadoprorroga' }, component: estadoProrrogaComponent },
     { path: 'tipocierre', data: { breadcrumb: 'tipocierre' }, component: tipoCierreComponent },
@@ -57,5 +45,16 @@ export default [
     },
     { path: 'intereses', component: interesesComponent, data: { breadcrumb: 'Intereses' } },
 
-    { path: '**', redirectTo: '/notfound' }
+
+
 ] as Routes;
+
+
+
+
+
+
+
+
+
+
