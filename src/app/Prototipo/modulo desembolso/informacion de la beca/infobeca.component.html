@@ -67,7 +67,7 @@
 
         <!-- Encabezados de la tabla -->
         <ng-template pTemplate="header">
-            <tr>
+            <tr> 
                 <!-- Se recorren las columnas seleccionadas con estilos corregidos -->
                 <th *ngFor="let col of selectedColumns" [pSortableColumn]="col.field" class="header-nowrap">
                     {{ col.header }}
@@ -153,8 +153,8 @@
             
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
-                    <strong>Monto Asignado</strong> {{ selectedTask.montoasignados }}
-                    <input pInputText id="montoasignado" class="flex-auto" autocomplete="off"/>
+                    <strong>Monto Aprobado</strong> {{ selectedTask.montoaprobados }}
+                    <input pInputText id="montoaprobado" class="flex-auto" autocomplete="off"/>
                 </div>
             </div>    
         </div>
@@ -338,21 +338,40 @@
                             </p-accordion>
                         </div>
                         <div class="flex justify-end gap-2">
-                            <p-button label="Rechazar" severity="danger" (click)="displayModal = false" />
-                            <p-button label="Aceptar" severity="success" (click)="activeIndex = 1" />
+                            <p-button label="Rechazar" severity="danger" (click)="activeIndex = 1" />
+                            <p-button label="Aceptar" severity="success" (click)="activeIndex = 2" />
                             <p-button label="Regresar" (click)="displayModal = false" />
                         </div>
                     </p-accordion-content>
                     
                 </p-accordion-panel>
                 <p-accordion-panel [value]="1">
-                    <p-accordion-header>Asignación</p-accordion-header>
+                    <p-accordion-header>Rechazo</p-accordion-header>
                     <p-accordion-content>
                         <div class="card flex flex-col gap-4">
                             <div class="flex flex-wrap gap-6">
                                 <div class="flex flex-col grow basis-0 gap-2">
-                                    <strong>Monto Asignado a la beca del postulante</strong> {{ selectedTask.montoasignados }}
-                                    <input pInputText  id="montoasignado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoasignado"/>
+                                    <strong>Motivo de rechazo de la beca</strong> {{ selectedTask.motivorechazos }}
+                                    <input pInputText id="motivorechazo" class="flex-auto" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                    </p-accordion-content>
+                </p-accordion-panel>
+                <p-accordion-panel [value]="2">
+                    <p-accordion-header>Aprobación</p-accordion-header>
+                    <p-accordion-content>
+                        <div class="card flex flex-col gap-4">
+                            <div class="flex flex-wrap gap-6">
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Motivo de Aprobación de la beca</strong> {{ selectedTask.motivoaprobacions }}
+                                    <input pInputText  id="motivoaprobacion" class="flex-auto" autocomplete="off"/>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-6">
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Monto Aprobado a la beca del postulante</strong> {{ selectedTask.montoaprobados }}
+                                    <input pInputText  id="montoaprobado" class="flex-auto" autocomplete="off" [value]="selectedTask.montoaprobado"/>
                                 </div>
                             </div>
                         </div>

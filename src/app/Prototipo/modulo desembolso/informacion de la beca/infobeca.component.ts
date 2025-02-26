@@ -81,7 +81,7 @@ export class becasComponent implements OnInit {
         beca: 'Beca sustantiva de investigación e innovación en pro de impactos en la realidad nacional',
         montobeca: '500,000.00',
         postulante: 'María Fernanda López Hernández',
-        montoasignado: '400,000.00',
+        montoaprobado: '400,000.00',
         direccionDomicilio: 'Col. Centro, Tegucigalpa',
         numeroIdentidad: '0801-1990-12345',
         numeroRTN: '12345678901234',
@@ -113,7 +113,7 @@ export class becasComponent implements OnInit {
         beca: 'Beca básica institucional para el fortalecimiento de grupos de investigación',
         montobeca: '75,000.00',
         postulante: 'Juan Carlos Rodríguez Martínez',
-        montoasignado: '70,000.00',
+        montoaprobado: '70,000.00',
     },
     {
         id: 3,
@@ -121,7 +121,7 @@ export class becasComponent implements OnInit {
         beca: 'Beca básica de grado como espacios de aprendizaje del método científico',
         montobeca: '25,000.00',
         postulante: 'Sofía Isabel Torres Ramírez',
-        montoasignado: '20,000.00',
+        montoaprobado: '20,000.00',
     },
     {
         id: 4,
@@ -129,7 +129,7 @@ export class becasComponent implements OnInit {
         beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
         montobeca: '40,000.00',
         postulante: 'Pedro Antonio García Fernández',
-        montoasignado: '30,000.00',
+        montoaprobado: '30,000.00',
     },
     {
         id: 5,
@@ -137,7 +137,7 @@ export class becasComponent implements OnInit {
         beca: 'Beca básica de postgrado para la eficiencia terminal de tesis',
         montobeca: '80,000.00',
         postulante: 'Ana Lucía Martínez Vega',
-        montoasignado: '75,000.00',
+        montoaprobado: '75,000.00',
     },
 
   ];
@@ -180,9 +180,9 @@ export class becasComponent implements OnInit {
     { field: 'id', header: 'Número de Beca' },
     { field: 'soli', header: 'Número de Solicitud' },
     { field: 'beca', header: 'Beca' },
-    { field: 'montobeca', header: 'Monto de la Beca' },
+    { field: 'montobeca', header: 'Monto Solicitado' },
     { field: 'postulante', header: 'Postulante' },
-    { field: 'montoasignado', header: 'Monto Asignado' },
+    { field: 'montoaprobado', header: 'Monto Aprobado' },
   ];
 
   //Muestra por defecto todas las columnas en la tabla
