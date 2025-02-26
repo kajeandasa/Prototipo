@@ -28,15 +28,42 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ActivatedRoute } from '@angular/router';
 import { CardModule } from 'primeng/card';
+<<<<<<< HEAD
+import { InputNumberModule } from 'primeng/inputnumber';
+import { EditorModule } from 'primeng/editor';
+import { FileUploadModule } from 'primeng/fileupload';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { SkeletonModule } from 'primeng/skeleton';
 
+import { PanelModule } from 'primeng/panel';
+
+
+
+import { FormularioService } from '../formulario.service';
+=======
+
+>>>>>>> main
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
   [key: string]: boolean;
 }
 
 @Component({
+<<<<<<< HEAD
+  selector: 'app-formularioItem',
+  imports: [
+    PanelModule,
+    SkeletonModule,
+    RadioButtonModule,
+    CheckboxModule,
+    FileUploadModule,
+    EditorModule,
+    InputNumberModule,
+=======
   selector: 'app-convocatoria',
   imports: [
+>>>>>>> main
     CardModule,
     ListboxModule,
     CalendarModule,
@@ -68,6 +95,54 @@ interface expandedRows {
 export class ItemFormularioComponent implements OnInit {
     id!: number;
 
+<<<<<<< HEAD
+    id_formulario = 1;  //declarar el formulario (id) que se quiree contestar
+    id_usuario = 1;     //declarar el usuario (id)  del usuario qcontesta el formulario
+
+    selectRespuesta!: string;   //select respuesta indefinida para los checkbox o radio botton
+    date: Date | undefined;     //fecha indefinio
+
+
+
+    Formulario: any[] = []; // Inicializar como array vacío
+    input: any[]=[];
+    input_tipo: any[]=[];
+    input_tipo_list: any[]=[];
+
+    constructor(
+        private formularioService: FormularioService,
+        private route: ActivatedRoute
+      ) {}
+    // Inicializa el componente y simula la carga de datos
+    ngOnInit() {
+        setTimeout(() => {
+            this.loading = false;  // Cambia el estado de carga cuando los datos estén listos
+        }, 4000);
+
+        this.route.paramMap.subscribe(params => {
+            this.id = Number(params.get('id')); // Convierte el ID a número
+        });
+
+        // Array inicializado con el servisio
+        this.Formulario         = this.formularioService.get_formulario();
+        this.input              = this.formularioService.get_input();
+        this.input_tipo         = this.formularioService.get_input_tipo();
+        this.input_tipo_list    = this.formularioService.get_input_tipo_list();
+    }
+
+
+
+    // Método para filtrar inputs dependiendo del formulario
+    getFilteredInput(id: number) {
+        return this.input.filter(item => item.formulario === id);
+    }
+    // Método para filtrar input lista dependidndo del input
+    getFilteredInputTipoList(id: number) {
+        return this.input_tipo_list.filter(item => item.id_input === id);
+    }
+
+
+=======
     constructor(private route: ActivatedRoute) {}
 
 
@@ -101,6 +176,7 @@ export class ItemFormularioComponent implements OnInit {
         : this.tasks; // Si no se ha seleccionado, muestra todas
     }
 
+>>>>>>> main
     seleccionarFormulario(id: number) {
       this.id = id;
     }
@@ -109,6 +185,12 @@ export class ItemFormularioComponent implements OnInit {
       return this.Formulario.find(form => form.id === id)?.Titulo || 'Sin título';
     }
 
+<<<<<<< HEAD
+    getTaskById(id: number) {
+        return this.Formulario.find(task => task.id === id);
+    }
+    selectedTask: any = {};  // Almacena la tarea seleccionada
+=======
 
 
 
@@ -132,10 +214,16 @@ export class ItemFormularioComponent implements OnInit {
 
         this.selectedTask = { ...task };
     };
+>>>>>>> main
 
     // Variable para controlar el estado de carga
     loading: boolean = true;
 
+<<<<<<< HEAD
+
+}
+//
+=======
     // Inicializa el componente y simula la carga de datos
     ngOnInit() {
       setTimeout(() => {
@@ -160,3 +248,4 @@ export class ItemFormularioComponent implements OnInit {
 
 
 }
+>>>>>>> main

@@ -1,0 +1,167 @@
+<div class="card">
+    <!-- Título principal -->
+    <div class="font-semibold text-xl mb-4 text-center">
+        <h2>Gestión de Intereses de Becas</h2>
+    </div>
+    
+    <!-- Tabla que muestra los cierres de becas -->
+    <p-table
+        #dt1
+        [value]="tasks"
+        [rows]="5"
+        [paginator]="true"
+        responsiveLayout="scroll"
+        [globalFilterFields]="['id', 'beca', 'becario', 'tipo', 'descripcion']"
+        sortMode="multiple"
+        class="custom-table"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        stripedRows>
+
+        <!-- Caption: Buscador global -->
+        <ng-template pTemplate="caption">
+            <div class="flex justify-end items-center flex-column sm:flex-row">
+                <div class="flex align-items-center mt-2 sm:mt-0">
+                    <!-- Botón Clear -->
+                    <button
+                        pButton
+                        label="Clear"
+                        class="p-button-outlined mr-2"
+                        icon="pi pi-filter-slash"
+                        (click)="clear(dt1, searchInput)">
+                    </button>
+                    <!-- Input de búsqueda -->
+                    <p-iconfield iconPosition="left">
+                        <p-inputicon>
+                            <i class="pi pi-search"></i>
+                        </p-inputicon>
+                        <input
+                            #searchInput  
+                            pInputText
+                            type="text"
+                            (input)="onGlobalFilter(dt1, $event)"
+                            placeholder="Buscar..." />
+                    </p-iconfield>
+                </div>
+            </div>
+        </ng-template>
+
+
+        <!-- Encabezados de la tabla -->
+        <ng-template #header>
+            <tr>
+                <th pSortableColumn="id">Número de Cierre <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="beca">Beca <p-sortIcon field="beca"></p-sortIcon></th>
+                <th pSortableColumn="becario">Becario<p-sortIcon field="becario"></p-sortIcon></th>
+                <th pSortableColumn="porcentaje">Porcentaje Interes Generado<p-sortIcon field="porcentaje"></p-sortIcon></th>
+                <th pSortableColumn="descripcioninteres">Descripción de Interes<p-sortIcon field="descripcioninteres"></p-sortIcon></th>
+                <th pSortableColumn="montotal">Monto Total Interes<p-sortIcon field="montotal"></p-sortIcon></th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+
+        <ng-template #body let-task> 
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.beca }}</td>
+                <td>{{ task.becario }}</td>
+                <td>{{ task.porcentaje }}</td>
+                <td>{{ task.descripcioninteres }}</td>
+                <td>{{ task.montotal }}</td>
+                <td>
+                    <button 
+                        pButton 
+                        label="Detalles" 
+                        icon="pi pi-eye" 
+                        (click)="openModal(task)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+        
+    </p-table>
+
+    <!-- CSS para corregir encabezados -->
+    <style>
+        .header-nowrap {
+        white-space: nowrap; /* Evita el salto de línea */
+        text-align: center; /* Centra el texto */
+        padding: 10px; /* Espaciado */
+        }
+    </style>
+
+    <!-- Modal que muestra la informacion de los cierres de becas -->
+    <p-dialog 
+        header="Información sobre los cierres de becas" 
+        [modal]="true"
+        [maximizable]="true" 
+        [(visible)]="displayModal" 
+        [style]="{ width: '100rem' }">
+        <div class="card flex flex-col gap-4">
+            <p-accordion [(value)]="datos">
+                <p-accordion-panel [value]="0">
+                    <p-accordion-header>Información del Cierre de Beca</p-accordion-header>
+                    <p-accordion-content>
+                        <div class="card flex flex-col gap-4">
+                            <div class="flex flex-wrap gap-6">
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Nombre del Becario</strong> {{ selectedTask.becarios }}
+                                    <input pInputText pKeyFilter="alpha" [disabled]="true" id="becario" class="flex-auto" autocomplete="off" [value]="selectedTask.becario"/>
+                                </div>
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Beca</strong> {{ selectedTask.becas }}
+                                    <input pInputText id="beca" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.beca"/>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-6">
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Tipo de Cierre</strong> {{ selectedTask.tipos }}
+                                    <input pInputText id="tipo" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.tipo"/>
+                                </div>
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Fecha de Cierre</strong> {{ selectedTask.fechas }}
+                                    <input pInputText id="fecha" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.fecha"/>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-6">
+                                <div class="flex flex-col grow basis-0 gap-2">
+                                    <strong>Descripción del motivo del cierre</strong> {{ selectedTask.descripcions }}
+                                    <input pInputText id="descripcion" [disabled]="true" class="flex-auto" autocomplete="off" [value]="selectedTask.descripcion"/>
+                                </div>
+                            </div>
+                        </div>
+                    </p-accordion-content>
+                </p-accordion-panel>
+            </p-accordion>
+            <br>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Porcentaje de interes generado</strong> {{ selectedTask.porcentajes }}
+                    <input pInputText pKeyFilter="alpha" id="porcentaje" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Monto a devolver de la beca</strong> {{ selectedTask.montodevolucions }}
+                    <input pInputText pKeyFilter="alpha" id="montodevolucion" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Monto total con interes generados a devolver</strong> {{ selectedTask.montotals }}
+                    <input pInputText pKeyFilter="alpha" id="montotal" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col grow basis-0 gap-2">
+                    <strong>Descripcion de la generación de los interesese</strong> {{ selectedTask.descripcioninteress }}
+                    <input pInputText pKeyFilter="alpha" id="descripcioninteres" class="flex-auto" autocomplete="off"/>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-end gap-2">
+            <p-button label="Guardar" (click)="displayModal = false" />
+            <p-button label="Regresar" (click)="displayModal = false" />
+        </div>
+    </p-dialog>
+</div>

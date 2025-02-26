@@ -1,0 +1,178 @@
+<div class="card">
+    <!-- Título principal -->
+    <div class="font-semibold text-xl mb-4 text-center">
+      <h2>Gestión de Requisitos</h2>
+    </div>
+
+    <!-- Botón para abrir modal Agregar -->
+    <div class="flex gap-4 justify-end mr-4">
+      <button
+        pButton
+        label="Agregar"
+        icon="pi pi-plus"
+        (click)="abrirModalAgregarPlantilla()">
+      </button>
+    </div>
+
+    <!-- Tabla de Plantilla -->
+    <p-table
+      #dt1
+      [value]="plantillas"
+      [rows]="5"
+      [paginator]="true"
+      responsiveLayout="scroll"
+      [globalFilterFields]="['numero', 'nombrePlantilla']"
+      sortMode="multiple"
+      class="custom-table"
+      [tableStyle]="{ 'min-width': '30rem' }"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      stripedRows>
+
+      <!-- Caption: Buscador global -->
+      <ng-template pTemplate="caption">
+        <div class="flex justify-end items-center flex-column sm:flex-row">
+          <div class="flex align-items-center mt-2 sm:mt-0">
+            <button
+              pButton
+              label="Clear"
+              class="p-button-outlined mr-2"
+              icon="pi pi-filter-slash"
+              (click)="clear(dt1)">
+            </button>
+            <p-iconfield iconPosition="left">
+              <p-inputicon>
+                <i class="pi pi-search"></i>
+              </p-inputicon>
+              <input
+                pInputText
+                type="text"
+                (input)="onGlobalFilter(dt1, $event)"
+                placeholder="Buscar..." />
+            </p-iconfield>
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- Encabezado de la tabla -->
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="numero" class="header-nowrap">
+            Nº
+            <p-sortIcon field="numero"></p-sortIcon>
+          </th>
+          <th pSortableColumn="nombrePlantilla" class="header-nowrap">
+            Nombre de requisito
+            <p-sortIcon field="nombrePlantilla"></p-sortIcon>
+          </th>
+          <th class="header-nowrap">Acciones</th>
+        </tr>
+      </ng-template>
+
+      <!-- Cuerpo de la tabla -->
+      <ng-template pTemplate="body" let-plantilla>
+        <tr>
+          <td>{{ plantilla.numero }}</td>
+          <td>{{ plantilla.nombrePlantilla }}</td>
+          <td>
+            <div class="flex gap-2">
+              <button
+                pButton
+                label="Editar"
+                icon="pi pi-pencil"
+                (click)="abrirModalEditarPlantilla(plantilla)">
+              </button>
+              <button
+                pButton
+                label="Ver contenido"
+                icon="pi pi-eye"
+                (click)="verContenido(plantilla.numero)">
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <!-- CSS para corregir encabezados -->
+    <style>
+      .header-nowrap {
+        white-space: nowrap;
+        text-align: center;
+        padding: 10px;
+      }
+    </style>
+
+    <!-- Modal: Agregar Plantilla -->
+    <p-dialog
+      header="Agregar Requisito"
+      [modal]="true"
+      [(visible)]="modalAgregarPlantilla"
+      [maximizable]="true"
+      [style]="{ width: '30rem' }">
+
+      <div class="card flex flex-col gap-4">
+        <!-- Campo: Nº -->
+        <div class="flex flex-col gap-2">
+          <strong>Nº</strong>
+          <input
+            pInputText
+            type="number"
+            [(ngModel)]="nuevaPlantilla.numero"
+            placeholder="Nº" />
+        </div>
+
+        <!-- Campo: Nombre de la Plantilla -->
+        <div class="flex flex-col gap-2">
+          <strong>Nombre del requisito</strong>
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="nuevaPlantilla.nombrePlantilla"
+            placeholder="Nombre de la plantilla" />
+        </div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="flex justify-end gap-2 mt-4">
+        <p-button label="Guardar" severity="success" (click)="agregarPlantilla()"></p-button>
+        <p-button label="Cancelar" severity="danger" (click)="modalAgregarPlantilla = false"></p-button>
+      </div>
+
+    </p-dialog>
+
+    <!-- Modal: Editar Plantilla -->
+    <p-dialog
+      header="Editar Requisito"
+      [modal]="true"
+      [(visible)]="modalEditarPlantilla"
+      [style]="{ width: '30rem' }">
+
+      <div class="card flex flex-col gap-4" *ngIf="plantillaSeleccionada">
+        <!-- Campo: Nº -->
+        <div class="flex flex-col gap-2">
+          <strong>Nº</strong>
+          <input
+            pInputText
+            type="number"
+            [(ngModel)]="plantillaSeleccionada.numero"
+            placeholder="Nº" />
+        </div>
+
+        <!-- Campo: Nombre de la Plantilla -->
+        <div class="flex flex-col gap-2">
+          <strong>Nombre del requisito</strong>
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="plantillaSeleccionada.nombrePlantilla"
+            placeholder="Nombre de la plantilla" />
+        </div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="flex justify-end gap-2 mt-4">
+        <p-button label="Guardar" severity="success" (click)="editarPlantilla()"></p-button>
+        <p-button label="Cancelar" severity="danger" (click)="modalEditarPlantilla = false"></p-button>
+      </div>
+    </p-dialog>
+  </div>

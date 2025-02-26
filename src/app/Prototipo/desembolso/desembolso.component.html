@@ -1,0 +1,11 @@
+<div class="card-grid">
+    <div class="card-item" *ngFor="let option of options" (click)="redirectTo(option.route)">
+      <div class="p-card" [ngClass]="option.color">
+        <div class="p-card-content">
+          <h3>{{ option.title }}</h3>
+          <p>{{ option.description }}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>

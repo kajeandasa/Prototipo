@@ -1,10 +1,24 @@
 <div class="card">
+<<<<<<< HEAD
+    <div class="font-semibold text-xl mb-4 text-center"><h2>Formulario</h2></div> <!-- Titulo -->
+=======
     <div class="font-semibold text-xl mb-4"><h2>Formulario</h2></div> <!-- Titulo -->
+>>>>>>> main
 
     <!-- Botones -->
     <div class="flex gap-4 justify-end">
         <button
             pButton
+<<<<<<< HEAD
+            label="Vista Usuario"
+            icon="pi pi-eye"
+            severity="secondary"
+            (click)="iraVerRespuesta()">
+        </button>
+        <button
+            pButton
+=======
+>>>>>>> main
             label="nuevo"
             icon="pi pi-plus"
             (click)="modalabrir_agregar()">
@@ -14,26 +28,59 @@
     <!-- Tabla que muestra las solicitudes por aceptar de los postulantes -->
     <p-table
         #dt1
+<<<<<<< HEAD
+        [value]="Formulario"
+        [rows]="10"
+        [paginator]="true"
+        responsiveLayout="scroll"
+        [globalFilterFields]="['Titulo', 'Descripcion', 'fechaCreacion']"
+        sortMode="multiple"
+        class="custom-table"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        stripedRows
+=======
         [value]="tasks"
         [rows]="10"
         [paginator]="true"
         responsiveLayout="scroll"
         [globalFilterFields]="['title', 'description', 'type', 'status']"
+>>>>>>> main
 
     >
         <!-- Encabezado personalizado con buscador global y botón -->
         <ng-template #caption>
             <div class="flex justify-between items-center flex-column sm:flex-row">
+<<<<<<< HEAD
+
+                <!-- Botón para limpiar filtros -->
+                <button
+                    pButton
+                    label="Limpiar"
+=======
                 <!-- Botón para limpiar filtros -->
                 <button
                     pButton
                     label="Clear"
+>>>>>>> main
                     class="p-button-outlined mb-2"
                     icon="pi pi-filter-slash"
                     (click)="clear(dt1)">
                 </button>
 
                 <!-- Campo de búsqueda -->
+<<<<<<< HEAD
+                <p-iconfield iconPosition="left">
+                    <p-inputicon>
+                      <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input
+                      pInputText
+                      type="text"
+                      (input)="onGlobalFilter(dt1, $event)"
+                      placeholder="Buscar..." />
+                </p-iconfield>
+
+=======
                 <p-iconfield iconPosition="left" class="ml-auto">
                     <p-inputicon>
                         <i class="pi pi-search"></i>
@@ -44,16 +91,25 @@
                         (input)="onGlobalFilter(dt1, $event)"
                         placeholder="Search keyword" />
                 </p-iconfield>
+>>>>>>> main
             </div>
         </ng-template>
 
         <!-- Encabezados de la tabla -->
         <ng-template #header>
             <tr>
+<<<<<<< HEAD
+
+                <th pSortableColumn="id" >N° <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="Titulo" >Pregunta <p-sortIcon field="Titulo"></p-sortIcon></th>
+                <th pSortableColumn="Descripcion" >Descripcion <p-sortIcon field="Descripcion"></p-sortIcon></th>
+                <th pSortableColumn="fechaCreacion" >Fecha de Creación <p-sortIcon field="fechaCreacion"></p-sortIcon></th>
+=======
                 <th>N°</th>
                 <th>Pregunta</th>
                 <th>Tipo</th>
                 <th>Fecha de Creación</th>
+>>>>>>> main
                 <th>Acciones</th>
             </tr>
         </ng-template>
@@ -65,6 +121,22 @@
                 <td>{{ task.Descripcion }}</td>
                 <td>{{ task.fechaCreacion | date: 'MM/dd/yyyy' }}</td>
                 <td>
+<<<<<<< HEAD
+
+                        <button
+                            pButton
+                            label="Editar"
+                            icon="pi pi-pencil"
+                            (click)="modalabrir_editar(task)">
+                        </button>
+                        <button
+                            pButton
+                            label="Ver Items"
+                            icon="pi pi-eye"
+                            severity="info"
+                            (click)="irADetallesConId(task.id)">
+                        </button>
+=======
                     <button
                         pButton
                         label="Detalles"
@@ -78,6 +150,7 @@
                         (click)="irADetallesConId(task.id)">
                     </button>
 
+>>>>>>> main
                 </td>
             </tr>
         </ng-template>
@@ -135,7 +208,11 @@
             <div class="flex flex-wrap gap-6">
                 <div class="flex flex-col grow basis-0 gap-2">
                     <strong>Descripcion</strong>
+<<<<<<< HEAD
+                    <textarea pTextarea id="id_descipcion" [rows]="5" [autoResize]="true"> {{ selectedTask.Descripcion }} </textarea>
+=======
                     <textarea pTextarea id="id_descipcion" [rows]="5"> {{ selectedTask.Descripcion }} </textarea>
+>>>>>>> main
                 </div>
             </div>
         </div>
@@ -145,6 +222,8 @@
             <p-button label="Regresar" severity="danger" (click)="Modal_Editar = false" />
         </div>
     </p-dialog>
+<<<<<<< HEAD
+=======
 
 
 
@@ -156,4 +235,5 @@
 
 
 
+>>>>>>> main
 </div>

@@ -1,0 +1,7 @@
+.vertical-header {
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    text-align: left;
+    padding: 0 5px;
+    min-width: 50px; /* Ajusta el tamaño si es necesario */
+}

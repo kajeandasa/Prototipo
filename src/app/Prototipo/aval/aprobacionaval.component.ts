@@ -60,6 +60,10 @@ interface expandedRows {
     ConfirmDialogModule
   ],
   templateUrl: './aprobacionaval.component.html',  // Enlaza la plantilla HTML del componente
+<<<<<<< HEAD
+//   styleUrl: './aprobacionaval.component.scss'   // Enlaza el archivo de estilos SCSS del componente
+=======
+>>>>>>> main
 })
 export class aprobacionavalComponent {
 
