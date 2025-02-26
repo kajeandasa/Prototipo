@@ -1,9 +1,19 @@
+<<<<<<< HEAD
     <div class="font-semibold text-xl mb-4 text-center" ><h2>Formulario - {{getTaskById(id)?.Titulo}}</h2></div> <!-- Titulo -->
 
+=======
+
+
+<div class="card">
+    <div class="font-semibold text-xl mb-4"><h2>Formulario - {{getTaskById(id)?.Titulo}}</h2></div> <!-- Titulo -->
+
+    <!-- Botones -->
+>>>>>>> main
     <p-card>
         <div class="flex gap-4 justify-end">
             <button
                 pButton
+<<<<<<< HEAD
                 label="Guardar"
                 icon="">
             </button>
@@ -17,10 +27,23 @@
                     <h3>Item {{i}}</h3>
                     <p-button icon="pi pi-times" severity="danger"></p-button>
                 </div>
+=======
+                label="nuevo"
+                icon="pi pi-plus">
+            </button>
+        </div>
+    </p-card>
+    <br><br><br>
+
+    <ul>
+        <li *ngFor="let t of filteredTasks; let i = index">
+            <p-card header="Item {{i}}">
+>>>>>>> main
 
                 <div class="flex flex-wrap gap-6">
                     <div class="flex flex-col grow basis-0 gap-2">
                         <strong>Formulario</strong>
+<<<<<<< HEAD
                         <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="t.Pregunta">
                     </div>
                     <div class="flex flex-col grow basis-0 gap-2">
@@ -85,11 +108,29 @@
             </p-card>
 
             <br><br>
+=======
+                        <input pInputText pKeyFilter="alpha" id="id_titulo" class="flex-auto" autocomplete="off" [value]="tasks[i]['Pregunta']">
+                    </div>
+                    <div class="flex flex-col grow basis-0 gap-2">
+                        <strong>Tipo</strong>
+                        <p-select [options]="tipo" optionLabel="name" placeholder="tipo de respuesta" class="w-full"/>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-6">
+                    <div class="flex flex-col grow basis-0 gap-2">
+                        <strong>Descripcion</strong>
+                        <textarea pTextarea id="id_descipcion" [rows]="5">  </textarea>
+                    </div>
+                </div>
+            </p-card>
+<br><br>
+>>>>>>> main
 
         </li>
     </ul>
 
 
+<<<<<<< HEAD
     <p-card class="flex justify-center items-center h-64">
         <div class="flex justify-center items-center w-full h-full">
             <p-button icon="pi pi-plus"></p-button>
@@ -97,3 +138,15 @@
     </p-card>
 
 
+=======
+
+
+
+
+
+
+
+
+
+</div>
+>>>>>>> main

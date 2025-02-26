@@ -60,7 +60,10 @@ interface expandedRows {
     ConfirmDialogModule
   ],
   templateUrl: './aprobacionaval.component.html',  // Enlaza la plantilla HTML del componente
+<<<<<<< HEAD
 //   styleUrl: './aprobacionaval.component.scss'   // Enlaza el archivo de estilos SCSS del componente
+=======
+>>>>>>> main
 })
 export class aprobacionavalComponent {
 
@@ -124,6 +127,7 @@ export class aprobacionavalComponent {
   Date_final: Date | null = null; // Almacena la fecha seleccionada
   Date_hoy: Date = new Date();  // Fecha actual
   selectedTask: any = {};  // Almacena la tarea seleccionada
+  
   isNewModal: boolean = false;  // Determina si es un modal nuevo o de edición
 
   // Método para abrir los diferentes tipos de modal según el tipo

@@ -28,6 +28,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ActivatedRoute } from '@angular/router';
 import { CardModule } from 'primeng/card';
+<<<<<<< HEAD
 import { InputNumberModule } from 'primeng/inputnumber';
 import { EditorModule } from 'primeng/editor';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -40,12 +41,16 @@ import { PanelModule } from 'primeng/panel';
 
 
 import { FormularioService } from '../formulario.service';
+=======
+
+>>>>>>> main
 // Interfaz para gestionar filas expandidas en tablas
 interface expandedRows {
   [key: string]: boolean;
 }
 
 @Component({
+<<<<<<< HEAD
   selector: 'app-formularioItem',
   imports: [
     PanelModule,
@@ -55,6 +60,10 @@ interface expandedRows {
     FileUploadModule,
     EditorModule,
     InputNumberModule,
+=======
+  selector: 'app-convocatoria',
+  imports: [
+>>>>>>> main
     CardModule,
     ListboxModule,
     CalendarModule,
@@ -86,6 +95,7 @@ interface expandedRows {
 export class ItemFormularioComponent implements OnInit {
     id!: number;
 
+<<<<<<< HEAD
     id_formulario = 1;  //declarar el formulario (id) que se quiree contestar
     id_usuario = 1;     //declarar el usuario (id)  del usuario qcontesta el formulario
 
@@ -132,6 +142,41 @@ export class ItemFormularioComponent implements OnInit {
     }
 
 
+=======
+    constructor(private route: ActivatedRoute) {}
+
+
+
+    Formulario = [
+      { id: 1, Titulo: 'Formulario planilla', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') },
+      { id: 2, Titulo: 'Formulario para ', Descripcion: 'descripcion al formulario', fechaCreacion: new Date('2012-12-12') }
+    ];
+
+    tipo =[
+        {name: 'texto', code: 1},
+        {name: 'numberico', code: 2},
+        {name: 'Parrafo', code: 3},
+        {name: 'Cargar acrchivo', code: 4},
+        {name: 'selecion unica', code: 5},
+        {name: 'selecion multiple', code: 6},
+    ];
+    tasks = [
+      { id: 2, formulario: 1, Pregunta: 'hola?', tipo: '1', fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 1, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: 'una pregunta', tipo: '1', fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') },
+      { id: 2, formulario: 2, Pregunta: '', tipo: '1', fechaCreacion: new Date('2012-12-12') }
+    ];
+
+    get filteredTasks() {
+      return this.id
+        ? this.tasks.filter(task => task.formulario === this.id)
+        : this.tasks; // Si no se ha seleccionado, muestra todas
+    }
+
+>>>>>>> main
     seleccionarFormulario(id: number) {
       this.id = id;
     }
@@ -140,14 +185,67 @@ export class ItemFormularioComponent implements OnInit {
       return this.Formulario.find(form => form.id === id)?.Titulo || 'Sin título';
     }
 
+<<<<<<< HEAD
     getTaskById(id: number) {
         return this.Formulario.find(task => task.id === id);
     }
     selectedTask: any = {};  // Almacena la tarea seleccionada
+=======
+
+
+
+
+
+
+    getTaskById(id: number) {
+        return this.Formulario.find(task => task.id === id);
+      }
+
+      date: Date | undefined;
+      selectedTask: any = {};  // Almacena la tarea seleccionada
+
+    Modal_agregar: boolean = false;
+    modalabrir_agregar(task?: any){
+        this.Modal_agregar = true;
+    }
+    Modal_Editar: boolean = false;
+    modalabrir_editar(task?: any){
+        this.Modal_Editar = true;
+
+        this.selectedTask = { ...task };
+    };
+>>>>>>> main
 
     // Variable para controlar el estado de carga
     loading: boolean = true;
 
+<<<<<<< HEAD
 
 }
 //
+=======
+    // Inicializa el componente y simula la carga de datos
+    ngOnInit() {
+      setTimeout(() => {
+        this.loading = false;  // Cambia el estado de carga cuando los datos estén listos
+      }, 2000);
+      this.route.paramMap.subscribe(params => {
+        this.id = Number(params.get('id')); // Convierte el ID a número
+        console.log('ID recibido:', this.id); // Muestra el ID en la consola
+      });
+    }
+
+    // Método para limpiar los filtros aplicados en la tabla
+    clear(table: any) {
+      table.clear();
+    }
+
+    // Filtro global para buscar en todas las columnas de la tabla
+    onGlobalFilter(table: any, event: any) {
+      table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    }
+
+
+
+}
+>>>>>>> main
